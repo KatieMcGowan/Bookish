@@ -1,8 +1,12 @@
 .header {
-  margin: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  margin: 20px;
   display: flex;
   flex-direction: row;
   gap: 25px;
+  background-color: whitesmoke;
 }
 
 .nav-items {
@@ -19,4 +23,10 @@
   display: flex;
   flex-direction: row;
   gap: 25px;
+} 
+
+@media (min-width: 600px) {
+  .nav-items {
+    font-size: 32px;
+  }
 }

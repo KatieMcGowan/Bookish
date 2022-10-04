@@ -1,0 +1,41 @@
+.landing-wrapper {
+  margin: 30px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.landing-placeholder {
+  background-color: grey;
+  height: 300px;
+  width: 300px;
+}
+
+.landing-header {
+  font-size: 22px;
+}
+
+.landing-description {
+  font-size: 18px;
+}
+
+@media (min-width: 600px) {
+  .landing-wrapper {
+    flex-direction: row;
+  }
+
+  .landing-text {
+    align-self: flex-start;
+    max-width: 500px;
+  }
+
+  .landing-header {
+    font-size: 32px;
+  }
+
+  .landing-description {
+    font-size: 22px;
+  }
+}

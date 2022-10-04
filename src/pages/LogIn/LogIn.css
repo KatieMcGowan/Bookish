@@ -1,0 +1,45 @@
+.login-wrapper {
+  margin: 30px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-header {
+  font-size: 22px;
+}
+
+.login-form-inputs {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.login-submit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-input {
+  font-family: 'Zilla Slab', serif;
+  padding: 5px;
+  margin: 5px 0;
+}
+
+.submit {
+  font-family: 'Zilla Slab', serif;
+  padding: 5px;
+}
+
+.submit:hover {
+  cursor: pointer;
+}
+
+@media (min-width: 600px) {
+  .login-header {
+    font-size: 32px;
+  }
+}

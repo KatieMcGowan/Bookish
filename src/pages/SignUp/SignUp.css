@@ -1,0 +1,45 @@
+.signup-wrapper {
+  margin: 30px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-header {
+  font-size: 22px;
+}
+
+.signup-form-inputs {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.signup-submit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-input {
+  font-family: 'Zilla Slab', serif;
+  padding: 5px;
+  margin: 5px 0;
+}
+
+.submit {
+  font-family: 'Zilla Slab', serif;
+  padding: 5px;
+}
+
+.submit:hover {
+  cursor: pointer;
+}
+
+@media (min-width: 600px) {
+  .signup-header {
+    font-size: 32px;
+  }
+}
