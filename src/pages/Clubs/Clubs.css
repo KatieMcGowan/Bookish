@@ -1,0 +1,34 @@
+.clubs-wrapper {
+  margin: 30px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.clubs-header {
+  font-size: 22px;
+}
+
+.clubs-individual-club {
+  margin: 30px 0;
+  padding-top: 30px;
+  border-top: 2px solid black;
+}
+
+.clubs-club-name-and-invite-status {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.clubs-club-invite-status {
+  font-style: italic;
+}
+
+@media (min-width: 600px) {
+  .clubs-header {
+    font-size: 32px;
+  }
+}

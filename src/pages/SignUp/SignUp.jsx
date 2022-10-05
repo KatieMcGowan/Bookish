@@ -3,7 +3,7 @@ import "./SignUp.css"
 const SignUp = (props) => {
   return(
     <div className="signup-wrapper">
-      <p className="signup-header">Sign up</p>
+      <p className="signup-header">Sign Up</p>
       <div className="signup-form">
         <form /*onSubmit={handleSubmit}*/>
           <div className="signup-form-inputs">

@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import "./HeaderNav.css"
 
 const Header = (props) => {
-  console.log(props);
   return(
     <div className="header">
       <Link to={"/"} className="nav-items">Bookish</Link>
@@ -10,6 +9,7 @@ const Header = (props) => {
         ? <div className="header-loggedout">
           <Link to={"/signup"} className="nav-items">Sign Up</Link>
           <Link to={"/login"} className="nav-items">Log In</Link>
+          {/* <Link to={"/home"} className="nav-items">Home</Link> */}
         </div>
         : <p className="nav-items">Log Out</p>
       }
