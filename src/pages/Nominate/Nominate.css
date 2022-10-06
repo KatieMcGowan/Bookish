@@ -1,4 +1,4 @@
-.edit-club-wrapper {
+.nominate-wrapper {
   margin: 30px 50px;
   display: flex;
   flex-direction: column;
@@ -6,25 +6,25 @@
   justify-content: center;
 }
 
-.edit-club-header {
+.nominate-header {
   font-size: 22px;
   margin-bottom: 30px;
 }
 
-.edit-form-inputs {
+.nominate-form-inputs {
   display: flex;
   flex-direction: column;
   margin: 10px;
 }
 
-.edit-form-submit {
+.nominate-form-submit {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.edit-form-input {
+.nominate-form-input {
   font-family: 'Zilla Slab', serif;
   padding: 5px;
   margin: 5px 0;
@@ -41,7 +41,7 @@
 
 
 @media (min-width: 600px) {
-  .edit-club-header {
+  .nominate-header {
     font-size: 32px;
   }
 }

@@ -6,7 +6,7 @@ const EditClub = (props) => {
       <p className="edit-club-header">Edit Club</p>
       <div className="edit-form-form">
         <form /*onSubmit={handleSubmit}*/>
-          <div className="edit-form-form-inputs">
+          <div className="edit-form-inputs">
             <label htmlFor="name">Name</label>
             <input
               type="text"
@@ -19,7 +19,7 @@ const EditClub = (props) => {
               //value={state.name}
             />
           </div>  
-          <div className="edit-form-form-inputs">
+          <div className="edit-form-inputs">
             <label htmlFor="description">Description</label>
             <input
               type="text"
@@ -32,7 +32,7 @@ const EditClub = (props) => {
               //value={state.name}
             />
           </div>  
-          <div className="edit-form-form-inputs">
+          <div className="edit-form-inputs">
             <label htmlFor="meeting">Meeting Details</label>
             <input
               type="text"
