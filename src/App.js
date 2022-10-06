@@ -10,6 +10,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Clubs from './pages/Clubs/Clubs';
 import MyClubs from './pages/MyClubs/MyClubs';
 import NewClub from "./pages/NewClub/NewClub"
+import EditClub from './pages/EditClub/EditClub';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState({
@@ -28,6 +29,7 @@ const App = () => {
         <Route path={"/clubs"} element={<Clubs />}/> 
         <Route path={"/myclubs"} element={<MyClubs />}/>
         <Route path={"/clubs/new"} element={<NewClub />}/>
+        <Route path={"/:clubid/edit"} element={<EditClub />}/>
       </Routes>
     </div>
     );
