@@ -50,6 +50,7 @@ const EditClub = (props) => {
           </div>  
         </form>
       </div>
+      <p className="delete-club">Delete club</p>
     </div>
   );
 };

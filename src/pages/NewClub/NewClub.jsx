@@ -6,7 +6,7 @@ const NewClub = (props) => {
       <p className="new-club-header">New Club</p>
       <div className="new-form-form">
         <form /*onSubmit={handleSubmit}*/>
-          <div className="new-form-form-inputs">
+          <div className="new-form-inputs">
             <label htmlFor="name">Name</label>
             <input
               type="text"
@@ -19,7 +19,7 @@ const NewClub = (props) => {
               //value={state.name}
             />
           </div>  
-          <div className="new-form-form-inputs">
+          <div className="new-form-inputs">
             <label htmlFor="description">Description</label>
             <input
               type="text"
@@ -32,7 +32,7 @@ const NewClub = (props) => {
               //value={state.name}
             />
           </div>  
-          <div className="new-form-form-inputs">
+          <div className="new-form-inputs">
             <label htmlFor="meeting">Meeting Details</label>
             <input
               type="text"
@@ -45,7 +45,7 @@ const NewClub = (props) => {
               //value={state.name}
             />
           </div>  
-          <div className="new-form-form-inputs">
+          <div className="new-form-inputs">
             <label htmlFor="members">Invite Members</label>
             <input
               type="text"
