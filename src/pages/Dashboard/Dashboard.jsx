@@ -19,8 +19,8 @@ const Dashboard = (props) => {
     <div className="dashboard-wrapper">
       <p className="welcome-text">Good {time}, Elizabeth.</p>
       <div className="dashboard-links">
-        <p className="dashboard-link">View your clubs</p>
-        <p className="dashboard-link">Browse clubs</p>
+        <Link className="dashboard-link" to={"/myclubs"}>View your clubs</Link>
+        <Link className="dashboard-link" to={"/clubs"}>Browse clubs</Link>
         <p className="dashboard-link">Manage your invites</p>
       </div>
     </div>

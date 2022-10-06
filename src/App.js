@@ -8,6 +8,8 @@ import SignUp from "./pages/SignUp/SignUp";
 import LogIn from "./pages/LogIn/LogIn";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Clubs from './pages/Clubs/Clubs';
+import MyClubs from './pages/MyClubs/MyClubs';
+import NewClub from "./pages/NewClub/NewClub"
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState({
@@ -24,6 +26,8 @@ const App = () => {
         <Route path={"/login"} element={<LogIn/>}/>
         <Route path={"/home"} element={<Dashboard />}/>
         <Route path={"/clubs"} element={<Clubs />}/> 
+        <Route path={"/myclubs"} element={<MyClubs />}/>
+        <Route path={"/clubs/new"} element={<NewClub />}/>
       </Routes>
     </div>
     );

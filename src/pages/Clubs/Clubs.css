@@ -31,4 +31,8 @@
   .clubs-header {
     font-size: 32px;
   }
+
+  .clubs-club-name {
+    font-size: 18px;
+  }
 }
