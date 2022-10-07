@@ -73,6 +73,28 @@
   margin-right: 5px; 
 }
 
+.next-book-header {
+  font-size: 18px;
+}
+
+.nominate-a-book-header {
+  font-size: 18px;
+  margin: 15px 0;
+}
+
+.nominations-container {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-content: center;
+}
+
+.nomination-container {
+  display: flex;
+  flex-direction: row;
+  align-items: right;
+}
+
 .club-left {
   text-align: center;
 }
