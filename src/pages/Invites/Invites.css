@@ -1,4 +1,4 @@
-.clubs-wrapper {
+.invites-wrapper {
   margin: 30px 50px;
   display: flex;
   flex-direction: column;
@@ -6,31 +6,46 @@
   justify-content: center;
 }
 
-.clubs-header {
+.invites-header {
   font-size: 22px;
 }
 
-.clubs-individual-club {
+.invites-category-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 20px 0;
 }
 
-.clubs-club-name-and-invite-status {
+.invites-category-header {
+  font-size: 18px;
+}
+
+.invite-club {
+  padding-top: 20px;
+}
+
+.invite-name-and-options {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 5px;
 }
 
-.clubs-club-invite-status {
+.invite-status {
   font-style: italic;
 }
 
 @media (min-width: 600px) {
-  .clubs-header {
+  .invites-header {
     font-size: 32px;
   }
 
-  .clubs-club-name {
+  .invites-category-header {
+    font-size: 24px;
+  }
+
+  .invite-club-name {
     font-size: 18px;
   }
 }

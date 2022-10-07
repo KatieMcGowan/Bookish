@@ -21,7 +21,7 @@ const Dashboard = (props) => {
       <div className="dashboard-links">
         <Link className="dashboard-link" to={"/myclubs"}>View your clubs</Link>
         <Link className="dashboard-link" to={"/clubs"}>Browse clubs</Link>
-        <p className="dashboard-link">Manage your invites</p>
+        <Link className="dashboard-link" to={"/myinvites"}>Manage your invites</Link>
       </div>
     </div>
   );
