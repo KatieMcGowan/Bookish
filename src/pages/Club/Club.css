@@ -1,0 +1,224 @@
+.club-wrapper {
+  margin: 30px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* text-align: center; */
+}
+
+.club-info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.club-name-header {
+  font-size: 22px;
+}
+
+.club-description-header {
+  font-size: 20px;
+}
+
+.club-meeting-header {
+  font-size: 18px;
+}
+
+.hidden {
+  display: none;
+}
+
+.club-left-and-right {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.club-right {
+  text-align: center;
+}
+
+.current-book-header {
+  font-size: 18px;
+}
+
+.current-book {
+  font-size: 18px;
+}
+
+.book-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.book-button {
+  width: 45%;
+  margin: 0 5px;
+  max-width: 150px;
+  border: 2px solid black;
+}
+
+.discussion-header {
+  font-size: 18px;
+}
+
+.question {
+  margin: 5px 0;
+}
+
+.new-question-input {
+  padding: 5px;
+  margin-right: 5px; 
+}
+
+.club-left {
+  text-align: center;
+}
+
+.arrow-down {
+  width: 0; 
+  height: 0; 
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid black;
+}
+
+.book-mobile-banner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+  background-color: rgb(170, 166, 166);
+  gap: 20px;
+}
+
+.mobile-banner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+  background-color: rgb(170, 166, 166);
+  gap: 20px;
+}
+
+.members-header {
+  font-size: 18px;
+}
+
+.past-books-header {
+  font-size: 18px;
+}
+
+@media (min-width: 600px) {
+  .club-wrapper {
+    align-items: unset;
+    justify-content: unset;
+  }
+
+  .club-info {
+    text-align: left;
+    margin-bottom: 30px;
+  }
+
+  .mobile-banner {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    margin: 15px 0;
+    padding-left: 0px;
+    /* background-color: rgb(170, 166, 166); */
+    background-color: unset;
+    gap: 20px;
+  }
+
+  .arrow-down {
+    display: none;
+  }
+
+  .club-left-and-right {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: center;
+  }
+  
+  .club-name-header {
+    font-size: 32px;
+  }
+
+  .club-description-header {
+    font-size: 28px;
+  }
+
+  .club-meeting-header {
+    font-size: 24px;
+  }
+
+  .club-left {
+    width: 30%;
+  }
+
+  .members-header {
+    font-size: 18px;
+  }
+  
+  .members-list {
+    text-align: left;
+  }
+
+  .past-books-list {
+    text-align: left;
+  }
+
+  .club-right {
+    width: 60%;
+  }
+
+  .book-mobile-banner {
+    display: none;
+  }
+
+  .current-book-header {
+    display: none;
+  }
+
+  .current-book {
+    font-size: 22px;
+  }
+
+  .percentage-of-completion {
+    font-size: 18px
+  }
+
+  .book-button {
+    width: 45%;
+    margin: 0 30px;
+    max-width: 150px;
+    border: 2px solid black;
+  }
+
+  .discussion-questions {
+    text-align: left;
+  }
+
+  .new-question-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .new-question-field {
+    width: 100%;
+  }
+  
+  .new-question-input {
+    width: 75%;
+  }
+}    

@@ -11,3 +11,7 @@ body {
   width: 100vw;
   background-color: whitesmoke;
 }
+
+input {
+  font-family: 'Zilla Slab', serif;
+}
