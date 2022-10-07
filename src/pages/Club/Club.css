@@ -14,7 +14,7 @@
 }
 
 .club-name-header {
-  font-size: 22px;
+  font-size: 24px;
 }
 
 .club-description-header {
@@ -85,14 +85,20 @@
 .nominations-container {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  align-content: center;
 }
 
 .nomination-container {
   display: flex;
   flex-direction: row;
   align-items: right;
+}
+
+.nominated-book {
+  text-align: left;
+}
+
+.check {
+  margin-right: 20px;
 }
 
 .club-left {
@@ -131,6 +137,13 @@
   font-size: 18px;
 }
 
+.admin-member {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 5px;
+}
+
 .past-books-header {
   font-size: 18px;
 }
@@ -153,7 +166,6 @@
     align-items: center;
     margin: 15px 0;
     padding-left: 0px;
-    /* background-color: rgb(170, 166, 166); */
     background-color: unset;
     gap: 20px;
   }
@@ -165,7 +177,7 @@
   .club-left-and-right {
     display: flex;
     flex-direction: row;
-    gap: 30px;
+    gap: 40px;
     justify-content: center;
   }
   
@@ -193,12 +205,18 @@
     text-align: left;
   }
 
+  .admin-member {
+    justify-content: left;
+  }
+  
+
   .past-books-list {
     text-align: left;
   }
 
   .club-right {
     width: 60%;
+    max-width: 700px;
   }
 
   .book-mobile-banner {
@@ -242,5 +260,9 @@
   
   .new-question-input {
     width: 75%;
+  }
+
+  .nominate-a-book-header {
+    text-align: left;
   }
 }    

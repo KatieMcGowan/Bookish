@@ -1,5 +1,7 @@
 import CurrentBook from "./Components/CurrentBook";
 import NextBook from "./Components/NextBook";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCrown } from "@fortawesome/free-solid-svg-icons";
 import "./Club.css"
 
 const Club = (props) => {
@@ -18,7 +20,10 @@ const Club = (props) => {
               <div className="arrow-down"></div>
             </div>
             <div className="members-list">
-              <p className="member">Polymathmatical</p>
+              <div className="admin-member">
+                <p className="member">Polymathmatical</p>
+                <FontAwesomeIcon icon={faCrown} />
+              </div>
               <p className="member">VolcanoMan</p>
               <p className="member">Philiment</p>
               <p className="member">GeigerCount</p>
