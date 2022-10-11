@@ -14,6 +14,7 @@ import EditClub from './pages/EditClub/EditClub';
 import Nominate from "./pages/Nominate/Nominate"
 import Club from './pages/Club/Club';
 import Invites from "./pages/Invites/Invites"
+import ManageMembers from './pages/ManageMembers/ManageMembers';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState({
@@ -36,6 +37,7 @@ const App = () => {
         <Route path={"/:clubid/nominate"} element={<Nominate />}/>
         <Route path={"/:clubid"} element={<Club />}/>
         <Route path={"/myinvites"} element={<Invites />}/>
+        <Route path={"/:clubid/managemembers"} element={<ManageMembers />}/>
       </Routes>
     </div>
     );
