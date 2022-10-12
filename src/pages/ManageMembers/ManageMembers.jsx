@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserXmark } from "@fortawesome/free-solid-svg-icons";
 import { faX } from "@fortawesome/free-solid-svg-icons";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import "./ManageMembers.css"
 
 const ManageMembers = (props) => {
@@ -11,31 +12,31 @@ const ManageMembers = (props) => {
         <p className="members-header">Members</p>
         <div className="current-members-list">
           <div className="manage-member">
-            <FontAwesomeIcon icon={faUserXmark}/>
+            <FontAwesomeIcon className="icon" icon={faUserXmark}/>
             <p className="member">VolcanoMan</p>
           </div>
           <div className="manage-member">
-            <FontAwesomeIcon icon={faUserXmark}/>
+            <FontAwesomeIcon className="icon" icon={faUserXmark}/>
             <p className="member">Philiment</p>
           </div>
           <div className="manage-member">
-            <FontAwesomeIcon icon={faUserXmark}/>
+            <FontAwesomeIcon className="icon" icon={faUserXmark}/>
             <p className="member">GeigerCount</p>
           </div>
           <div className="manage-member">
-            <FontAwesomeIcon icon={faUserXmark}/>
+            <FontAwesomeIcon className="icon" icon={faUserXmark}/>
             <p className="member">ItzGeorge</p>
           </div>
           <div className="manage-member">
-            <FontAwesomeIcon icon={faUserXmark}/>
+            <FontAwesomeIcon className="icon" icon={faUserXmark}/>
             <p className="member">Freshfinds</p>
           </div>
           <div className="manage-member">
-            <FontAwesomeIcon icon={faUserXmark}/>
+            <FontAwesomeIcon className="icon" icon={faUserXmark}/>
             <p className="member">StemmyJenny</p>
           </div>
           <div className="manage-member">
-            <FontAwesomeIcon icon={faUserXmark}/>
+            <FontAwesomeIcon className="icon" icon={faUserXmark}/>
             <p className="member">RockMomma</p>
           </div>
         </div>
@@ -44,17 +45,20 @@ const ManageMembers = (props) => {
         <p className="members-header">Requested Members</p>
         <div className="invited-members-list">
           <div className="manage-invite">
-            <FontAwesomeIcon icon={faX}/>
+            <FontAwesomeIcon className="icon" icon={faX}/>
             <p className="invited-member">Pinocchibro</p>
           </div>
           <div className="manage-invite">
-            <FontAwesomeIcon icon={faX}/>
+            <FontAwesomeIcon className="icon" icon={faX}/>
             <p className="invited-member">HappyCow</p>
           </div> 
         </div>
       </div>
       <div className="invite-members-container">
-        <p className="members-header">Invite Members</p>
+        <div className="invite-header-container">
+          <p className="members-header">Invite Members</p>
+          <FontAwesomeIcon className="icon" icon={faUserPlus}/>
+        </div>
         <div className="invite-member-form">
         <form /*onSubmit={handleSubmit}*/>
           <div className="member-invite-input">
@@ -67,8 +71,6 @@ const ManageMembers = (props) => {
             />
             <input type="submit" className="submit" value="Submit"/>
           </div>  
-          {/* <div className="member-invite-submit">
-          </div>   */}
         </form>
       </div>
       </div>
