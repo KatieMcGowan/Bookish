@@ -38,6 +38,11 @@
   cursor: pointer;
 }
 
+.username-taken {
+  margin-top: 10px;
+  color: red;
+}
+
 @media (min-width: 600px) {
   .signup-header {
     font-size: 32px;

@@ -21,7 +21,14 @@ const SignUp = (props) => {
     event.preventDefault();
     setErrorDisplay(false);
     UserQuery.create(newUser)
-    .then(navigate("/"))
+    .then(response => {
+      if (response.errorcode === 1 ){
+        setErrorDisplay(true)
+        return;
+      } else {
+        navigate("/")
+      }
+    })
   }
 
   const handleChange = (event) => {
@@ -31,7 +38,6 @@ const SignUp = (props) => {
     });
   };
 
-  console.log(newUser);
   return(
     <div className="signup-wrapper">
       <p className="signup-header">Sign Up</p>
@@ -81,6 +87,9 @@ const SignUp = (props) => {
           </div>  
         </form>
       </div>
+        {errorDisplay === true &&
+          <p className="username-taken">Username is already taken, please choose another one.</p>
+        }
     </div>
   );
 };
