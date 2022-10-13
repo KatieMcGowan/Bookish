@@ -17,20 +17,17 @@ import Invites from "./pages/Invites/Invites"
 import ManageMembers from './pages/ManageMembers/ManageMembers';
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState({
-    loggedIn: false,
-    userId: ""
-  });
-
+  const [id, setId] = useState()
+  
   return (
     <div>
-      <Header loggedIn={loggedIn}/>
+      <Header />
       <Routes>
         <Route exact path={"/"} element={<Landing/>}/>
         <Route path={"/signup"} element={<SignUp/>}/>
-        <Route path={"/login"} element={<LogIn/>}/>
-        <Route path={"/home"} element={<Dashboard />}/>
+        <Route path={"/login"} element={<LogIn setId={setId}/>}/>
         <Route path={"/clubs"} element={<Clubs />}/> 
+        <Route path={"/home"} element={<Dashboard />}/>
         <Route path={"/myclubs"} element={<MyClubs />}/>
         <Route path={"/clubs/new"} element={<NewClub />}/>
         <Route path={"/:clubid/edit"} element={<EditClub />}/>

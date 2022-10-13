@@ -27,6 +27,7 @@ const LogIn = (props) => {
         setErrorDisplay(true)
         return;
       } else {
+        props.setId(response.id)
         cookies.set("TOKEN", response.token, {
           path: "/"
         })

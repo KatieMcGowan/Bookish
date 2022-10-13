@@ -16,6 +16,7 @@
 }
 
 .nav-items:hover {
+  cursor: pointer;
   text-shadow: 2px 2px rgb(215, 210, 210);
 }
 

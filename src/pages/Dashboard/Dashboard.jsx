@@ -15,6 +15,10 @@ const Dashboard = (props) => {
     } else setTime("evening")
   }, [])
 
+  useEffect(() => {
+    
+  })
+
   return(
     <div className="dashboard-wrapper">
       <p className="welcome-text">Good {time}, Elizabeth.</p>
