@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom"
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"
 import UserQuery from "../../queries/UserQuery";
 import "./SignUp.css"
 
 const SignUp = (props) => {
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
   //USER INPUT STATES
   const [newUser, setNewUser] = useState({
     displayname: "",
     username: "",
     password: "",
-  })
+  });
 
-  //USERNAME ALREADY TAKEN DISPLAY STATE
+  //"USERNAME ALREADY TAKEN" DISPLAY STATE
   const [errorDisplay, setErrorDisplay] = useState(false);
 
   //FORM FUNCTIONS

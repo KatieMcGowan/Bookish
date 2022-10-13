@@ -8,6 +8,17 @@ class UserQuery {
     .catch(err => console.log(err))
   };
 
+  static verify = (userData) => {
+    return fetch(`${url}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userData)
+    })
+    .then(response => response.json())
+  }
+
   static show = (id) => {
     return fetch(`${url}/${id}`)
     .then(response => response.json())
