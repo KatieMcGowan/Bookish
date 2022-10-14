@@ -1,7 +1,7 @@
-
 import './App.css';
-import React, { useState} from "react"
+import React, { useState, useContext, useEffect } from "react"
 import { Route, Routes } from "react-router-dom"
+import Cookies from "universal-cookie"
 import Header from "./pages/Header";
 import Landing from "./pages/Landing/Landing";
 import SignUp from "./pages/SignUp/SignUp";
@@ -15,10 +15,11 @@ import Nominate from "./pages/Nominate/Nominate"
 import Club from './pages/Club/Club';
 import Invites from "./pages/Invites/Invites"
 import ManageMembers from './pages/ManageMembers/ManageMembers';
+// import ProtectedRoutes from './pages/ProtectedRoutes';
 
 const App = () => {
   const [id, setId] = useState()
-  
+
   return (
     <div>
       <Header />
@@ -27,14 +28,24 @@ const App = () => {
         <Route path={"/signup"} element={<SignUp/>}/>
         <Route path={"/login"} element={<LogIn setId={setId}/>}/>
         <Route path={"/clubs"} element={<Clubs />}/> 
-        <Route path={"/home"} element={<Dashboard />}/>
+        {/* <Route element={<ProtectedRoutes />}> */}
+          <Route path={"/home"} element={<Dashboard id={id}/>}/>
+          <Route path={"/myclubs"} element={<MyClubs />}/>
+          <Route path={"/clubs/new"} element={<NewClub />}/>
+          <Route path={"/:clubid/edit"} element={<EditClub />}/>
+          <Route path={"/:clubid/nominate"} element={<Nominate />}/>
+          <Route path={"/:clubid"} element={<Club />}/>
+          <Route path={"/myinvites"} element={<Invites />}/>
+          <Route path={"/:clubid/managemembers"} element={<ManageMembers />}/>
+        {/* </Route> */}
+        {/* <Route path={"/home"} element={<Dashboard />}/>
         <Route path={"/myclubs"} element={<MyClubs />}/>
         <Route path={"/clubs/new"} element={<NewClub />}/>
         <Route path={"/:clubid/edit"} element={<EditClub />}/>
         <Route path={"/:clubid/nominate"} element={<Nominate />}/>
         <Route path={"/:clubid"} element={<Club />}/>
         <Route path={"/myinvites"} element={<Invites />}/>
-        <Route path={"/:clubid/managemembers"} element={<ManageMembers />}/>
+        <Route path={"/:clubid/managemembers"} element={<ManageMembers />}/> */}
       </Routes>
     </div>
     );
