@@ -5,7 +5,7 @@ import UserQuery from "../../queries/UserQuery";
 import "./LogIn.css"
 
 const LogIn = (props) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const cookies = new Cookies()
 
   //USER INPUT STATES

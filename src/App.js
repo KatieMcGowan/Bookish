@@ -1,7 +1,6 @@
 import './App.css';
-import React, { useState, useContext, useEffect } from "react"
+import React, { useState } from "react"
 import { Route, Routes } from "react-router-dom"
-import Cookies from "universal-cookie"
 import Header from "./pages/Header";
 import Landing from "./pages/Landing/Landing";
 import SignUp from "./pages/SignUp/SignUp";
@@ -31,7 +30,7 @@ const App = () => {
         {/* <Route element={<ProtectedRoutes />}> */}
           <Route path={"/home"} element={<Dashboard id={id}/>}/>
           <Route path={"/myclubs"} element={<MyClubs />}/>
-          <Route path={"/clubs/new"} element={<NewClub />}/>
+          <Route path={"/clubs/new"} element={<NewClub id={id}/>}/>
           <Route path={"/:clubid/edit"} element={<EditClub />}/>
           <Route path={"/:clubid/nominate"} element={<Nominate />}/>
           <Route path={"/:clubid"} element={<Club />}/>

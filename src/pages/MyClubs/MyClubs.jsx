@@ -1,7 +1,22 @@
-import { Link } from "react-router-dom"
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 import "./MyClubs.css"
 
 const MyClubs = (props) => {
+  //AUTH TOKEN CHECK
+  const navigate = useNavigate();
+  const cookies = new Cookies();
+
+  useEffect(() => {
+    let token = cookies.get("TOKEN")
+    if (token) {
+      return
+    } else {
+      navigate("/login")
+    }
+  })
+  
   return(
     <div className="my-clubs-wrapper">
       <p className="my-clubs-header">My Clubs</p>

@@ -5,7 +5,20 @@ import UserQuery from "../../queries/UserQuery";
 import "./Dashboard.css"
 
 const Dashboard = (props) => {
-  // let navigate()
+  //AUTH TOKEN CHECK
+  const navigate = useNavigate();
+  const cookies = new Cookies();
+
+  useEffect(() => {
+    let token = cookies.get("TOKEN")
+    if (token) {
+      return
+    } else {
+      navigate("/login")
+    }
+  })
+
+  //GREETINGS: TIME STATE AND USEEFFECT HOOK
   const [time, setTime] = useState();
 
   useEffect(() => {
@@ -18,6 +31,7 @@ const Dashboard = (props) => {
     } else setTime("evening")
   }, [])
 
+  //GREETINGS: DISPLAY NAME STATE AND USEEFFECT HOOK
   const [displayname, setDisplayname] = useState("")
 
   useEffect(() => {

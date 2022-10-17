@@ -39,6 +39,10 @@
   cursor: pointer;
 }
 
+.clubname-taken {
+  margin-top: 10px;
+  color: red;
+}
 
 @media (min-width: 600px) {
   .new-club-header {
