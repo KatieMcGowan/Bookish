@@ -14,17 +14,25 @@
 .my-clubs-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .my-clubs-club {
   width: 100%;
+  margin: 10px;
+  border: 2px solid black;
+}
+
+.my-clubs-club:hover {
+  background-color: black;
+  color: white;
 }
 
 .my-clubs-club-name{
+  cursor: pointer;
   font-size: 18px;
   padding: 20px;
-  margin: 10px;
-  border: 2px solid black;
+
   text-align: center;
 }
 

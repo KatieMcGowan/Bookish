@@ -9,7 +9,6 @@ class ClubQuery {
   };
   
   static adminshow = (id) => {
-    console.log(id)
     return fetch(`${url}/adminshow/${id}`)
     .then(response => response.json())
     .then(jsonData => jsonData.clubs)

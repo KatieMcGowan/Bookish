@@ -28,7 +28,6 @@ const MyClubs = (props) => {
   useEffect(() => {
     ClubQuery.adminshow(props.id)
     .then(response => {
-      console.log(response)
       setAdminClubs(response)
     });
   }, []);
@@ -44,7 +43,9 @@ const MyClubs = (props) => {
                 />  
         })}
         {/* <div className="my-clubs-club">
-          <p className="my-clubs-club-name">Science Nerds</p>
+          <div className="divy-wivy">
+            <p className="my-clubs-club-name">Science Nerds</p>
+          </div>
         </div>
         <div className="my-clubs-club">
           <p className="my-clubs-club-name">Queer Voices</p>
