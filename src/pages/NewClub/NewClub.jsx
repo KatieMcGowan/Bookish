@@ -1,10 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 import ClubQuery from "../../queries/ClubQuery"
+import Cookies from "universal-cookie";
 import "./NewClub.css"
 
 const NewClub = (props) => {
+  //AUTH TOKEN CHECK
   const navigate = useNavigate();
+  const cookies = new Cookies();
+
+  useEffect(() => {
+    let token = cookies.get("TOKEN")
+    if (token) {
+      return
+    } else {
+      navigate("/login")
+    }
+  })
 
   const [newClub, setClub] = useState({
     clubname: "",

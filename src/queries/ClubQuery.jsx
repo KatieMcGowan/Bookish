@@ -7,6 +7,21 @@ class ClubQuery {
     .then(jsonData => jsonData.clubs)
     .catch(err => console.log(err))
   };
+  
+  static adminshow = (id) => {
+    console.log(id)
+    return fetch(`${url}/adminshow/${id}`)
+    .then(response => response.json())
+    .then(jsonData => jsonData.clubs)
+    .catch(err => console.log(err))
+  };
+
+  static membershow = (id) => {
+    return fetch(`${url}/membershow/${id}`)
+    .then(response => response.json())
+    .then(jsonData => jsonData.clubs)
+    .catch(err => console.log(err))
+  };
 
   static show = (id) => {
     return fetch(`${url}/${id}`)

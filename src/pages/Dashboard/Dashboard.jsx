@@ -16,7 +16,7 @@ const Dashboard = (props) => {
     } else {
       navigate("/login")
     }
-  })
+  }, [])
 
   //GREETINGS: TIME STATE AND USEEFFECT HOOK
   const [time, setTime] = useState();

@@ -29,7 +29,7 @@ const App = () => {
         <Route path={"/clubs"} element={<Clubs />}/> 
         {/* <Route element={<ProtectedRoutes />}> */}
           <Route path={"/home"} element={<Dashboard id={id}/>}/>
-          <Route path={"/myclubs"} element={<MyClubs />}/>
+          <Route path={"/myclubs"} element={<MyClubs id={id }/>}/>
           <Route path={"/clubs/new"} element={<NewClub id={id}/>}/>
           <Route path={"/:clubid/edit"} element={<EditClub />}/>
           <Route path={"/:clubid/nominate"} element={<Nominate />}/>
