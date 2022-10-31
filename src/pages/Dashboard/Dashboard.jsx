@@ -18,6 +18,7 @@ const Dashboard = (props) => {
     }
   }, [])
 
+
   //GREETINGS: TIME STATE AND USEEFFECT HOOK
   const [time, setTime] = useState();
 
@@ -35,11 +36,16 @@ const Dashboard = (props) => {
   const [displayname, setDisplayname] = useState("")
 
   useEffect(() => {
-    UserQuery.show(props.id)
+    let token = {token: cookies.get("TOKEN")}
+    UserQuery.getid(token)
     .then(response => {
-      setDisplayname(response.displayname)
+      UserQuery.show(response.userId)
+      .then(response => {
+        setDisplayname(response.displayname)
+      })
     })
   }, [])
+
 
   return(
     <div className="dashboard-wrapper">

@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
-import MyClub from "./MyClub";
+import AdminClub from "./Components/AdminClub";
+import MemberClub from "./Components/MemberClub"
 import ClubQuery from "../../queries/ClubQuery";
+import UserQuery from "../../queries/UserQuery";
 import "./MyClubs.css"
 
-const MyClubs = (props) => {
-  console.log(props.id)
+const MyClubs = () => {
   //AUTH TOKEN CHECK
   const navigate = useNavigate();
   const cookies = new Cookies();
+
 
   useEffect(() => {
     let token = cookies.get("TOKEN")
@@ -26,10 +28,21 @@ const MyClubs = (props) => {
   const [myMemberClubs, setMemberClubs] = useState([]);
 
   useEffect(() => {
-    ClubQuery.adminshow(props.id)
+    ClubQuery.adminshow(cookies.get("ID"))
     .then(response => {
       setAdminClubs(response)
     });
+  }, []);
+
+  useEffect(() => {
+    UserQuery.getid(cookies.get("TOKEN"))
+    .then(response => {
+      console.log(response)
+    })
+    // ClubQuery.membershow(cookies.get("ID"))
+    // .then(response => {
+    //   setMemberClubs(response)
+    // });
   }, []);
 
   return(
@@ -37,25 +50,17 @@ const MyClubs = (props) => {
       <p className="my-clubs-header">My Clubs</p>
       <div className="my-clubs-container">
         {myAdminClubs.map((myclub, index) => {
-          return <MyClub
+          return <AdminClub
                   key={index}
                   myclub={myclub}
                 />  
         })}
-        {/* <div className="my-clubs-club">
-          <div className="divy-wivy">
-            <p className="my-clubs-club-name">Science Nerds</p>
-          </div>
-        </div>
-        <div className="my-clubs-club">
-          <p className="my-clubs-club-name">Queer Voices</p>
-        </div>
-        <div className="my-clubs-club">
-          <p className="my-clubs-club-name">History Buffs</p>
-        </div>
-        <div className="my-clubs-club">
-          <p className="my-clubs-club-name">Dystopia</p>
-        </div> */}
+        {myMemberClubs.map((myclub, index) => {
+          return <MemberClub
+                  key={index}
+                  myclub={myclub}
+                />  
+        })}
       </div>
       <Link className="create-a-club" to={"/clubs/new"}>Create a club</Link>
     </div>

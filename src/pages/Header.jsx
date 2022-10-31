@@ -9,6 +9,7 @@ const Header = () => {
   let token = cookies.get("TOKEN")
 
   const logout = () => {
+    cookies.remove("ID", {path: "/"})
     cookies.remove("TOKEN", {path: "/"})
     navigate("/")
   }
