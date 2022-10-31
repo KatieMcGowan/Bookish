@@ -28,21 +28,25 @@ const MyClubs = () => {
   const [myMemberClubs, setMemberClubs] = useState([]);
 
   useEffect(() => {
-    ClubQuery.adminshow(cookies.get("ID"))
+    let token = {token: cookies.get("TOKEN")}
+    UserQuery.getid(token)
     .then(response => {
-      setAdminClubs(response)
-    });
+      UserQuery.show(response.userId)
+      .then(response => {
+        setAdminClubs(response.clubsadmin)
+        })
+      })
   }, []);
 
   useEffect(() => {
-    UserQuery.getid(cookies.get("TOKEN"))
+    let token = {token: cookies.get("TOKEN")}
+    UserQuery.getid(token)
     .then(response => {
-      console.log(response)
-    })
-    // ClubQuery.membershow(cookies.get("ID"))
-    // .then(response => {
-    //   setMemberClubs(response)
-    // });
+      UserQuery.show(response.userId)
+      .then(response => {
+        setMemberClubs(response.clubsmember)
+        })
+      })
   }, []);
 
   return(
