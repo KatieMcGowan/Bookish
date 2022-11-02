@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import AdminClub from "./Components/AdminClub";
 import MemberClub from "./Components/MemberClub"
-import ClubQuery from "../../queries/ClubQuery";
 import UserQuery from "../../queries/UserQuery";
 import "./MyClubs.css"
 

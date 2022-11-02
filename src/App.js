@@ -31,11 +31,11 @@ const App = () => {
           <Route path={"/home"} element={<Dashboard id={id}/>}/>
           <Route path={"/myclubs"} element={<MyClubs id={id }/>}/>
           <Route path={"/clubs/new"} element={<NewClub id={id}/>}/>
-          <Route path={"/:clubid/edit"} element={<EditClub />}/>
-          <Route path={"/:clubid/nominate"} element={<Nominate />}/>
-          <Route path={"/:clubid"} element={<Club />}/>
+          <Route path={"/clubs/:clubid/edit"} element={<EditClub />}/>
+          <Route path={"/clubs/:clubid/nominate"} element={<Nominate />}/>
+          <Route path={"/clubs/:clubid"} element={<Club />}/>
           <Route path={"/myinvites"} element={<Invites />}/>
-          <Route path={"/:clubid/managemembers"} element={<ManageMembers />}/>
+          <Route path={"/clubs/:clubid/managemembers"} element={<ManageMembers />}/>
         {/* </Route> */}
         {/* <Route path={"/home"} element={<Dashboard />}/>
         <Route path={"/myclubs"} element={<MyClubs />}/>

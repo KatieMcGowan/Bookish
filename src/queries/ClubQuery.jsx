@@ -22,6 +22,17 @@ class ClubQuery {
     .catch(err => console.log(err))
   };
 
+  static requestinvite = (id, userData) => {
+    return fetch(`${url}/requestinvite/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userData)
+    })
+    .then(response => response.json())
+  };
+
   static show = (id) => {
     return fetch(`${url}/${id}`)
     .then(response => response.json())

@@ -25,6 +25,14 @@
   font-style: italic;
 }
 
+.clubs-club-invite-status:hover {
+  cursor: pointer;
+}
+
+.clubs-club-invite-pending {
+  font-style: italic;
+}
+
 @media (min-width: 600px) {
   .clubs-header {
     font-size: 32px;

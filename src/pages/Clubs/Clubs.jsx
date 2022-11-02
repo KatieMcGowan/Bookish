@@ -1,11 +1,29 @@
+import { useState, useEffect } from "react";
+import ClubQuery from "../../queries/ClubQuery";
+import Club from "./Components/Club";
 import "./Clubs.css"
 
 const Clubs = (props) => {
+  const [clubs, setClubs] = useState([]);
+
+  useEffect(() => {
+    ClubQuery.all()
+    .then(response => {
+      setClubs(response)
+    })
+  }, []);
+
   return(
     <div className="clubs-wrapper">
       <p className="clubs-header">Clubs</p>
       <div className="clubs-container">
-        <div className="clubs-individual-club">
+        {clubs.map((club, index) => {
+            return <Club
+                    key={index}
+                    club={club}
+                  />  
+          })}
+        {/* <div className="clubs-individual-club">
           <div className="clubs-club-name-and-invite-status">
             <p className="clubs-club-name">Bay Area Bookies</p>
             <p className="clubs-club-invite-status">Pending</p>
@@ -34,7 +52,7 @@ const Clubs = (props) => {
             <p className="clubs-club-blurb">Literature discussions out in nature</p>
             <p className="clubs-club-meeting">Every other Saturday at noon at Reinhardt Redwood Regional Park.</p>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
