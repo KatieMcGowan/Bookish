@@ -6,6 +6,10 @@
   justify-content: center;
 }
 
+.clubs-container {
+  display: flex;
+  flex-direction: column;
+}
 .clubs-header {
   font-size: 22px;
 }
@@ -31,6 +35,13 @@
 
 .clubs-club-invite-pending {
   font-style: italic;
+}
+
+.new-club {
+  text-align: center;
+  font-style: italic;
+  text-decoration: none;
+  color: black;
 }
 
 @media (min-width: 600px) {

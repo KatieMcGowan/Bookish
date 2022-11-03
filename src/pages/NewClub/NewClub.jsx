@@ -1,36 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"
+import UserQuery from "../../queries/UserQuery";
 import ClubQuery from "../../queries/ClubQuery"
 import Cookies from "universal-cookie";
 import "./NewClub.css"
 
-const NewClub = (props) => {
-  //AUTH TOKEN CHECK
+const NewClub = () => {
   const navigate = useNavigate();
   const cookies = new Cookies();
-
-  useEffect(() => {
-    let token = cookies.get("TOKEN")
-    if (token) {
-      return
-    } else {
-      navigate("/login")
-    }
-  })
-
+  
   const [newClub, setClub] = useState({
     clubname: "",
     description: "",
     meetup: "",
-    admin: props.id,
+    admin: "",
     members: [],
     invitedmembers: [],
+    usersrequestedinvite: [],
     currentbook: "",
     pastbooks: [],
     questions: [],
     userscompleted: [],
     nominations: [],
   })
+
+  const [clubAdmin, setAdmin] = useState("")
+
+  useEffect(() => {
+    let token = {token: cookies.get("TOKEN")};
+    if (token.token !== undefined) {
+      UserQuery.getid(token)
+      .then(response => {
+        setAdmin(response.userId)
+      })
+    } else {
+      navigate("/login")
+    }
+  })
+
 
   //"CLUB NAME ALREADY TAKEN" DISPLAY STATE
   const [errorDisplay, setErrorDisplay] = useState(false);
@@ -39,6 +46,7 @@ const NewClub = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setErrorDisplay(false);
+    newClub.admin = clubAdmin;
     ClubQuery.create(newClub)
     .then(response => {
       if (response.errorcode === 1 ){

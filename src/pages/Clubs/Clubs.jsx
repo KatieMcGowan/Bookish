@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import ClubQuery from "../../queries/ClubQuery";
 import Club from "./Components/Club";
 import "./Clubs.css"
@@ -23,6 +24,8 @@ const Clubs = (props) => {
                     club={club}
                   />  
           })}
+        <Link to={"/clubs/new"} className="new-club">Start a new club</Link>
+
         {/* <div className="clubs-individual-club">
           <div className="clubs-club-name-and-invite-status">
             <p className="clubs-club-name">Bay Area Bookies</p>
