@@ -1,4 +1,9 @@
 import { useState, useEffect } from "react";
+import UserQuery from "../../../queries/UserQuery";
+import ClubQuery from "../../../queries/ClubQuery";
+import Cookies from "universal-cookie";
+import DiscussionQuestion from "./DiscussionQuestion";
+
 const CurrentBook = (props) => {
   const [percentComplete, setPercent] = useState()
 
@@ -11,8 +16,54 @@ const CurrentBook = (props) => {
     // setPercentage((props.userscompleted / props.members) * 100)
   }, [])
 
-  console.log(percentComplete)
+  const [userCompleted, setCompleted] = useState(false);
 
+  const cookies = new Cookies();
+
+  useEffect(() => {
+    let token = {token: cookies.get("TOKEN")}
+    UserQuery.getid(token)
+    .then(id => {
+        for (let i = 0; i < props.members.length; i++) {
+          if (id === props.members[i]) {
+            setCompleted(true)
+          }; 
+        };
+      });
+  }, [])
+
+  // const handleFinish = () => {
+  //   let token = {token: cookies.get("TOKEN")}
+  //   UserQuery.getid(token)
+  //   .then(id => {
+
+  //   })
+  // }
+
+  const [question, setQuestion] =  useState()
+
+  const handleChange = (event) => {
+    setQuestion(event.target.value);
+  };
+
+  const handleAddQuestion = (event) => {
+    event.preventDefault();
+    ClubQuery.addquestion(props.id, {question: question})
+  }
+
+
+  // setErrorDisplay(false);
+  // newClub.admin = clubAdmin;
+  // ClubQuery.create(newClub)
+  // .then(response => {
+  //   if (response.errorcode === 1 ){
+  //     setErrorDisplay(true)
+  //     return;
+  //   } else {
+  //     navigate("/myclubs")
+  //   }
+  // })
+  
   return(
     <div className="club-right">
       <div className="book-mobile-banner">
@@ -23,27 +74,38 @@ const CurrentBook = (props) => {
         <p className="current-book">Current Book: {props.currentbook}</p>
         <p className="percentage-of-completion">{percentComplete}% of members have finished this book</p>
         <div className="book-buttons-container">
-          <p className="book-button">Finished</p>
-          <p className="book-button">Nominate a book</p>
+          {userCompleted === true
+            ? <p className="book-button">Nominate a book</p>
+            : <p className="book-button">Finished</p>
+          }
         </div>
-      </div>
+      </div>      
       <div className="discussion-container">
         <div className="mobile-banner">
           <p className="discussion-header">Discussion Questions</p>
           <div className="arrow-down"></div>
         </div>
-        <div className="discussion-questions">
+        {props.questions.map((question, index) => {
+          return <DiscussionQuestion
+                  key={index}
+                  question={question}
+                />
+        })}
+        {/* <div className="discussion-questions">
           <p className="question">Does anyone else feel weird eating mushrooms now?</p>
           <p className="question">What current research efforts with mushrooms make you the most excited? What about more text, how will you handle this now? What about for really really long bois like me?</p>
-        </div>
+        </div> */}
         <div className="new-question-container">
-          <form className="new-question-field">
+          <form className="new-question-field" onSubmit={handleAddQuestion}>
             <input
               type="text"
               className="new-question-input"
+              name="question"
               minLength="5"
               maxLength="500"
               placeholder="Add a discussion question"
+              onChange={handleChange}
+              value={question}
             />
             <input type="submit" className="submit" value="Submit"/>
           </form>  

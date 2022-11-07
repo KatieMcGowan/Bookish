@@ -34,20 +34,19 @@ const Club = () => {
         members: response.members,
         currentbook: response.currentbook,
         pastbooks: response.pastbooks,
-        question: response.questions,
+        questions: response.questions,
         userscompleted: response.userscompleted,
-        nomination: response.nominations,
+        nominations: response.nominations,
       })
     })
   }, [])
-
 
   return(
     <div className="club-wrapper">
       <div className="club-info">
         <p className="club-name-header">{club.clubname}</p>
         <p className="club-description-header">{club.description}</p>
-        <p className="club-meeting-header">{club.meetup}</p>
+        <p className="club-meeting-header">Meet up: {club.meetup}</p>
       </div>  
       <div className="club-left-and-right">
         <div className="club-left">
@@ -97,6 +96,7 @@ const Club = () => {
           members={club.members}
           userscompleted={club.userscompleted}
           questions={club.questions}
+          id={clubid}
         />
         {/* <NextBook /> */}
       </div>  
