@@ -1,4 +1,18 @@
+import { useState, useEffect } from "react";
 const CurrentBook = (props) => {
+  const [percentComplete, setPercent] = useState()
+
+  const calculatePercent = (num1, num2) => {
+    return Math.round((num1 / num2) * 100)
+  };
+
+  useEffect(() => {
+    setPercent(calculatePercent(50, 60))
+    // setPercentage((props.userscompleted / props.members) * 100)
+  }, [])
+
+  console.log(percentComplete)
+
   return(
     <div className="club-right">
       <div className="book-mobile-banner">
@@ -6,8 +20,8 @@ const CurrentBook = (props) => {
         <div className="arrow-down"></div>
       </div>
       <div className="book-container">
-        <p className="current-book">Current Book: Entangled Life by Merlin Sheldrake</p>
-        <p className="percentage-of-completion">90% of members have finished this book</p>
+        <p className="current-book">Current Book: {props.currentbook}</p>
+        <p className="percentage-of-completion">{percentComplete}% of members have finished this book</p>
         <div className="book-buttons-container">
           <p className="book-button">Finished</p>
           <p className="book-button">Nominate a book</p>

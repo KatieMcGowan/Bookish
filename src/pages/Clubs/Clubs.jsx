@@ -1,29 +1,72 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ClubQuery from "../../queries/ClubQuery";
-import Club from "./Components/Club";
+import UserQuery from "../../queries/UserQuery";
+import Cookies from "universal-cookie";
+// import Club from "./Components/Club";
 import "./Clubs.css"
 
 const Clubs = (props) => {
+  const [id, setId] = useState();
+
+  const cookies = new Cookies();
+
+  useEffect(() => {
+    let token = {token: cookies.get("TOKEN")};
+    if (token.token === undefined) {
+      return;
+    } else {
+      UserQuery.getid(token)
+      .then(response => {
+        setId(response.userId)
+      });
+    };
+  }, []);   
+
   const [clubs, setClubs] = useState([]);
 
   useEffect(() => {
+    const nonMember = [];
     ClubQuery.all()
     .then(response => {
-      setClubs(response)
-    })
-  }, []);
+      for (let i = 0; i < response.length; i++) {
+        if (response[i].members.length === 0 && response[i].admin !== id) {
+          nonMember.push(response[i])
+        } else if (response[i].members.length > 0 && response[i].admin !== id) {
+          for (let j = 0; j < response[i].members.length; i++) {
+            if (i !== response[i].members[j]) {
+              nonMember.push(response[i])
+            }
+          }
+        }
+      }
+    });
+    setClubs(nonMember);
+  }, [id]);
+
+  const [pendingclub, setPendingClub] = useState([]);
+
+  useEffect(() => {
+    
+  })
+
+  const [requestClub, setRequestClub] = useState([])
+
+
+
+
+  // console.log(id);
 
   return(
     <div className="clubs-wrapper">
       <p className="clubs-header">Clubs</p>
       <div className="clubs-container">
-        {clubs.map((club, index) => {
+        {/* {clubs.map((club, index) => {
             return <Club
                     key={index}
                     club={club}
                   />  
-          })}
+          })} */}
         <Link to={"/clubs/new"} className="new-club">Start a new club</Link>
 
         {/* <div className="clubs-individual-club">
@@ -61,4 +104,4 @@ const Clubs = (props) => {
   );
 };
 
-export default Clubs
+export default Clubs;

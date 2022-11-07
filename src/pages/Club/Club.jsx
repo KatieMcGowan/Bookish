@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import Member from "./Components/Member"
 import CurrentBook from "./Components/CurrentBook";
 import NextBook from "./Components/NextBook";
+import PastBook from "./Components/PastBook";
 import ClubQuery from "../../queries/ClubQuery";
 import "./Club.css";
 
@@ -80,12 +81,23 @@ const Club = () => {
               <p className="past-books-header">Past Books</p>
               <div className="arrow-down"></div>
             </div>
-            <div className="past-books-list">
+            {club.pastbooks.map((pastbook, index) => {
+              return <PastBook
+                      key={index}
+                      pastbook={pastbook}
+                    /> 
+            })}
+            {/* <div className="past-books-list">
               <p className="past-book">The Selfish Gene by Richard Dawkins</p>
-            </div>
+            </div> */}
           </div>
         </div>
-        <CurrentBook />
+        <CurrentBook 
+          currentbook={club.currentbook}
+          members={club.members}
+          userscompleted={club.userscompleted}
+          questions={club.questions}
+        />
         {/* <NextBook /> */}
       </div>  
     </div>

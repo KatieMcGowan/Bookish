@@ -7,11 +7,16 @@ import ClubQuery from "../../../queries/ClubQuery";
 const Club = (props) => {
   const [relation, setRelation] = useState("");
 
-  const [userId, setUserId] = useState("");
-
-  const [isAdmin, setIsAdmin] = useState("");
+  const [user, setUser] = useState({
+    clubsadmin: "",
+    clubsmember: "",
+    clubsinvitesreceived: "",
+    userinvitessent: "",
+  })
 
   const cookies = new Cookies();
+
+  //Need to determine if user id is in admin role, is a member, requested an invite, or is invited.
 
   useEffect(() => {
     let token = {token: cookies.get("TOKEN")};
@@ -20,51 +25,16 @@ const Club = (props) => {
     } else {
       UserQuery.getid(token)
       .then(response => {
-        setUserId(response.userId);
-      }) 
+        setUser({
+          clubsadmin: response.clubsadmin,
+          clubsmember: response.clubsmember,
+          clubsinvitesreceived: response.clubsinvitesreceived,
+          userinvitessent: response.userinvitessent
+        })
+      })
     }   
-  }, [relation])
+  }, [])
 
-  useEffect(() => {
-    if (userId === props.club.admin) {
-      setRelation("View Club");
-      setIsAdmin(true);
-    }
-  }, [userId])
-
-  useEffect(() => {
-    if (!isAdmin && props.club.members.length === 0) {
-      setRelation("Request Invite")
-    } else {
-      for (let i = 0; i < props.club.members.length; i++) {
-        if (userId === props.club.members[i]) {
-          setRelation("View Club")
-        } else {
-          setRelation("Request Invite")
-        }
-      }
-    }  
-  }, [isAdmin])
-
-  useEffect(() => {
-    if (!isAdmin && props.club.invitedmembers.length > 0) {
-      for (let i = 0; i < props.club.invitedmembers.length; i++) {
-        if (userId === props.club.invitedmembers[i]) {
-          setRelation("Pending")
-        }
-      }
-    }
-  }, [isAdmin])
-
-  useEffect(() => {
-    if (!isAdmin && props.club.usersrequestedinvite.length > 0) {
-      for (let i = 0; i < props.club.usersrequestedinvite.length; i++) {
-        if (userId === props.club.usersrequestedinvite[i]) {
-          setRelation("Pending")
-        }
-      }
-    }
-  }, [isAdmin])
 
   //Relation functions
   let navigate = useNavigate();
