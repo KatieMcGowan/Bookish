@@ -1,6 +1,10 @@
+import { useParams } from "react-router-dom";
 import "./Nominate.css"
 
-const Nominate = (props) => {
+const Nominate = () => {
+
+  const clubid = useParams().clubid
+
   return(
     <div className="nominate-wrapper">
       <p className="nominate-header">Nominate a Book</p>

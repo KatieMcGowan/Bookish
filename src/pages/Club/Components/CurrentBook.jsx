@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import UserQuery from "../../../queries/UserQuery";
 import ClubQuery from "../../../queries/ClubQuery";
 import Cookies from "universal-cookie";
 import DiscussionQuestion from "./DiscussionQuestion";
 
 const CurrentBook = (props) => {
+  console.log(props.userscompleted)
   //HOOKS TO CALCULATE AND POPULATE PERCENTAGE OF USERS WHO HAVE COMPLETED
   const [percentComplete, setPercent] = useState()
 
@@ -25,9 +27,9 @@ const CurrentBook = (props) => {
   useEffect(() => {
     let token = {token: cookies.get("TOKEN")}
     UserQuery.getid(token)
-    .then(id => {
-        for (let i = 0; i < props.members.length; i++) {
-          if (id === props.members[i]) {
+    .then(response => {
+        for (let i = 0; i < props.userscompleted.length; i++) {
+          if (response.userId === props.userscompleted[i]) {
             setCompleted(true)
           }; 
         };
@@ -41,6 +43,12 @@ const CurrentBook = (props) => {
       ClubQuery.finishbook(props.id, {usercompleted: response.userId})
     })
     .then(setCompleted(true));
+  }
+
+  const navigate = useNavigate();
+
+  const handleNominateDirect = () => {
+    navigate(`/clubs/${props.id}/nominate`)
   }
 
   //HOOKS TO HANDLE USER ADDING A DISCUSSION QUESTION
@@ -66,7 +74,7 @@ const CurrentBook = (props) => {
         <p className="percentage-of-completion">{percentComplete}% of members have finished this book</p>
         <div className="book-buttons-container">
           {userCompleted === true
-            ? <p className="book-button">Nominate a book</p>
+            ? <p className="book-button" onClick={() => handleNominateDirect()}>Nominate a book</p>
             : <p className="book-button" onClick={() => handleFinish()}>Finished</p>
           }
         </div>
