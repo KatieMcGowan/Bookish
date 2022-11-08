@@ -16,7 +16,10 @@ const Header = () => {
   
   return(
     <div className="header">
-      <Link to={"/"} className="nav-items">Bookish</Link>
+      {!token 
+        ? <Link to={"/"} className="nav-items">Bookish</Link>
+        : <Link to={"/home"} className="nav-items">Bookish</Link>
+      }
       {!token
         ? <div className="header-loggedout">
           <Link to={"/signup"} className="nav-items">Sign Up</Link>
