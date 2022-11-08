@@ -6,7 +6,6 @@ import Cookies from "universal-cookie";
 import DiscussionQuestion from "./DiscussionQuestion";
 
 const CurrentBook = (props) => {
-  console.log(props.userscompleted)
   //HOOKS TO CALCULATE AND POPULATE PERCENTAGE OF USERS WHO HAVE COMPLETED
   const [percentComplete, setPercent] = useState()
 

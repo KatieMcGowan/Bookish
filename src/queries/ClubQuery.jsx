@@ -73,6 +73,16 @@ class ClubQuery {
     .then(response => response.json())
   };
 
+  static nominatebook = (id, clubData) => {
+    return fetch(`${url}/nominatebook/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(clubData)
+    })
+    .then(response => response.json())
+  };
 
   static update = (id, clubData) => {
     return fetch(`${url}/${id}`, {
