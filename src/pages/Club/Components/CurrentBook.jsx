@@ -5,6 +5,7 @@ import Cookies from "universal-cookie";
 import DiscussionQuestion from "./DiscussionQuestion";
 
 const CurrentBook = (props) => {
+  //HOOKS TO CALCULATE AND POPULATE PERCENTAGE OF USERS WHO HAVE COMPLETED
   const [percentComplete, setPercent] = useState()
 
   const calculatePercent = (num1, num2) => {
@@ -16,6 +17,7 @@ const CurrentBook = (props) => {
     // setPercentage((props.userscompleted / props.members) * 100)
   }, [])
 
+  //HOOKS TO DETERMINE IF USER HAS COMPLETED THE BOOK, AND TOGGLE BUTTONS APPROPRIATELY
   const [userCompleted, setCompleted] = useState(false);
 
   const cookies = new Cookies();
@@ -32,14 +34,16 @@ const CurrentBook = (props) => {
       });
   }, [])
 
-  // const handleFinish = () => {
-  //   let token = {token: cookies.get("TOKEN")}
-  //   UserQuery.getid(token)
-  //   .then(id => {
+  const handleFinish = () => {
+    let token = {token: cookies.get("TOKEN")}
+    UserQuery.getid(token)
+    .then(response => {
+      ClubQuery.finishbook(props.id, {usercompleted: response.userId})
+    })
+    .then(setCompleted(true));
+  }
 
-  //   })
-  // }
-
+  //HOOKS TO HANDLE USER ADDING A DISCUSSION QUESTION
   const [question, setQuestion] =  useState()
 
   const handleChange = (event) => {
@@ -51,19 +55,6 @@ const CurrentBook = (props) => {
     ClubQuery.addquestion(props.id, {question: question})
   }
 
-
-  // setErrorDisplay(false);
-  // newClub.admin = clubAdmin;
-  // ClubQuery.create(newClub)
-  // .then(response => {
-  //   if (response.errorcode === 1 ){
-  //     setErrorDisplay(true)
-  //     return;
-  //   } else {
-  //     navigate("/myclubs")
-  //   }
-  // })
-  
   return(
     <div className="club-right">
       <div className="book-mobile-banner">
@@ -76,7 +67,7 @@ const CurrentBook = (props) => {
         <div className="book-buttons-container">
           {userCompleted === true
             ? <p className="book-button">Nominate a book</p>
-            : <p className="book-button">Finished</p>
+            : <p className="book-button" onClick={() => handleFinish()}>Finished</p>
           }
         </div>
       </div>      
@@ -91,10 +82,6 @@ const CurrentBook = (props) => {
                   question={question}
                 />
         })}
-        {/* <div className="discussion-questions">
-          <p className="question">Does anyone else feel weird eating mushrooms now?</p>
-          <p className="question">What current research efforts with mushrooms make you the most excited? What about more text, how will you handle this now? What about for really really long bois like me?</p>
-        </div> */}
         <div className="new-question-container">
           <form className="new-question-field" onSubmit={handleAddQuestion}>
             <input

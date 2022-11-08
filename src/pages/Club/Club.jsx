@@ -97,6 +97,7 @@ const Club = () => {
           userscompleted={club.userscompleted}
           questions={club.questions}
           id={clubid}
+          setClub={setClub}
         />
         {/* <NextBook /> */}
       </div>  

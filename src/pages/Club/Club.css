@@ -60,6 +60,12 @@
   border: 2px solid black;
 }
 
+.book-button:hover {
+  cursor: pointer;
+  background-color: black;
+  color: white;
+}
+
 .discussion-header {
   font-size: 18px;
 }
