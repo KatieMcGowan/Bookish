@@ -15,12 +15,10 @@ const NewClub = () => {
     meetup: "",
     admin: "",
     members: [],
-    invitedmembers: [],
-    usersrequestedinvite: [],
-    currentbook: "",
     pastbooks: [],
     questions: [],
     userscompleted: [],
+    newbook: false,
     nominations: [],
   })
 
@@ -38,6 +36,7 @@ const NewClub = () => {
     }
   })
 
+  console.log(newClub)
 
   //"CLUB NAME ALREADY TAKEN" DISPLAY STATE
   const [errorDisplay, setErrorDisplay] = useState(false);

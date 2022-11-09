@@ -13,6 +13,13 @@
   text-align: center;
 }
 
+.edit-club-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
 .club-name-header {
   font-size: 24px;
 }

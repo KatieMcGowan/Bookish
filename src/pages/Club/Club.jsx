@@ -3,10 +3,11 @@ import { useParams, useNavigate } from "react-router-dom"
 import Cookies from "universal-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCrown } from "@fortawesome/free-solid-svg-icons";
+import { faPencil }from "@fortawesome/free-solid-svg-icons";
 import Member from "./Components/Member"
 import CurrentBook from "./Components/CurrentBook";
 import NextBook from "./Components/NextBook";
-import PastBook from "./Components/PastBook";
+// import PastBook from "./Components/PastBook";
 import ClubQuery from "../../queries/ClubQuery";
 import UserQuery from "../../queries/UserQuery";
 import "./Club.css";
@@ -26,7 +27,7 @@ const Club = () => {
   }, [])
   
   const [adminCheck, setCheck] = useState(false)
-
+  console.log(adminCheck)
   //Club states
   const [club, setClub] = useState({
     // clubname: "",
@@ -86,10 +87,19 @@ const Club = () => {
     })
   }, [])
 
+  const handleEditRedirect = () => {
+    navigate(`/clubs/${clubid}/edit`)
+  }
+
   return(
     <div className="club-wrapper">
       <div className="club-info">
-        <p className="club-name-header">{clubBasics.clubname}</p>
+        <div className="edit-club-container">
+          {adminCheck === true &&
+            <FontAwesomeIcon icon={faPencil} onClick={() => handleEditRedirect()} />
+          }  
+          <p className="club-name-header">{clubBasics.clubname}</p>
+        </div>
         <p className="club-description-header">{clubBasics.description}</p>
         <p className="club-meeting-header">Meet up: {clubBasics.meetup}</p>
       </div>  
@@ -128,21 +138,21 @@ const Club = () => {
               <p className="member">RockMomma</p>
             </div>
           </div>   */}
-          <div className="past-books-container">
+          {/* <div className="past-books-container">
             <div className="mobile-banner">
               <p className="past-books-header">Past Books</p>
               <div className="arrow-down"></div>
-            </div>
-            {club.pastbooks.map((pastbook, index) => {
+            </div> */}
+            {/* {club.pastbooks.map((pastbook, index) => {
               return <PastBook
                       key={index}
                       pastbook={pastbook}
                     /> 
-            })}
+            })} */}
             {/* <div className="past-books-list">
               <p className="past-book">The Selfish Gene by Richard Dawkins</p>
             </div> */}
-          </div>
+          {/* </div> */}
         </div>
         <CurrentBook 
           currentbook={club.currentbook}

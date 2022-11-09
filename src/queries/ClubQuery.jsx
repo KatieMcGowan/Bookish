@@ -8,19 +8,19 @@ class ClubQuery {
     .catch(err => console.log(err))
   };
   
-  static adminshow = (id) => {
-    return fetch(`${url}/adminshow/${id}`)
-    .then(response => response.json())
-    .then(jsonData => jsonData.clubs)
-    .catch(err => console.log(err))
-  };
+  // static adminshow = (id) => {
+  //   return fetch(`${url}/adminshow/${id}`)
+  //   .then(response => response.json())
+  //   .then(jsonData => jsonData.clubs)
+  //   .catch(err => console.log(err))
+  // };
 
-  static membershow = (id) => {
-    return fetch(`${url}/membershow/${id}`)
-    .then(response => response.json())
-    .then(jsonData => jsonData.clubs)
-    .catch(err => console.log(err))
-  };
+  // static membershow = (id) => {
+  //   return fetch(`${url}/membershow/${id}`)
+  //   .then(response => response.json())
+  //   .then(jsonData => jsonData.clubs)
+  //   .catch(err => console.log(err))
+  // };
 
   static requestinvite = (id, userData) => {
     return fetch(`${url}/requestinvite/${id}`, {

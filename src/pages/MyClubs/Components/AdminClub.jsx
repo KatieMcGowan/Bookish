@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCrown } from "@fortawesome/free-solid-svg-icons";
 import ClubQuery from "../../../queries/ClubQuery";
 
 const AdminClub = (props) => {
@@ -25,6 +27,7 @@ const AdminClub = (props) => {
   }
   return(
     <div className="my-clubs-club" onClick={() => handleClick()}>
+      <FontAwesomeIcon icon={faCrown} />
       <p className="my-clubs-club-name">{myAdminClub.name}</p>
     </div>
   );

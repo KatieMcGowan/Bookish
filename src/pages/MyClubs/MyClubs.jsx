@@ -51,7 +51,7 @@ const MyClubs = () => {
   return(
     <div className="my-clubs-wrapper">
       <p className="my-clubs-header">My Clubs</p>
-      <div className="my-clubs-container">
+      {/* <div className="my-clubs-container"> */}
         {myAdminClubs.map((myclub, index) => {
           return <AdminClub
                   key={index}
@@ -64,7 +64,7 @@ const MyClubs = () => {
                   myclub={myclub}
                 />  
         })}
-      </div>
+      {/* </div> */}
       <Link className="create-a-club" to={"/clubs/new"}>Create a club</Link>
     </div>
   );

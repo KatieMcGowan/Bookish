@@ -49,6 +49,7 @@ const Dashboard = (props) => {
     })
   }, [])
 
+  //FUNCTIONS TO HANDLE REDIRECT
   const handleViewClick = () => {
     navigate("/myclubs")
   }
