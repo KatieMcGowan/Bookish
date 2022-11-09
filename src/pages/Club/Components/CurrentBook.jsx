@@ -35,6 +35,7 @@ const CurrentBook = (props) => {
       });
   }, [])
 
+  //FUNCTIONS TO HANDLE BUTTON CLICKS
   const handleFinish = () => {
     let token = {token: cookies.get("TOKEN")}
     UserQuery.getid(token)
@@ -48,6 +49,10 @@ const CurrentBook = (props) => {
 
   const handleNominateDirect = () => {
     navigate(`/clubs/${props.id}/nominate`)
+  }
+
+  const handleVote = () => {
+    ClubQuery.initiatevote(props.id, {newbook: true})
   }
 
   //HOOKS TO HANDLE USER ADDING A DISCUSSION QUESTION
@@ -75,6 +80,9 @@ const CurrentBook = (props) => {
           {userCompleted === true
             ? <p className="book-button" onClick={() => handleNominateDirect()}>Nominate a book</p>
             : <p className="book-button" onClick={() => handleFinish()}>Finished</p>
+          }
+          {props.adminCheck === true &&
+            <p className="book-button">Initiate Vote</p>
           }
         </div>
       </div>      

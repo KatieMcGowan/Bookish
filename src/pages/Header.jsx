@@ -15,19 +15,21 @@ const Header = () => {
   }
   
   return(
-    <div className="header">
-      {!token 
-        ? <Link to={"/"} className="nav-items">Bookish</Link>
-        : <Link to={"/home"} className="nav-items">Bookish</Link>
-      }
-      {!token
-        ? <div className="header-loggedout">
-          <Link to={"/signup"} className="nav-items">Sign Up</Link>
-          <Link to={"/login"} className="nav-items">Log In</Link>
-        </div>
-        : <p className="nav-items" onClick={() => logout()}>Log Out</p>
-      }
-    </div>
+    <div className="header-wrapper">
+      <div className="header">
+        {!token 
+          ? <Link to={"/"} className="nav-items">Bookish</Link>
+          : <Link to={"/home"} className="nav-items">Bookish</Link>
+        }
+        {!token
+          ? <div className="header-loggedout">
+            <Link to={"/signup"} className="nav-items">Sign Up</Link>
+            <Link to={"/login"} className="nav-items">Log In</Link>
+          </div>
+          : <p className="nav-items" onClick={() => logout()}>Log Out</p>
+        }
+      </div>
+    </div>  
   );
 };
 

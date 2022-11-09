@@ -13,19 +13,35 @@
 .dashboard-links {
   display: flex;
   flex-direction: column;
-  text-align: center
+  text-align: center;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.dashboard-options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid black;
+  padding: 20px;
+  width: 192px;
+}
+
+.dashboard-options:hover {
+  cursor: pointer;
+  color: whitesmoke;
+  background-color: black;
 }
 
 .dashboard-link {
   font-size: 18px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   text-decoration: none;
-  color: black;
 }
 
-.dashboard-link:hover {
+/* .dashboard-link:hover {
   text-shadow: 2px 2px rgb(215, 210, 210);
-}
+} */
 
 @media (min-width: 600px) {
   .welcome-text {
@@ -38,6 +54,5 @@
 
   .dashboard-link {
     font-size: 22px;
-    margin: 20px 30px;
   }
 }

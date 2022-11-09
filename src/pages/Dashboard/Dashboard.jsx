@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import Cookies from "universal-cookie"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBook } from "@fortawesome/free-solid-svg-icons";
+import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import UserQuery from "../../queries/UserQuery";
 import "./Dashboard.css"
 
@@ -46,14 +49,27 @@ const Dashboard = (props) => {
     })
   }, [])
 
+  const handleViewClick = () => {
+    navigate("/myclubs")
+  }
+
+  const handleBrowseClick = () => {
+    navigate("/clubs")
+  }
 
   return(
     <div className="dashboard-wrapper">
       <p className="welcome-text">Good {time}, {displayname}.</p>
       <div className="dashboard-links">
-        <Link className="dashboard-link" to={"/myclubs"}>View your clubs</Link>
-        <Link className="dashboard-link" to={"/clubs"}>Browse clubs</Link>
-        <Link className="dashboard-link" to={"/myinvites"}>Manage your invites</Link>
+        <div className="dashboard-options" onClick={() => handleViewClick()}>
+          <FontAwesomeIcon icon={faUsers} />
+          <p className="dashboard-link" to={"/myclubs"}>View your clubs</p>
+        </div>
+        <div className="dashboard-options" onClick={() => handleBrowseClick()}>
+          <FontAwesomeIcon icon={faBook} />
+          <p className="dashboard-link" to={"/clubs"}>Browse clubs</p>
+        </div>
+        {/* <Link className="dashboard-link" to={"/myinvites"}>Manage your invites</Link> */}
       </div>
     </div>
   );

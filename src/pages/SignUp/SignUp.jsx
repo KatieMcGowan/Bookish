@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import UserQuery from "../../queries/UserQuery";
 import "./SignUp.css"
 
@@ -26,7 +26,7 @@ const SignUp = (props) => {
         setErrorDisplay(true)
         return;
       } else {
-        navigate("/")
+        navigate("/login")
       }
     })
   }
@@ -87,9 +87,10 @@ const SignUp = (props) => {
           </div>  
         </form>
       </div>
-        {errorDisplay === true &&
-          <p className="username-taken">Username is already taken, please choose another one.</p>
-        }
+      {errorDisplay === true &&
+        <p className="username-taken">Username is already taken, please choose another one.</p>
+      }
+      <p className="auth-alternative">Already have an account with us? Click <Link to={"/login"} className="click-here">here</Link> to log in.</p>
     </div>
   );
 };

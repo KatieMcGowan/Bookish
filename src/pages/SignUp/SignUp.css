@@ -43,6 +43,14 @@
   color: red;
 }
 
+.auth-alternative {
+  margin-top: 10px;
+}
+
+.click-here {
+  font-style: italic;
+}
+
 @media (min-width: 600px) {
   .signup-header {
     font-size: 32px;

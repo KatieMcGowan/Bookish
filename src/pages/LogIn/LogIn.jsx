@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom"
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom"
 import Cookies from "universal-cookie";
 import UserQuery from "../../queries/UserQuery";
 import "./LogIn.css"
@@ -82,6 +82,7 @@ const LogIn = (props) => {
       {errorDisplay === true &&
           <p className="no-match">Username and password do not match. Please try again.</p>
         }
+      <p className="auth-alternative">Don't have an account with us? Click <Link to={"/signup"} className="click-here">here</Link> to sign up.</p>  
     </div>
   );  
 };
