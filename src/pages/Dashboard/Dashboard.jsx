@@ -7,7 +7,7 @@ import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import UserQuery from "../../queries/UserQuery";
 import "./Dashboard.css"
 
-const Dashboard = (props) => {
+const Dashboard = () => {
   //AUTH TOKEN CHECK
   const navigate = useNavigate();
   const cookies = new Cookies();

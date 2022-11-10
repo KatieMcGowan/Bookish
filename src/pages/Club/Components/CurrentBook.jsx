@@ -6,7 +6,7 @@ import Cookies from "universal-cookie";
 import DiscussionQuestion from "./DiscussionQuestion";
 
 const CurrentBook = (props) => {
-  //HOOKS TO CALCULATE AND POPULATE PERCENTAGE OF USERS WHO HAVE COMPLETED
+  // HOOKS TO CALCULATE AND POPULATE PERCENTAGE OF USERS WHO HAVE COMPLETED
   const [percentComplete, setPercent] = useState()
 
   const calculatePercent = (num1, num2) => {
@@ -14,8 +14,7 @@ const CurrentBook = (props) => {
   };
 
   useEffect(() => {
-    setPercent(calculatePercent(50, 60))
-    // setPercentage((props.userscompleted / props.members) * 100)
+    setPercent(calculatePercent(props.userscompleted.length, props.members.length))
   }, [])
 
   //HOOKS TO DETERMINE IF USER HAS COMPLETED THE BOOK, AND TOGGLE BUTTONS APPROPRIATELY
@@ -76,6 +75,7 @@ const CurrentBook = (props) => {
       </div>
       <div className="book-container">
         <p className="current-book">Current Book: {props.currentbook}</p>
+        <progress value={props.userscompleted.length} max={props.members.length}>{calculatePercent()}%</progress>
         <p className="percentage-of-completion">{percentComplete}% of members have finished this book</p>
         <div className="book-buttons-container">
           {userCompleted === true

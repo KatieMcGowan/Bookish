@@ -33,10 +33,8 @@ const NewClub = () => {
       })
     } else {
       navigate("/login")
-    }
-  })
-
-  console.log(newClub)
+    };
+  });
 
   //"CLUB NAME ALREADY TAKEN" DISPLAY STATE
   const [errorDisplay, setErrorDisplay] = useState(false);

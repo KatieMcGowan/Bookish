@@ -1,74 +1,48 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import ClubQuery from "../../queries/ClubQuery";
 import UserQuery from "../../queries/UserQuery";
 import Cookies from "universal-cookie";
-// import Club from "./Components/Club";
+import Club from "./Components/Club";
 import "./Clubs.css"
 
-const Clubs = (props) => {
-  const [id, setId] = useState();
+const Clubs = () => {
+  const [clubs, setClubs] = useState([]);
 
   const cookies = new Cookies();
 
   useEffect(() => {
     let token = {token: cookies.get("TOKEN")};
+    const nonMember = []
     if (token.token === undefined) {
       return;
     } else {
       UserQuery.getid(token)
       .then(response => {
-        setId(response.userId)
-      });
-    };
-  }, []);   
-
-  const [clubs, setClubs] = useState([]);
-
-  useEffect(() => {
-    const nonMember = [];
-    ClubQuery.all()
-    .then(response => {
-      for (let i = 0; i < response.length; i++) {
-        if (response[i].members.length === 0 && response[i].admin !== id) {
-          nonMember.push(response[i])
-        } else if (response[i].members.length > 0 && response[i].admin !== id) {
-          for (let j = 0; j < response[i].members.length; i++) {
-            if (i !== response[i].members[j]) {
-              nonMember.push(response[i])
+        ClubQuery.all()
+        .then(clubs => {
+          for (let i = 0; i < clubs.length; i++) {
+            if (clubs[i].admin !== response.userId) {
+              nonMember.push(clubs[i])
             }
           }
-        }
-      }
-    });
-    setClubs(nonMember);
-  }, [id]);
+        })
+        .then(setClubs(nonMember))
+      });
+    }
+  }, []);   
 
-  const [pendingclub, setPendingClub] = useState([]);
-
-  useEffect(() => {
-    
-  })
-
-  const [requestClub, setRequestClub] = useState([])
-
-
-
-
-  // console.log(id);
+  console.log(clubs)
 
   return(
     <div className="clubs-wrapper">
       <p className="clubs-header">Clubs</p>
-      <div className="clubs-container">
-        {/* {clubs.map((club, index) => {
+      <div className="clubs-container">      
+        {clubs.map((club, index) => {
             return <Club
                     key={index}
                     club={club}
                   />  
-          })} */}
-        <Link to={"/clubs/new"} className="new-club">Start a new club</Link>
-
+          })}
         {/* <div className="clubs-individual-club">
           <div className="clubs-club-name-and-invite-status">
             <p className="clubs-club-name">Bay Area Bookies</p>

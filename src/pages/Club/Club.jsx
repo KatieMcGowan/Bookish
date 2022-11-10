@@ -13,7 +13,7 @@ import UserQuery from "../../queries/UserQuery";
 import "./Club.css";
 
 const Club = () => {
-  //AUTH TOKEN CHECK
+  // AUTH TOKEN CHECK
   const navigate = useNavigate();
   const cookies = new Cookies();
 
@@ -28,12 +28,8 @@ const Club = () => {
   
   const [adminCheck, setCheck] = useState(false)
 
-  //Club states
+  // STATES THAT ARE MODIFIED BY THE USERS
   const [club, setClub] = useState({
-    // clubname: "",
-    // description: "", 
-    // meetup: "",
-    // admin: "",
     members: [],
     currentbook: "",
     pastbooks: [],
@@ -43,14 +39,13 @@ const Club = () => {
     newbook: "",
   });
 
+  // STATES THAT ADMIN CAN ONLY CHANGE
   const [clubBasics, setBasics] = useState({
     clubname: "",
     description: "", 
     meetup: "",
     admin: "",
-  })
-
-  const [members, setMembers] = useState([])
+  });
 
   const [initiatevote, setInitiative] = useState(false);
 
@@ -72,10 +67,6 @@ const Club = () => {
           admin: user.userName
         })
         setClub({
-          // clubname: club.clubname,
-          // description: club.description,
-          // meetup: club.meetup,
-          // admin: club.admin,
           members: club.members,
           currentbook: club.currentbook,
           pastbooks: club.pastbooks,
