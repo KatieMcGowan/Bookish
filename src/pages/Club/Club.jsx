@@ -27,7 +27,7 @@ const Club = () => {
   }, [])
   
   const [adminCheck, setCheck] = useState(false)
-  console.log(adminCheck)
+  
   //Club states
   const [club, setClub] = useState({
     // clubname: "",

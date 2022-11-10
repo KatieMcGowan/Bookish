@@ -1,24 +1,72 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import ClubQuery from "../../queries/ClubQuery";
 import "./EditClub.css"
 
-const EditClub = (props) => {
+const EditClub = () => {
+  const [editedClub, setClub] = useState({
+    clubname: "",
+    description: "",
+    meetup: "",
+  })
+
+  const clubid = useParams().clubid;
+  const navigate = useNavigate();
+
+  //Hook to populate placeholders
+  useEffect(() => {
+    ClubQuery.show(clubid)
+    .then(club => {
+      setClub({
+        clubname: club.clubname,
+        description: club.description,
+        meetup: club.meetup
+      })
+    })
+  }, []);
+
+  //"CLUB NAME ALREADY TAKEN" DISPLAY STATE
+  const [errorDisplay, setErrorDisplay] = useState(false);
+
+  //FORM FUNCTIONS
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setErrorDisplay(false);
+    ClubQuery.update(clubid, editedClub)
+    .then(response => {
+      if (response.errorcode === 1 ){
+        setErrorDisplay(true)
+        return;
+      } else {
+        navigate(`/clubs/${clubid}`)
+      };
+    });
+  };
+  
+  const handleChange = (event) => {
+    setClub({
+      ...editedClub,
+      [event.target.name]: event.target.value
+    });
+  };
+
   return(
     <div className="edit-club-wrapper">
       <p className="edit-club-header">Edit Club</p>
       <div className="edit-form-form">
-        <form /*onSubmit={handleSubmit}*/>
+        <form onSubmit={handleSubmit}>
           <div className="edit-form-inputs">
             <label htmlFor="name">Name</label>
             <input
               type="text"
-              name="displayname"
+              name="clubname"
               className="edit-form-input"
               minLength="2"
               maxLength="30"
               required={true}
-              //onChange={handleChange}
-              //value={state.name}
+              placeholder={editedClub.clubname}
+              onChange={handleChange}
+              value={editedClub.clubname}
             />
           </div>  
           <div className="edit-form-inputs">
@@ -30,21 +78,23 @@ const EditClub = (props) => {
               minLength="3"
               maxLength="200"
               required={true}
-              //onChange={handleChange}
-              //value={state.name}
+              placeholder={editedClub.description}
+              onChange={handleChange}
+              value={editedClub.description}
             />
           </div>  
           <div className="edit-form-inputs">
             <label htmlFor="meeting">Meeting Details</label>
             <input
               type="text"
-              name="meeting"
+              name="meetup"
               className="edit-form-input"
               minLength="4"
               maxLength="40"
               required={true}
-              //onChange={handleChange}
-              //value={state.name}
+              placeholder={editedClub.meetup}
+              onChange={handleChange}
+              value={editedClub.meetup}
             />
           </div>  
           <div className="edit-form-submit">
@@ -52,6 +102,9 @@ const EditClub = (props) => {
           </div>  
         </form>
       </div>
+      {errorDisplay === true &&
+          <p className="clubname-taken">Club name is already taken, please choose another one.</p>
+        }
       <p className="delete-club">Delete club</p>
     </div>
   );
