@@ -27,7 +27,7 @@ const Club = () => {
   }, [])
   
   const [adminCheck, setCheck] = useState(false)
-  
+
   //Club states
   const [club, setClub] = useState({
     // clubname: "",
@@ -154,16 +154,19 @@ const Club = () => {
             </div> */}
           {/* </div> */}
         </div>
-        <CurrentBook 
-          currentbook={club.currentbook}
-          members={club.members}
-          userscompleted={club.userscompleted}
-          questions={club.questions}
-          id={clubid}
-          setClub={setClub}
-          adminCheck={adminCheck}
-        />
-        {/* <NextBook /> */}
+        {initiatevote === false
+          ? <CurrentBook 
+              currentbook={club.currentbook}
+              members={club.members}
+              userscompleted={club.userscompleted}
+              questions={club.questions}
+              id={clubid}
+              setClub={setClub}
+              adminCheck={adminCheck}
+              setInitiative={setInitiative}
+            />
+          : <NextBook />
+        }
       </div>  
     </div>
   );

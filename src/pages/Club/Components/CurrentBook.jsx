@@ -51,8 +51,9 @@ const CurrentBook = (props) => {
     navigate(`/clubs/${props.id}/nominate`)
   }
 
-  const handleVote = () => {
-    ClubQuery.initiatevote(props.id, {newbook: true})
+  const initiateVote = () => {
+    ClubQuery.update(props.id, {newbook: true})
+    props.setInitiative(true);
   }
 
   //HOOKS TO HANDLE USER ADDING A DISCUSSION QUESTION
@@ -82,7 +83,7 @@ const CurrentBook = (props) => {
             : <p className="book-button" onClick={() => handleFinish()}>Finished</p>
           }
           {props.adminCheck === true &&
-            <p className="book-button">Initiate Vote</p>
+            <p className="book-button" onClick={() => initiateVote()}>Initiate Vote</p>
           }
         </div>
       </div>      
