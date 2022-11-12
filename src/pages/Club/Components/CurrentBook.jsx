@@ -34,6 +34,8 @@ const CurrentBook = (props) => {
       });
   }, [])
 
+  console.log(props)
+
   //FUNCTIONS TO HANDLE BUTTON CLICKS
   const handleFinish = () => {
     let token = {token: cookies.get("TOKEN")}
@@ -75,7 +77,7 @@ const CurrentBook = (props) => {
       </div>
       <div className="book-container">
         <p className="current-book">Current Book: {props.currentbook}</p>
-        <progress value={props.userscompleted.length} max={props.members.length}>{calculatePercent()}%</progress>
+        <progress value={props.userscompleted.length} max={props.members.length}>{percentComplete}%</progress>
         <p className="percentage-of-completion">{percentComplete}% of members have finished this book</p>
         <div className="book-buttons-container">
           {userCompleted === true

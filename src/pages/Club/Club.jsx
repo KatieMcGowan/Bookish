@@ -7,7 +7,7 @@ import { faPencil }from "@fortawesome/free-solid-svg-icons";
 import Member from "./Components/Member"
 import CurrentBook from "./Components/CurrentBook";
 import NextBook from "./Components/NextBook";
-// import PastBook from "./Components/PastBook";
+import PastBook from "./Components/PastBook";
 import ClubQuery from "../../queries/ClubQuery";
 import UserQuery from "../../queries/UserQuery";
 import "./Club.css";
@@ -129,21 +129,21 @@ const Club = () => {
               <p className="member">RockMomma</p>
             </div>
           </div>   */}
-          {/* <div className="past-books-container">
+          <div className="past-books-container">
             <div className="mobile-banner">
               <p className="past-books-header">Past Books</p>
               <div className="arrow-down"></div>
-            </div> */}
-            {/* {club.pastbooks.map((pastbook, index) => {
+            </div>
+            {club.pastbooks.map((pastbook, index) => {
               return <PastBook
                       key={index}
                       pastbook={pastbook}
                     /> 
-            })} */}
+            })}
             {/* <div className="past-books-list">
               <p className="past-book">The Selfish Gene by Richard Dawkins</p>
             </div> */}
-          {/* </div> */}
+          </div>
         </div>
         {initiatevote === false
           ? <CurrentBook 

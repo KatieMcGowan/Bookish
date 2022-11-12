@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import ClubQuery from "../../queries/ClubQuery";
-import UserQuery from "../../queries/UserQuery";
 import Cookies from "universal-cookie";
 import Club from "./Components/Club";
 import "./Clubs.css"
@@ -12,26 +11,15 @@ const Clubs = () => {
 
   useEffect(() => {
     let token = {token: cookies.get("TOKEN")};
-    const nonMember = []
     if (token.token === undefined) {
       return;
     } else {
-      UserQuery.getid(token)
-      .then(response => {
-        ClubQuery.all()
-        .then(clubs => {
-          for (let i = 0; i < clubs.length; i++) {
-            if (clubs[i].admin !== response.userId) {
-              nonMember.push(clubs[i])
-            }
-          }
-        })
-        .then(setClubs(nonMember))
-      });
+      ClubQuery.all()
+      .then(clubs => {
+        setClubs(clubs)
+      })
     }
   }, []);   
-
-  console.log(clubs)
 
   return(
     <div className="clubs-wrapper">

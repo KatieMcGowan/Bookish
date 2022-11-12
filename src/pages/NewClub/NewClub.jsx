@@ -9,6 +9,8 @@ const NewClub = () => {
   const navigate = useNavigate();
   const cookies = new Cookies();
   
+  const [clubAdmin, setAdmin] = useState("")
+
   const [newClub, setClub] = useState({
     clubname: "",
     description: "",
@@ -21,8 +23,6 @@ const NewClub = () => {
     newbook: false,
     nominations: [],
   })
-
-  const [clubAdmin, setAdmin] = useState("")
 
   useEffect(() => {
     let token = {token: cookies.get("TOKEN")};
@@ -44,6 +44,7 @@ const NewClub = () => {
     event.preventDefault();
     setErrorDisplay(false);
     newClub.admin = clubAdmin;
+    newClub.members.push(clubAdmin);
     ClubQuery.create(newClub)
     .then(response => {
       if (response.errorcode === 1 ){
