@@ -98,7 +98,7 @@ const Club = () => {
         <div className="club-left">
           <div className="members-container">
             <div className="mobile-banner">
-              <p className="members-header">Members</p>
+              <p className="club-members-header">Members</p>
               <div className="arrow-down"></div>
             </div>
             <div className="members-list">

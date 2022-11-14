@@ -38,7 +38,7 @@ class ClubQuery {
   };
 
   static updatearray = (id, clubData) => {
-    return fetch(`${url}/${id}`, {
+    return fetch(`${url}/updatearray/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"

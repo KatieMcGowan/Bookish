@@ -7,15 +7,15 @@ import DiscussionQuestion from "./DiscussionQuestion";
 
 const CurrentBook = (props) => {
   // HOOKS TO CALCULATE AND POPULATE PERCENTAGE OF USERS WHO HAVE COMPLETED
-  const [percentComplete, setPercent] = useState()
+  // const [percentComplete, setPercent] = useState(Math.round((props.userscompleted.length / props.members.length) * 100))
 
-  const calculatePercent = (num1, num2) => {
-    return Math.round((num1 / num2) * 100)
-  };
+  // const calculatePercent = (num1, num2) => {
+  //   return Math.round((num1 / num2) * 100)
+  // };
 
-  useEffect(() => {
-    setPercent(calculatePercent(props.userscompleted.length, props.members.length))
-  }, [])
+  // useEffect(() => {
+  //   setPercent(calculatePercent(props.userscompleted.length, props.members.length))
+  // }, [])
 
   //HOOKS TO DETERMINE IF USER HAS COMPLETED THE BOOK, AND TOGGLE BUTTONS APPROPRIATELY
   const [userCompleted, setCompleted] = useState(false);
@@ -33,15 +33,13 @@ const CurrentBook = (props) => {
         };
       });
   }, [])
-
-  console.log(props)
-
+  
   //FUNCTIONS TO HANDLE BUTTON CLICKS
   const handleFinish = () => {
     let token = {token: cookies.get("TOKEN")}
     UserQuery.getid(token)
     .then(response => {
-      ClubQuery.finishbook(props.id, {usercompleted: response.userId})
+      ClubQuery.updatearray(props.id, {usercompleted: response.userId})
     })
     .then(setCompleted(true));
   }
@@ -69,6 +67,8 @@ const CurrentBook = (props) => {
     ClubQuery.addquestion(props.id, {question: question})
   }
 
+  // Math.round((props.userscompleted.length / props.members.length) * 100)
+
   return(
     <div className="club-right">
       <div className="book-mobile-banner">
@@ -77,8 +77,10 @@ const CurrentBook = (props) => {
       </div>
       <div className="book-container">
         <p className="current-book">Current Book: {props.currentbook}</p>
-        <progress value={props.userscompleted.length} max={props.members.length}>{percentComplete}%</progress>
-        <p className="percentage-of-completion">{percentComplete}% of members have finished this book</p>
+        {/* <progress value={props.userscompleted.length} max={props.members.length}>{percentComplete}%</progress>
+        <p className="percentage-of-completion">{percentComplete}% of members have finished this book</p> */}
+        <progress value={props.userscompleted.length} max={props.members.length}>{Math.round((props.userscompleted.length / props.members.length) * 100)}%</progress>
+        <p className="percentage-of-completion">{Math.round((props.userscompleted.length / props.members.length) * 100)}% of members have finished this book</p>
         <div className="book-buttons-container">
           {userCompleted === true
             ? <p className="book-button" onClick={() => handleNominateDirect()}>Nominate a book</p>
