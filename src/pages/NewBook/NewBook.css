@@ -1,0 +1,47 @@
+.new-book-wrapper {
+  margin: 30px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-book-header {
+  font-size: 22px;
+  margin-bottom: 30px;
+}
+
+.new-book-form-inputs {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.new-book-form-submit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-book-form-input {
+  font-family: 'Zilla Slab', serif;
+  padding: 5px;
+  margin: 5px 0;
+}
+
+.submit {
+  font-family: 'Zilla Slab', serif;
+  padding: 5px;
+}
+
+.submit:hover {
+  cursor: pointer;
+}
+
+
+@media (min-width: 600px) {
+  .new-book-header {
+    font-size: 32px;
+  }
+}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ClubQuery from "../../queries/ClubQuery";
-import SearchBook from "./Components/SearchBook";
+import SearchBooks from "./Components/SearchBooks";
 import "./Nominate.css"
 
 const Nominate = () => {
@@ -28,7 +28,7 @@ const Nominate = () => {
   };
 
   return(
-      <SearchBook />
+      <SearchBooks clubid={clubid}/>
     // <div className="nominate-wrapper">
     //   <p className="nominate-header">Nominate a Book</p>
     //   <div className="nominate-form">

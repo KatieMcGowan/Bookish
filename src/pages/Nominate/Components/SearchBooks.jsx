@@ -1,31 +1,29 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import BookQuery from "../../../queries/BookQuery";
+import FoundBook from "./FoundBook";
 
-const SearchBook = () => {
+const SearchBooks = (props) => {
   const [searchCategory, setCategory] = useState("Title");
 
   const [title, setTitle] = useState("");
 
   const [author, setAuthor] = useState("");
 
-  const [result, setResult] = useState("")
+  const [results, setResult] = useState([])
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (searchCategory === "Title") {
       BookQuery.searchtitle(title)
-      // .then(response => console.log(response))
       .then(response => {
-        if (response === undefined) {
-          setResult(null)
-        } else {
-          setResult(response)
-        }
+        setResult(response)
       })
-    // } else {
-      // console.log("In the author thread!" + author)
-      // BookQuery.searchauthor({author: author})
-      // .then(response => console.log(response))
+    } else {
+      BookQuery.searchauthor(author)
+      .then(response => {
+        setResult(response)
+      })
     };
   };
   
@@ -40,6 +38,12 @@ const SearchBook = () => {
       setAuthor(event.target.value)
     }
   };
+
+  const navigate = useNavigate();
+
+  const handleNewBookRedirect = () => {
+    navigate(`/clubs/${props.clubid}/newbook`);
+  }
 
   return(
     <div className="search-book-wrapper">
@@ -84,16 +88,20 @@ const SearchBook = () => {
         </div>
       </div>
       <div className="results-container">
-        {result !== null
-        ? <div className="search-result">
-            <p>{result.title}</p>
-            <p>{result.author}</p>
-          </div>  
-        : <p>No results found. Click here to add your book!</p>
+        {results.length > 0
+          ? <div>
+              {results.map((result, index) => {
+                return <FoundBook
+                          key={index}
+                          result={result}
+                        />  
+              })}
+            </div>  
+          : <p onClick={() => handleNewBookRedirect()}>No results found. Click here to add a book to the collection!</p>
         }
       </div>
     </div>
   );
 };
 
-export default SearchBook;
+export default SearchBooks;
