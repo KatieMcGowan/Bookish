@@ -23,16 +23,18 @@ const CurrentBook = (props) => {
   const cookies = new Cookies();
 
   useEffect(() => {
+    console.log("In the button useEffect")
     let token = {token: cookies.get("TOKEN")}
     UserQuery.getid(token)
     .then(response => {
-        for (let i = 0; i < props.userscompleted.length; i++) {
-          if (response.userId === props.userscompleted[i]) {
-            setCompleted(true)
-          }; 
-        };
-      });
-  }, [])
+      for (let i = 0; i < props.userscompleted.length; i++) {
+        if (response.userId === props.userscompleted[i]) {
+          console.log("User has finished the book")
+          setCompleted(true)
+        }; 
+      };
+    });
+  })
   
   //FUNCTIONS TO HANDLE BUTTON CLICKS
   const handleFinish = () => {
