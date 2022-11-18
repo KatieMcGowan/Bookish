@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import UserQuery from "../../../queries/UserQuery";
 import ClubQuery from "../../../queries/ClubQuery";
+// import BookQuery from "../../../queries/BookQuery";
 import Cookies from "universal-cookie";
 import DiscussionQuestion from "./DiscussionQuestion";
 
@@ -15,6 +16,22 @@ const CurrentBook = (props) => {
 
   // useEffect(() => {
   //   setPercent(calculatePercent(props.userscompleted.length, props.members.length))
+  // }, [])
+
+  // const [currentBook, setCurrentBook] = useState({
+  //   title: "",
+  //   author: "",
+  // })
+
+  // useEffect(() => {
+  //   BookQuery.show(props.currentbook)
+  //   .then(book => {
+  //     // console.log(book)})
+  //     setCurrentBook({
+  //       title: book.title,
+  //       author: book.author,
+  //     });
+  //   });
   // }, [])
 
   //HOOKS TO DETERMINE IF USER HAS COMPLETED THE BOOK, AND TOGGLE BUTTONS APPROPRIATELY
@@ -74,7 +91,7 @@ const CurrentBook = (props) => {
         <div className="arrow-down"></div>
       </div>
       <div className="book-container">
-        <p className="current-book">Current Book: {props.currentbook}</p>
+        <p className="current-book">Current Book: {props.currentbook.title} by {props.currentbook.author}</p>
         <progress value={props.userscompleted.length} max={props.members.length}>{Math.round((props.userscompleted.length / props.members.length) * 100)}%</progress>
         <p className="percentage-of-completion">{Math.round((props.userscompleted.length / props.members.length) * 100)}% of members have finished this book</p>
         <div className="book-buttons-container">

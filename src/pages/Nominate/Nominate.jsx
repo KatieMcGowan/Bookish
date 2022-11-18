@@ -28,7 +28,10 @@ const Nominate = () => {
   };
 
   return(
-      <SearchBooks clubid={clubid}/>
+      <SearchBooks 
+        path={2}
+        clubid={clubid}
+      />
     // <div className="nominate-wrapper">
     //   <p className="nominate-header">Nominate a Book</p>
     //   <div className="nominate-form">

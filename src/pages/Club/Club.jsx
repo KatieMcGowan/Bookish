@@ -10,6 +10,7 @@ import NextBook from "./Components/NextBook";
 import PastBook from "./Components/PastBook";
 import ClubQuery from "../../queries/ClubQuery";
 import UserQuery from "../../queries/UserQuery";
+import BookQuery from "../../queries/BookQuery";
 import "./Club.css";
 
 const Club = () => {
@@ -26,14 +27,19 @@ const Club = () => {
     }
   }, [])
   
+  // PAGE STATES AND HOOKS
   const [adminCheck, setCheck] = useState({
     isAdmin: false,
     adminName: "",
     adminId: "",
   })
 
-  // STATES THAT ARE MODIFIED BY THE USERS
+  // CLUB STATE
   const [club, setClub] = useState({
+    clubname: "",
+    description: "", 
+    meetup: "",
+    admin: "",
     members: [],
     currentbook: "",
     pastbooks: [],
@@ -42,14 +48,12 @@ const Club = () => {
     nominations: [],
     newbook: "",
   });
-
-  // STATES THAT ADMIN CAN ONLY CHANGE
-  const [clubBasics, setBasics] = useState({
-    clubname: "",
-    description: "", 
-    meetup: "",
-    admin: "",
-  });
+  
+  // CURRENT BOOK STATE
+  const [book, setBook] = useState({
+    title: "",
+    author: "",
+  })
 
   const [initiatevote, setInitiative] = useState(false);
 
@@ -61,26 +65,21 @@ const Club = () => {
     .then(club => {
       UserQuery.getid(token)
       .then(user => {
-        if (club.admin === user.userId) {
-          setCheck({
-            isAdmin: true,
-            adminName: user.userDisplayName,
-            adminId: user.userId
+        BookQuery.show(club.currentbook) 
+        .then(book => {
+          if (club.admin === user.userId) {
+            setCheck({
+              isAdmin: true,
+              adminName: user.userDisplayName,
+              adminId: user.userId
+            })
+          } 
+          setClub({
+            ...club
           })
-        }
-        setBasics({
-          clubname: club.clubname,
-          description: club.description,
-          meetup: club.meetup,
-          admin: user.userName
-        })
-        setClub({
-          members: club.members,
-          currentbook: club.currentbook,
-          pastbooks: club.pastbooks,
-          questions: club.questions,
-          userscompleted: club.userscompleted,
-          nominations: club.nominations,
+          setBook({
+            ...book
+          })
         })
       })
     })
@@ -94,13 +93,13 @@ const Club = () => {
     <div className="club-wrapper">
       <div className="club-info">
         <div className="edit-club-container">
-          {adminCheck === true &&
+          {adminCheck.isAdmin === true &&
             <FontAwesomeIcon icon={faPencil} onClick={() => handleEditRedirect()} />
           }  
-          <p className="club-name-header">{clubBasics.clubname}</p>
+          <p className="club-name-header">{club.clubname}</p>
         </div>
-        <p className="club-description-header">{clubBasics.description}</p>
-        <p className="club-meeting-header">Meet up: {clubBasics.meetup}</p>
+        <p className="club-description-header">{club.description}</p>
+        <p className="club-meeting-header">Meet up: {club.meetup}</p>
       </div>  
       <div className="club-left-and-right">
         <div className="club-left">
@@ -138,7 +137,7 @@ const Club = () => {
         </div>
         {initiatevote === false
           ? <CurrentBook 
-              currentbook={club.currentbook}
+              currentbook={book}
               members={club.members}
               userscompleted={club.userscompleted}
               questions={club.questions}

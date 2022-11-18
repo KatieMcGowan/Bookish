@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
-import AdminClub from "./Components/AdminClub";
-import MemberClub from "./Components/MemberClub"
+import MyClub from "./Components/MyClub"
 import UserQuery from "../../queries/UserQuery";
 import "./MyClubs.css"
 
@@ -22,28 +21,18 @@ const MyClubs = () => {
   }, [])
 
   //MY CLUB STATE
-  const [myAdminClubs, setAdminClubs] = useState([]);
+  const [myClubs, setClubs] = useState([]);
 
-  const [myMemberClubs, setMemberClubs] = useState([]);
-
-  useEffect(() => {
-    let token = {token: cookies.get("TOKEN")}
-    UserQuery.getid(token)
-    .then(response => {
-      UserQuery.show(response.userId)
-      .then(response => {
-        setAdminClubs(response.clubsadmin)
-        })
-      })
-  }, []);
+  const [user, setUser] = useState("")
 
   useEffect(() => {
     let token = {token: cookies.get("TOKEN")}
     UserQuery.getid(token)
     .then(response => {
       UserQuery.show(response.userId)
-      .then(response => {
-        setMemberClubs(response.clubsmember)
+      .then(user => {
+        setClubs(user.clubsmember);
+        setUser(response.userId)
         })
       })
   }, []);
@@ -52,16 +41,11 @@ const MyClubs = () => {
     <div className="my-clubs-wrapper">
       <p className="my-clubs-header">My Clubs</p>
       {/* <div className="my-clubs-container"> */}
-        {myAdminClubs.map((myclub, index) => {
-          return <AdminClub
+        {myClubs.map((myclub, index) => {
+          return <MyClub
                   key={index}
                   myclub={myclub}
-                />  
-        })}
-        {myMemberClubs.map((myclub, index) => {
-          return <MemberClub
-                  key={index}
-                  myclub={myclub}
+                  user={user}
                 />  
         })}
       {/* </div> */}

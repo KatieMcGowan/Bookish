@@ -20,10 +20,9 @@ const NewClub = () => {
     admin: "",
     members: [],
     pastbooks: [],
-    currentbook: "To be determined",
     questions: [],
     userscompleted: [],
-    newbook: false,
+    newbook: "false",
     nominations: [],
   })
 
@@ -65,26 +64,32 @@ const NewClub = () => {
     newClub.newbook = convertString(newClub.newbook);
     console.log(newClub);
     if (newClub.newbook === true) {
+      console.log("In the newbook = true path")
       ClubQuery.create(newClub)
       .then(club => {
         if (club.errorcode === 1 ){
           setErrorDisplay(true)
           return;
         } else if (club.newbook === true) {
+          console.log("We got a new club bois")
           navigate(`/clubs/${club._id}/nominate`)
         }
       })
     } else {
+      console.log("In the have book path")
       setHaveBook(true)
     };
   };
 
+  //FUNCTION PASSED IF USER HAS ALREADY CHOSEN FIRST BOOK
   const handleSecondSubmit = (bookId) => {
     newClub.currentbook = bookId
     ClubQuery.create(newClub)
-    .then(club => {
-      navigate(`/clubs/${club._id}`)
-    })
+    .then(navigate("/myclubs"))
+
+    // .then(club => {
+      // navigate(`/clubs/${club._id}`)
+    // })
   }
   
   const handleChange = (event) => {
