@@ -23,13 +23,11 @@ const CurrentBook = (props) => {
   const cookies = new Cookies();
 
   useEffect(() => {
-    console.log("In the button useEffect")
     let token = {token: cookies.get("TOKEN")}
     UserQuery.getid(token)
     .then(response => {
       for (let i = 0; i < props.userscompleted.length; i++) {
         if (response.userId === props.userscompleted[i]) {
-          console.log("User has finished the book")
           setCompleted(true)
         }; 
       };
@@ -69,8 +67,6 @@ const CurrentBook = (props) => {
     ClubQuery.addquestion(props.id, {question: question})
   }
 
-  // Math.round((props.userscompleted.length / props.members.length) * 100)
-
   return(
     <div className="club-right">
       <div className="book-mobile-banner">
@@ -79,8 +75,6 @@ const CurrentBook = (props) => {
       </div>
       <div className="book-container">
         <p className="current-book">Current Book: {props.currentbook}</p>
-        {/* <progress value={props.userscompleted.length} max={props.members.length}>{percentComplete}%</progress>
-        <p className="percentage-of-completion">{percentComplete}% of members have finished this book</p> */}
         <progress value={props.userscompleted.length} max={props.members.length}>{Math.round((props.userscompleted.length / props.members.length) * 100)}%</progress>
         <p className="percentage-of-completion">{Math.round((props.userscompleted.length / props.members.length) * 100)}% of members have finished this book</p>
         <div className="book-buttons-container">

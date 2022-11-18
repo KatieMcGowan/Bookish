@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom"
 import UserQuery from "../../queries/UserQuery";
 import ClubQuery from "../../queries/ClubQuery"
 import Cookies from "universal-cookie";
+import SearchBooks from "../Nominate/Components/SearchBooks";
 import "./NewClub.css"
 
 const NewClub = () => {
   const navigate = useNavigate();
+
   const cookies = new Cookies();
   
   const [clubAdmin, setAdmin] = useState("")
@@ -18,11 +20,14 @@ const NewClub = () => {
     admin: "",
     members: [],
     pastbooks: [],
+    currentbook: "To be determined",
     questions: [],
     userscompleted: [],
     newbook: false,
     nominations: [],
   })
+
+  const [haveBook, setHaveBook] = useState(false)
 
   useEffect(() => {
     let token = {token: cookies.get("TOKEN")};
@@ -36,23 +41,49 @@ const NewClub = () => {
     };
   });
 
+
   //"CLUB NAME ALREADY TAKEN" DISPLAY STATE
   const [errorDisplay, setErrorDisplay] = useState(false);
 
   //FORM FUNCTIONS
-  const handleSubmit = (event) => {
+
+  const convertString = (string) => {
+    if (string === "true") {
+      string = true
+      return string;
+    } else if (string === "false") {
+      string = false
+      return string;
+    } else return;
+  }
+
+  const handleFirstSubmit = (event) => {
     event.preventDefault();
     setErrorDisplay(false);
     newClub.admin = clubAdmin;
     newClub.members.push(clubAdmin);
+    newClub.newbook = convertString(newClub.newbook);
+    console.log(newClub);
+    if (newClub.newbook === true) {
+      ClubQuery.create(newClub)
+      .then(club => {
+        if (club.errorcode === 1 ){
+          setErrorDisplay(true)
+          return;
+        } else if (club.newbook === true) {
+          navigate(`/clubs/${club._id}/nominate`)
+        }
+      })
+    } else {
+      setHaveBook(true)
+    };
+  };
+
+  const handleSecondSubmit = (bookId) => {
+    newClub.currentbook = bookId
     ClubQuery.create(newClub)
-    .then(response => {
-      if (response.errorcode === 1 ){
-        setErrorDisplay(true)
-        return;
-      } else {
-        navigate("/myclubs")
-      }
+    .then(club => {
+      navigate(`/clubs/${club._id}`)
     })
   }
   
@@ -67,7 +98,8 @@ const NewClub = () => {
     <div className="new-club-wrapper">
       <p className="new-club-header">New Club</p>
       <div className="new-form-form">
-        <form onSubmit={handleSubmit}>
+      {haveBook === false &&
+        <form onSubmit={handleFirstSubmit}>
           <div className="new-form-inputs">
             <label htmlFor="name">Name</label>
             <input
@@ -107,27 +139,47 @@ const NewClub = () => {
               value={newClub.meetup}
             />
           </div>  
-          {/* <div className="new-form-inputs">
-            <label htmlFor="members">Invite Members</label>
-            <input
-              type="text"
-              name="members"
-              className="new-form-input"
-              minLength="4"
-              maxLength="40"
-              required={true}
-              onChange={handleChange}
-              value={newClub.invitedmembers}
-            />
-          </div>   */}
+            <div className="new-form-inputs">
+              <div className="newbook-radio-container">
+                <p>Do you have a book to read?</p>
+                <div className="newbook-radio-option">
+                  <input 
+                    type="radio" 
+                    className="togglecategory" 
+                    name="newbook"
+                    value={false}
+                    onChange={handleChange}
+                    defaultChecked
+                  />
+                  <label htmlFor="title">Yes, we have already chosen one.</label>
+                </div>
+                <div className="newbook-radio-option">
+                  <input 
+                    type="radio" 
+                    className="togglecategory" 
+                    name="newbook" 
+                    value={true}
+                    onChange={handleChange}
+                  />
+                  <label htmlFor="author">No, our members will vote on ones they nominate.</label>
+                </div>
+              </div>
+            </div>
           <div className="new-form-submit">
             <input type="submit" className="submit" value="Submit"/>
           </div>  
         </form>
+      }
       </div>
       {errorDisplay === true &&
           <p className="clubname-taken">Club name is already taken, please choose another one.</p>
         }
+      {haveBook === true &&
+        <SearchBooks
+          path={1}
+          handleSecondSubmit={handleSecondSubmit}
+        />
+      }  
     </div>
   );
 };

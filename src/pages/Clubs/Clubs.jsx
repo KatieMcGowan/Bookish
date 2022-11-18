@@ -19,12 +19,15 @@ const Clubs = () => {
         setClubs(clubs)
       })
     }
-  }, []);   
+  }, []);
 
   return(
     <div className="clubs-wrapper">
       <p className="clubs-header">Clubs</p>
-      <div className="clubs-container">      
+      <div className="clubs-container">
+        {clubs.length === 0 &&
+          <p>No clubs yet! Click here to create your own.</p>
+        }      
         {clubs.map((club, index) => {
             return <Club
                     key={index}

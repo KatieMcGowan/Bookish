@@ -39,7 +39,6 @@
   cursor: pointer;
 }
 
-
 @media (min-width: 600px) {
   .nominate-header {
     font-size: 32px;

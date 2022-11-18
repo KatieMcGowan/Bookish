@@ -2,13 +2,19 @@ import { useState, useEffect } from "react"
 import UserQuery from "../../../queries/UserQuery";
 
 const Member = (props) => {
+  // console.log(props)
+  // console.log(props.adminId)
   const [member, setMember] = useState("");
 
   useEffect(() => {
-    UserQuery.show(props.member)
-    .then(response => {
-      setMember(response.username)
-    })
+    if (props.member === props.adminId) {
+      return;
+    } else {
+      UserQuery.show(props.member)
+      .then(response => {
+        setMember(response.displayname)
+      })
+    }
   }, [])
 
   return (

@@ -41,8 +41,8 @@ const Club = (props) => {
       <div className="clubs-club-name-and-invite-status">
         <p className="clubs-club-name">{props.club.clubname}</p>
         {member === true 
-          ? <p className="clubs-club-invite-status">View Club</p>
-          : <p className="clubs-club-invite-status">Join Club</p>
+          ? <p className="clubs-club-invite-status" onClick={() => handleViewRedirect()}>View Club</p>
+          : <p className="clubs-club-invite-status" onClick={() => handleJoinClub()}>Join Club</p>
         }
         {/* <p className="clubs-club-invite-status">Pending</p> */}
       </div>

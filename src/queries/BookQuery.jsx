@@ -16,7 +16,6 @@ class BookQuery {
   };
 
   static searchtitle = (bookData) => {
-    console.log(bookData)
     return fetch(`${url}/searchtitle/?title=${bookData}`)
     .then(response => response.json())
     .then(jsonData => jsonData.book)

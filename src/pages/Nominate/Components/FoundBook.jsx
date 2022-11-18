@@ -1,9 +1,13 @@
 const FoundBook = (props) => {
   return(
-    <div className="search-result">
-      <p>{props.result.title}</p>
-      <p>{props.result.author}</p>
-    </div>  
+    <div>
+      {props.path === 1 && 
+        <div className="search-result" onClick={() => props.handleSecondSubmit(props.result._id)}>
+          <p>{props.result.title}</p>
+          <p>{props.result.author}</p>
+        </div>  
+      }
+    </div>
   );
 };
 

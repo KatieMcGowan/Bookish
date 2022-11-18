@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BookQuery from "../../../queries/BookQuery";
 import FoundBook from "./FoundBook";
+import "../SearchBooks.css"
 
 const SearchBooks = (props) => {
   const [searchCategory, setCategory] = useState("Title");
@@ -10,7 +11,7 @@ const SearchBooks = (props) => {
 
   const [author, setAuthor] = useState("");
 
-  const [results, setResult] = useState([])
+  const [results, setResult] = useState([]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -41,34 +42,33 @@ const SearchBooks = (props) => {
 
   const navigate = useNavigate();
 
+  //Club id necessary for redirect back to club page
   const handleNewBookRedirect = () => {
     navigate(`/clubs/${props.clubid}/newbook`);
   }
 
   return(
     <div className="search-book-wrapper">
-      <p className="search-book-header">Search for a Book to Nominate</p>
+      <p className="search-book-header">Search for a Book</p>
       <div className="search-book-form">
         <form onSubmit={handleSubmit}>
           <div className="search-book-div">
-            <label htmlFor="title">{searchCategory}</label>
-            <input
-              type="text"
-              name={searchCategory}
-              className="search-book-input"
-              minLength="2"
-              maxLength="100"
-              required={true}
-              onChange={handleInputChange}
-              // value={nomination.title}
-            />
+            <label htmlFor="title">Search by {searchCategory}</label>
           </div>  
-          <div className="search-book-form-submit">
-            <input type="submit" className="submit" value="Submit"/>
-          </div>  
+            <div className="search-inputs">
+              <input
+                type="text"
+                name={searchCategory}
+                className="search-book-input"
+                minLength="2"
+                maxLength="100"
+                required={true}
+                onChange={handleInputChange}
+              />
+              <input type="submit" className="submit" value="Submit"/>
+            </div>
         </form>
         <div className="category-options-container">
-          <label htmlFor="title">Title</label>
           <input 
             type="radio" 
             className="togglecategory" 
@@ -77,7 +77,7 @@ const SearchBooks = (props) => {
             onChange={handleCategoryChange}
             defaultChecked
           />
-          <label htmlFor="author">Author</label>
+          <label htmlFor="title">Title</label>
           <input 
             type="radio" 
             className="togglecategory" 
@@ -85,15 +85,19 @@ const SearchBooks = (props) => {
             value="Author"
             onChange={handleCategoryChange}
           />
+          <label htmlFor="author">Author</label>
         </div>
       </div>
       <div className="results-container">
-        {results.length > 0
+        {results.length > 0 
           ? <div>
+            <p>{results.length} results found. Click on book you would like to select. </p>
               {results.map((result, index) => {
                 return <FoundBook
                           key={index}
                           result={result}
+                          path={props.path}
+                          handleSecondSubmit={props.handleSecondSubmit}
                         />  
               })}
             </div>  

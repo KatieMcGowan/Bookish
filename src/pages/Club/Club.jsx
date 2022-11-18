@@ -26,7 +26,11 @@ const Club = () => {
     }
   }, [])
   
-  const [adminCheck, setCheck] = useState(false)
+  const [adminCheck, setCheck] = useState({
+    isAdmin: false,
+    adminName: "",
+    adminId: "",
+  })
 
   // STATES THAT ARE MODIFIED BY THE USERS
   const [club, setClub] = useState({
@@ -58,7 +62,11 @@ const Club = () => {
       UserQuery.getid(token)
       .then(user => {
         if (club.admin === user.userId) {
-          setCheck(true)
+          setCheck({
+            isAdmin: true,
+            adminName: user.userDisplayName,
+            adminId: user.userId
+          })
         }
         setBasics({
           clubname: club.clubname,
@@ -103,32 +111,18 @@ const Club = () => {
             </div>
             <div className="members-list">
               <div className="admin-member">
-                <p className="member">{clubBasics.admin}</p>
+                <p className="member">{adminCheck.adminName}</p>
                 <FontAwesomeIcon icon={faCrown} />
               </div>
               {club.members.map((member, index) => {
                 return <Member
                           key={index}
                           member={member}
-                        
+                          adminId={adminCheck.adminId}
                       />  
               })}
             </div>
             </div>
-            {/* <div className="members-list">
-              <div className="admin-member">
-                <p className="member">Polymathmatical</p>
-                <FontAwesomeIcon icon={faCrown} />
-              </div>
-              <p className="member">VolcanoMan</p>
-              <p className="member">Philiment</p>
-              <p className="member">GeigerCount</p>
-              <p className="member">ItzGeorge</p>
-              <p className="member">Freshfinds</p>
-              <p className="member">StemmyJenny</p>
-              <p className="member">RockMomma</p>
-            </div>
-          </div>   */}
           <div className="past-books-container">
             <div className="mobile-banner">
               <p className="past-books-header">Past Books</p>
@@ -140,9 +134,6 @@ const Club = () => {
                       pastbook={pastbook}
                     /> 
             })}
-            {/* <div className="past-books-list">
-              <p className="past-book">The Selfish Gene by Richard Dawkins</p>
-            </div> */}
           </div>
         </div>
         {initiatevote === false
