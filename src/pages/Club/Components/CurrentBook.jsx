@@ -2,38 +2,10 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import UserQuery from "../../../queries/UserQuery";
 import ClubQuery from "../../../queries/ClubQuery";
-// import BookQuery from "../../../queries/BookQuery";
 import Cookies from "universal-cookie";
 import DiscussionQuestion from "./DiscussionQuestion";
 
 const CurrentBook = (props) => {
-  // HOOKS TO CALCULATE AND POPULATE PERCENTAGE OF USERS WHO HAVE COMPLETED
-  // const [percentComplete, setPercent] = useState(Math.round((props.userscompleted.length / props.members.length) * 100))
-
-  // const calculatePercent = (num1, num2) => {
-  //   return Math.round((num1 / num2) * 100)
-  // };
-
-  // useEffect(() => {
-  //   setPercent(calculatePercent(props.userscompleted.length, props.members.length))
-  // }, [])
-
-  // const [currentBook, setCurrentBook] = useState({
-  //   title: "",
-  //   author: "",
-  // })
-
-  // useEffect(() => {
-  //   BookQuery.show(props.currentbook)
-  //   .then(book => {
-  //     // console.log(book)})
-  //     setCurrentBook({
-  //       title: book.title,
-  //       author: book.author,
-  //     });
-  //   });
-  // }, [])
-
   //HOOKS TO DETERMINE IF USER HAS COMPLETED THE BOOK, AND TOGGLE BUTTONS APPROPRIATELY
   const [userCompleted, setCompleted] = useState(false);
 
@@ -69,7 +41,7 @@ const CurrentBook = (props) => {
 
   const initiateVote = () => {
     ClubQuery.update(props.id, {newbook: true})
-    props.setInitiative(true);
+    // props.setInitiative(true);
   }
 
   //HOOKS TO HANDLE USER ADDING A DISCUSSION QUESTION
@@ -86,7 +58,7 @@ const CurrentBook = (props) => {
 
   return(
     <div className="club-right">
-      <div className="book-mobile-banner">
+      <div className="mobile-banner">
         <p className="current-book-header">Current Book</p>
         <div className="arrow-down"></div>
       </div>
@@ -99,7 +71,7 @@ const CurrentBook = (props) => {
             ? <p className="book-button" onClick={() => handleNominateDirect()}>Nominate a book</p>
             : <p className="book-button" onClick={() => handleFinish()}>Finished</p>
           }
-          {props.adminCheck === true &&
+          {props.adminCheck.isAdmin === true &&
             <p className="book-button" onClick={() => initiateVote()}>Initiate Vote</p>
           }
         </div>

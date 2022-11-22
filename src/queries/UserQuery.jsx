@@ -48,6 +48,18 @@ class UserQuery {
     .then(response => response.json())
   };
 
+  static updatearray = (id, userData) => {
+    return fetch(`${url}/updatearray/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userData)
+    })
+    .then(response => response.json())
+  };
+
+
   static update = (id, userData) => {
     return fetch(`${url}/${id}`, {
       method: "PUT",

@@ -17,6 +17,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -30,6 +31,12 @@
 
 .club-meeting-header {
   font-size: 18px;
+}
+
+
+.fa-pencil:hover {
+  cursor: pointer;
+  transform: scale(1.2)
 }
 
 .hidden {
@@ -74,7 +81,7 @@
 }
 
 .discussion-header {
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .question {
@@ -126,15 +133,15 @@
   border-top: 10px solid black;
 }
 
-.book-mobile-banner {
+/* .book-mobile-banner {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   margin: 15px 0;
-  background-color: rgb(170, 166, 166);
+  background-color: rgb(186, 92, 39);
   gap: 20px;
-}
+} */
 
 .mobile-banner {
   display: flex;
@@ -142,7 +149,7 @@
   justify-content: center;
   align-items: center;
   margin: 15px 0;
-  background-color: rgb(170, 166, 166);
+  background-color: rgb(186, 92, 39);
   gap: 20px;
 }
 
@@ -183,6 +190,10 @@
     gap: 20px;
   }
 
+  .edit-club-container {
+    justify-content: left ;
+  }
+  
   .arrow-down {
     display: none;
   }

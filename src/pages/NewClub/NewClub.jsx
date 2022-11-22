@@ -179,11 +179,14 @@ const NewClub = () => {
       {errorDisplay === true &&
           <p className="clubname-taken">Club name is already taken, please choose another one.</p>
         }
-      {haveBook === true &&
-        <SearchBooks
-          path={1}
-          handleSecondSubmit={handleSecondSubmit}
-        />
+      {haveBook === true 
+        ? <SearchBooks
+            path={1}
+            handleSecondSubmit={handleSecondSubmit}
+          />
+        : <SearchBooks
+            path={2}
+          />  
       }  
     </div>
   );

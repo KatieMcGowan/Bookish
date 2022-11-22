@@ -32,7 +32,8 @@ const Club = (props) => {
   }
 
   const handleJoinClub = () => {
-    ClubQuery.update(props.club._id, {member: id})
+    ClubQuery.updatearray(props.club._id, {member: id})
+    UserQuery.updatearray(id, {clubmember: props.club._id})
     navigate(`/clubs/${props.club._id}`)
   }
 

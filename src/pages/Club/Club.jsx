@@ -34,7 +34,6 @@ const Club = () => {
     adminId: "",
   })
 
-  // CLUB STATE
   const [club, setClub] = useState({
     clubname: "",
     description: "", 
@@ -49,13 +48,10 @@ const Club = () => {
     newbook: "",
   });
   
-  // CURRENT BOOK STATE
   const [book, setBook] = useState({
     title: "",
     author: "",
   })
-
-  const [initiatevote, setInitiative] = useState(false);
 
   const clubid = useParams().clubid
 
@@ -65,20 +61,29 @@ const Club = () => {
     .then(club => {
       UserQuery.getid(token)
       .then(user => {
-        BookQuery.show(club.currentbook) 
-        .then(book => {
-          if (club.admin === user.userId) {
-            setCheck({
-              isAdmin: true,
-              adminName: user.userDisplayName,
-              adminId: user.userId
+        UserQuery.show(club.admin)
+        .then(admin => {
+          BookQuery.show(club.currentbook) 
+          .then(book => {
+            if (club.admin === user.userId) {
+              setCheck({
+                isAdmin: true,
+                adminName: user.userDisplayName,
+                adminId: user.userId
+              })
+            } else {
+              setCheck({
+                isAdmin: false,
+                adminName: admin.displayname,
+                adminId: admin._id
+              })
+            }
+            setClub({
+              ...club
             })
-          } 
-          setClub({
-            ...club
-          })
-          setBook({
-            ...book
+            setBook({
+              ...book
+            })
           })
         })
       })
@@ -135,7 +140,7 @@ const Club = () => {
             })}
           </div>
         </div>
-        {initiatevote === false
+        {club.newbook === false
           ? <CurrentBook 
               currentbook={book}
               members={club.members}
@@ -144,7 +149,7 @@ const Club = () => {
               id={clubid}
               setClub={setClub}
               adminCheck={adminCheck}
-              setInitiative={setInitiative}
+              // setInitiative={setInitiative}
             />
           : <NextBook />
         }
