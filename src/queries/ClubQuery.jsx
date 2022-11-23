@@ -24,6 +24,7 @@ class ClubQuery {
       body: JSON.stringify(clubData)
     })
     .then(response => response.json())
+    .then(jsonData => jsonData.club)
   };
 
   static update = (id, clubData) => {

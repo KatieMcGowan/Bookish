@@ -64,13 +64,13 @@ const NewClub = () => {
     newClub.newbook = convertString(newClub.newbook);
     console.log(newClub);
     if (newClub.newbook === true) {
-      console.log("In the newbook = true path")
+      console.log("In the nominate path")
       ClubQuery.create(newClub)
       .then(club => {
         if (club.errorcode === 1 ){
           setErrorDisplay(true)
           return;
-        } else if (club.newbook === true) {
+        } else {
           console.log("We got a new club bois")
           navigate(`/clubs/${club._id}/nominate`)
         }
@@ -179,14 +179,14 @@ const NewClub = () => {
       {errorDisplay === true &&
           <p className="clubname-taken">Club name is already taken, please choose another one.</p>
         }
-      {haveBook === true 
-        ? <SearchBooks
+      {haveBook === true &&
+        <SearchBooks
             path={1}
             handleSecondSubmit={handleSecondSubmit}
           />
-        : <SearchBooks
-            path={2}
-          />  
+        // : <SearchBooks
+        //     path={2}
+        //   />  
       }  
     </div>
   );

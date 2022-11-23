@@ -149,9 +149,10 @@ const Club = () => {
               id={clubid}
               setClub={setClub}
               adminCheck={adminCheck}
-              // setInitiative={setInitiative}
             />
-          : <NextBook />
+          : <NextBook
+              nominations={club.nominations}
+            />
         }
       </div>  
     </div>

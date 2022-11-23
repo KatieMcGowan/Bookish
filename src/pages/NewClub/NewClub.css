@@ -49,6 +49,15 @@
   color: red;
 }
 
+.newbook-radio-option {
+  padding: 5px;
+  margin: 5px 0;
+}
+
+.togglecategory {
+  margin-right: 5px;
+}
+
 @media (min-width: 600px) {
   .new-club-header {
     font-size: 32px;
