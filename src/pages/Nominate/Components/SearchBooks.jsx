@@ -11,10 +11,13 @@ const SearchBooks = (props) => {
 
   const [author, setAuthor] = useState("");
 
+  const [firstSearch, setSearch] = useState(false);
+
   const [results, setResult] = useState([]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setSearch(true);
     if (searchCategory === "Title") {
       BookQuery.searchtitle(title)
       .then(response => {
@@ -89,20 +92,22 @@ const SearchBooks = (props) => {
         </div>
       </div>
       <div className="results-container">
-        {results.length > 0 
-          ? <div>
-            <p>{results.length} results found. Click on book you would like to select. </p>
-              {results.map((result, index) => {
-                return <FoundBook
-                          key={index}
-                          result={result}
-                          path={props.path}
-                          handleSecondSubmit={props.handleSecondSubmit}
-                        />  
-              })}
-            </div>  
-          : <p onClick={() => handleNewBookRedirect()}>No results found. Click here to add a book to the collection!</p>
+        {firstSearch === true && results.length > 0 &&
+          <div>
+            <p>{results.length} result(s) found. Click on book you would like to select. </p>
+            {results.map((result, index) => {
+              return <FoundBook
+                        key={index}
+                        result={result}
+                        path={props.path}
+                        handleSecondSubmit={props.handleSecondSubmit}
+                      />  
+            })}
+          </div>  
         }
+        {firstSearch === true && results.length === 0 &&
+          <p onClick={() => handleNewBookRedirect()}>No results found. Click here to add a book to the collection!</p>
+        }    
       </div>
     </div>
   );

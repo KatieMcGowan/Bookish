@@ -85,11 +85,9 @@ const NewClub = () => {
   const handleSecondSubmit = (bookId) => {
     newClub.currentbook = bookId
     ClubQuery.create(newClub)
-    .then(navigate("/myclubs"))
-
-    // .then(club => {
-      // navigate(`/clubs/${club._id}`)
-    // })
+    .then(club => {
+      navigate(`/clubs/${club._id}`)
+    })
   }
   
   const handleChange = (event) => {

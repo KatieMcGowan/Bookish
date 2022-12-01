@@ -16,6 +16,9 @@ const SignUp = (props) => {
   //"USERNAME ALREADY TAKEN" DISPLAY STATE
   const [errorDisplay, setErrorDisplay] = useState(false);
 
+  //ACCOUNT SUCCESSFULLY CREATED STATE
+  const [success, setSuccess] = useState(false)
+
   //FORM FUNCTIONS
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -40,6 +43,7 @@ const SignUp = (props) => {
 
   return(
     <div className="signup-wrapper">
+      <div>
       <p className="signup-header">Sign Up</p>
       <div className="signup-form">
         <form onSubmit={handleSubmit}>
@@ -91,6 +95,7 @@ const SignUp = (props) => {
         <p className="username-taken">Username is already taken, please choose another one.</p>
       }
       <p className="auth-alternative">Already have an account with us? Click <Link to={"/login"} className="click-here">here</Link> to log in.</p>
+    </div>
     </div>
   );
 };
