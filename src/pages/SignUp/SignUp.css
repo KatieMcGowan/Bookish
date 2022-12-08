@@ -48,10 +48,11 @@
 }
 
 .click-here {
-  font-style: bold;
+  font-style: italic;
 }
 
 .click-here:hover {
+  cursor: pointer;
   text-shadow: 2px 2px rgb(215, 210, 210);
 }
 

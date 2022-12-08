@@ -26,6 +26,8 @@ const NewClub = () => {
     nominations: [],
   })
 
+  const [clubid, setClubid] = useState("")
+
   const [haveBook, setHaveBook] = useState(false)
 
   useEffect(() => {
@@ -62,29 +64,34 @@ const NewClub = () => {
     newClub.admin = clubAdmin;
     newClub.members.push(clubAdmin);
     newClub.newbook = convertString(newClub.newbook);
-    console.log(newClub);
     if (newClub.newbook === true) {
-      console.log("In the nominate path")
       ClubQuery.create(newClub)
       .then(club => {
         if (club.errorcode === 1 ){
           setErrorDisplay(true)
           return;
         } else {
-          console.log("We got a new club bois")
           navigate(`/clubs/${club._id}/nominate`)
         }
       })
     } else {
-      console.log("In the have book path")
-      setHaveBook(true)
+      ClubQuery.create(newClub)
+      .then(club => {
+        if (club.errorcode === 1) {
+          setErrorDisplay(true);
+          return;
+        } else {
+          setHaveBook(true)
+          setClubid(club._id)
+        }
+      });  
     };
   };
 
   //FUNCTION PASSED IF USER HAS ALREADY CHOSEN FIRST BOOK
   const handleSecondSubmit = (bookId) => {
     newClub.currentbook = bookId
-    ClubQuery.create(newClub)
+    ClubQuery.update(newClub)
     .then(club => {
       navigate(`/clubs/${club._id}`)
     })
@@ -181,6 +188,7 @@ const NewClub = () => {
         <SearchBooks
             path={1}
             handleSecondSubmit={handleSecondSubmit}
+            clubid={clubid}
           />
         // : <SearchBooks
         //     path={2}

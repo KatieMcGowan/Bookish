@@ -12,8 +12,15 @@
   width: 50%;
 }
 
+.no-clubs-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
 .clubs-header {
   font-size: 22px;
+  margin-bottom: 20px;
 }
 
 .clubs-individual-club {

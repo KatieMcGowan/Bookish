@@ -1,9 +1,6 @@
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-// import { faCheck } from "@fortawesome/free-solid-svg-icons"
 import Nominated from "./Nominated"
 
 const NextBook = (props) => {
-  console.log(props)
   return(
     <div className="club-right">
       <div className="mobile-banner">
@@ -12,7 +9,12 @@ const NextBook = (props) => {
       </div>
       <p className="nominate-a-book-header">Vote on your next book:</p>
       <div className="nominations-container">
-        
+        {props.nominations.map((nominated, index) => {
+          return <Nominated
+                    key={index}
+                    nominated={nominated}
+                /> 
+        })}
         {/* <div className="nomination-container">
           <FontAwesomeIcon className="check" icon={faCheck}/>
           <div className="nominated-book">What a Fish Knows by Jonathan Balcombe</div>

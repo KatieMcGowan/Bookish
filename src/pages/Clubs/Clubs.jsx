@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import ClubQuery from "../../queries/ClubQuery";
 import Cookies from "universal-cookie";
 import Club from "./Components/Club";
@@ -26,7 +27,10 @@ const Clubs = () => {
       <p className="clubs-header">Clubs</p>
       <div className="clubs-container">
         {clubs.length === 0 &&
-          <p>No clubs yet! Click here to create your own.</p>
+          <div className="no-clubs-container">
+            <p className="no-clubs">No clubs created yet.</p>
+            <Link className="create-a-club" to={"/clubs/new"}>Create a club</Link>
+          </div>  
         }      
         {clubs.map((club, index) => {
             return <Club

@@ -1,13 +1,15 @@
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import ClubQuery from "../../../queries/ClubQuery";
 
 const FoundBook = (props) => {
   const clubid = useParams().clubid;
+  const navigate = useNavigate();
 
   const handleNominate = () => {
     ClubQuery.updatearray(clubid, {nomination: props.result._id})
-    .then()
+    .then(navigate(`/clubs/${clubid}`))
   }
+  
   return(
     <div>
       {props.path === 1 && 

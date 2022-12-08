@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import BookQuery from "../../queries/BookQuery";
+import ClubQuery from "../../queries/ClubQuery";
 import "./NewBook.css"
 
 const NewBook = () => {
@@ -9,13 +10,29 @@ const NewBook = () => {
     author: "",
   })
 
+  const [club, setClub] = useState({
+    currentbook: "",
+  });
+  
   const clubid = useParams().clubid
+
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    BookQuery.create(newBook)
-    .then(navigate(`/clubs/${clubid}`))
+    ClubQuery.show(clubid)
+    .then(club => {
+      BookQuery.create(newBook)
+      .then(book => {
+        if (club.newbook === true) {
+          ClubQuery.updatearray(clubid, {nomination: book.book._id})
+          .then(navigate(`/clubs/${clubid}`));
+        } else {
+          ClubQuery.update(clubid, newBook)
+          .then(navigate(`/clubs/${clubid}`));
+        }
+      })
+    })
   }
   
   const handleChange = (event) => {
@@ -37,7 +54,7 @@ const NewBook = () => {
               name="title"
               className="new-book-form-input"
               minLength="2"
-              maxLength="30"
+              maxLength="50"
               required={true}
               onChange={handleChange}
               value={newBook.title}
@@ -50,7 +67,7 @@ const NewBook = () => {
               name="author"
               className="new-book-form-input"
               minLength="3"
-              maxLength="200"
+              maxLength="50"
               required={true}
               onChange={handleChange}
               value={newBook.author}

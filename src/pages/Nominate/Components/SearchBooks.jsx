@@ -55,9 +55,9 @@ const SearchBooks = (props) => {
       <p className="search-book-header">Search for a Book</p>
       <div className="search-book-form">
         <form onSubmit={handleSubmit}>
-          <div className="search-book-div">
+          {/* <div className="search-book-div">
             <label htmlFor="title">Search by {searchCategory}</label>
-          </div>  
+          </div>   */}
             <div className="search-inputs">
               <input
                 type="text"
@@ -72,29 +72,35 @@ const SearchBooks = (props) => {
             </div>
         </form>
         <div className="category-options-container">
-          <input 
-            type="radio" 
-            className="togglecategory" 
-            name="searchCategory" 
-            value="Title"
-            onChange={handleCategoryChange}
-            defaultChecked
-          />
-          <label htmlFor="title">Title</label>
-          <input 
-            type="radio" 
-            className="togglecategory" 
-            name="searchCategory" 
-            value="Author"
-            onChange={handleCategoryChange}
-          />
-          <label htmlFor="author">Author</label>
+          <div className="category-option">
+            <input 
+              type="radio" 
+              className="togglecategory" 
+              name="searchCategory" 
+              value="Title"
+              onChange={handleCategoryChange}
+              defaultChecked
+            />
+            <label htmlFor="title">Title</label>
+          </div>
+          <div className="category-option">
+            <input 
+              type="radio" 
+              className="togglecategory" 
+              name="searchCategory" 
+              value="Author"
+              onChange={handleCategoryChange}
+            />
+            <label htmlFor="author">Author</label>
+          </div>
         </div>
       </div>
       <div className="results-container">
         {firstSearch === true && results.length > 0 &&
-          <div>
-            <p>{results.length} result(s) found. Click on book you would like to select. </p>
+          <div className="results-found">
+            <p>{results.length} result(s) found. Click on book you would like to select.</p>
+            <p>-or-</p>
+            <p className="click-here" onClick={() => handleNewBookRedirect()}>Add a book to the collection</p>
             {results.map((result, index) => {
               return <FoundBook
                         key={index}
@@ -106,7 +112,10 @@ const SearchBooks = (props) => {
           </div>  
         }
         {firstSearch === true && results.length === 0 &&
-          <p onClick={() => handleNewBookRedirect()}>No results found. Click here to add a book to the collection!</p>
+          <div className="add-a-book">
+            <p>No results found.</p>
+            <p className="click-here" onClick={() => handleNewBookRedirect()}>Add a book to the collection.</p>
+          </div>  
         }    
       </div>
     </div>

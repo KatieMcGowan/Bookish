@@ -52,7 +52,7 @@ const MyClubs = () => {
       {myClubs.length > 0
         ? <Link className="create-a-club" to={"/clubs/new"}>Create a club</Link>
         : <div className="no-my-clubs">
-            <p>No clubs found</p>
+            <p className="no-clubs">No clubs found.</p>
             <Link className="create-a-club" to={"/clubs/new"}>Create a club</Link>
             <Link className="create-a-club" to={"/clubs"}>Browse clubs</Link>
           </div>  
