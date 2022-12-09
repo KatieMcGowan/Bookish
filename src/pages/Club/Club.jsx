@@ -34,19 +34,19 @@ const Club = () => {
     adminId: "",
   })
 
-  const [club, setClub] = useState({
-    clubname: "",
-    description: "", 
-    meetup: "",
-    admin: "",
-    members: [],
-    currentbook: "",
-    pastbooks: [],
-    questions: [],
-    userscompleted: [],
-    nominations: [],
-    newbook: "",
-  });
+  // const [club, setClub] = useState({
+  //   clubname: "",
+  //   description: "", 
+  //   meetup: "",
+  //   admin: "",
+  //   members: [],
+  //   currentbook: "",
+  //   pastbooks: [],
+  //   questions: [],
+  //   userscompleted: [],
+  //   nominations: [],
+  //   newbook: "",
+  // });
 
   const [clubBasics, setBasics] = useState({
     clubname: "",
@@ -177,7 +177,7 @@ const Club = () => {
                 <p className="member">{adminCheck.adminName}</p>
                 <FontAwesomeIcon icon={faCrown} />
               </div>
-              {club.members.map((member, index) => {
+              {clubBasics.members.map((member, index) => {
                 return <Member
                           key={index}
                           member={member}
@@ -204,12 +204,15 @@ const Club = () => {
               currentbook={book}
               members={clubBasics.members}
               userscompleted={usersCompleted}
-              setCompleted={setCompleted}
+              setCurrentBook={setCurrentBook}
+              setNewBook={setNewBook}
               questions={questions}
               id={clubid}
               adminCheck={adminCheck}
             />
           : <NextBook
+              setCurrentBook={setCurrentBook}
+              setNewBook={setNewBook}
               nominations={nominations}
               isAdmin={adminCheck.isAdmin}
             />

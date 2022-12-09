@@ -31,7 +31,6 @@ const CurrentBook = (props) => {
       ClubQuery.updatearray(props.id, {usercompleted: response.userId})
       .then(props.userscompleted.push(response.userId))
     })
-    // .then(setCompleted(true));
   }
 
   const navigate = useNavigate();
@@ -40,18 +39,13 @@ const CurrentBook = (props) => {
     navigate(`/clubs/${props.id}/nominate`)
   }
 
-  const moveToNextBook = () => {
+  const viewNominations = () => {
     ClubQuery.update(props.id, {newbook: true})
-    .then(props.setClub({
-      newbook: true
-    }))
-    // .then(club => {
-    //   navigate(`/clubs/${club.club._id}`)
-    // })
+    .then(props.setNewBook(true))
   }
 
   //HOOKS TO HANDLE USER ADDING A DISCUSSION QUESTION
-  const [question, setQuestion] =  useState()
+  const [question, setQuestion] =  useState("")
 
   const handleChange = (event) => {
     setQuestion(event.target.value);
@@ -59,9 +53,12 @@ const CurrentBook = (props) => {
 
   const handleAddQuestion = (event) => {
     event.preventDefault();
-    ClubQuery.addquestion(props.id, {question: question})
+    ClubQuery.updatearray(props.id, {question: question})
+    .then(props.questions.push(question))
+    .then(setQuestion(""))
   }
 
+  console.log(question)
   return(
     <div className="club-right">
       <div className="mobile-banner">
@@ -78,7 +75,7 @@ const CurrentBook = (props) => {
             : <p className="book-button" onClick={() => handleFinish()}>Finished</p>
           }
           {props.adminCheck.isAdmin === true &&
-            <p className="book-button" onClick={() => moveToNextBook()}>Move to Next Book</p>
+            <p className="book-button" onClick={() => viewNominations()}>View Nominations</p>
           }
         </div>
       </div>      
