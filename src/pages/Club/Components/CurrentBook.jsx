@@ -58,7 +58,6 @@ const CurrentBook = (props) => {
     .then(setQuestion(""))
   }
 
-  console.log(question)
   return(
     <div className="club-right">
       <div className="mobile-banner">

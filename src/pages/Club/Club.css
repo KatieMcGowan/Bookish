@@ -80,6 +80,19 @@
   color: white;
 }
 
+.nominated-books-button {
+  width: 45%;
+
+  max-width: 150px;
+  border: 2px solid black;
+}
+
+.nominated-books-button:hover {
+  cursor: pointer;
+  background-color: black;
+  color: white;
+}
+
 .discussion-header {
   font-size: 22px;
 }

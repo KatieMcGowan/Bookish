@@ -73,6 +73,7 @@ const Club = () => {
     author: "",
   })
 
+  //Need to find a way to decouple book query so that when currentbook is updated, bookquery re-runs
   const clubid = useParams().clubid
 
   useEffect(() => {
@@ -83,7 +84,6 @@ const Club = () => {
       .then(user => {
         UserQuery.show(club.admin)
         .then(admin => {
-          if (!club.currentbook) {
             if (club.admin === user.userId) {
               setCheck({
                 isAdmin: true,
@@ -110,44 +110,24 @@ const Club = () => {
             setCompleted(club.userscompleted)
             setNominations(club.nominations)
             setNewBook(club.newbook)
-          } else {
-            BookQuery.show(club.currentbook) 
-            .then(book => {
-              if (club.admin === user.userId) {
-                setCheck({
-                  isAdmin: true,
-                  adminName: user.userDisplayName,
-                  adminId: user.userId
-                })
-              } else {
-                setCheck({
-                  isAdmin: false,
-                  adminName: admin.displayname,
-                  adminId: admin._id
-                })
-              }
-              setBasics({
-                clubname: club.clubname,
-                description: club.description, 
-                meetup: club.meetup,
-                admin: club.admin,
-                members: club.members,
-              })
-              setCurrentBook(club.currentbook)
-              setPastBooks(club.pastbooks)
-              setQuestions(club.questions)
-              setCompleted(club.userscompleted)
-              setNominations(club.nominations)
-              setNewBook(club.newbook)
-              setBook({
-                ...book
-              })
-            })
-          }
         })
       })
     })
   }, [])
+
+  useEffect(() => {
+    if (!currentBook) {
+      return;
+    } else {
+      BookQuery.show(currentBook)
+      .then(book => {
+        setBook({
+          title: book.title,
+          author: book.author
+        })
+      })
+    }
+  }, [currentBook])
 
   const handleEditRedirect = () => {
     navigate(`/clubs/${clubid}/edit`)

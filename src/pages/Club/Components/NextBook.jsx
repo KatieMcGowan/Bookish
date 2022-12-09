@@ -12,10 +12,12 @@ const NextBook = (props) => {
     let min = Math.ceil(0);
     let max = Math.floor(array.length - 1);
     let randomBook = array[Math.floor(Math.random() * (max - min + 1) + min)]
-    ClubQuery.update(clubid, {currentbook: randomBook, newbook: false})
-    .then(club => {
-      props.setCurrentBook(club.currentbook)
-    })  
+    ClubQuery.update(clubid, {
+      currentbook: randomBook, 
+      newbook: false
+    })
+    .then(props.setCurrentBook(randomBook))
+    .then()  
     .then(props.setNewBook(false))
   };
 
@@ -35,7 +37,7 @@ const NextBook = (props) => {
         })}
       </div>
       {props.isAdmin === true &&
-        <p className="book-button" onClick={() =>pickFromNominated(props.nominations)}>Select Next Book</p>
+        <p className="nominated-books-button" onClick={() =>pickFromNominated(props.nominations)}>Select Next Book</p>
       }
     </div>
   )
