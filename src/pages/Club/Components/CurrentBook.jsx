@@ -21,7 +21,7 @@ const CurrentBook = (props) => {
         }; 
       };
     });
-  })
+  }, [])
   
   //FUNCTIONS TO HANDLE BUTTON CLICKS
   const handleFinish = () => {
@@ -29,8 +29,9 @@ const CurrentBook = (props) => {
     UserQuery.getid(token)
     .then(response => {
       ClubQuery.updatearray(props.id, {usercompleted: response.userId})
+      .then(props.userscompleted.push(response.userId))
     })
-    .then(setCompleted(true));
+    // .then(setCompleted(true));
   }
 
   const navigate = useNavigate();
@@ -39,9 +40,14 @@ const CurrentBook = (props) => {
     navigate(`/clubs/${props.id}/nominate`)
   }
 
-  const initiateVote = () => {
+  const moveToNextBook = () => {
     ClubQuery.update(props.id, {newbook: true})
-    // props.setInitiative(true);
+    .then(props.setClub({
+      newbook: true
+    }))
+    // .then(club => {
+    //   navigate(`/clubs/${club.club._id}`)
+    // })
   }
 
   //HOOKS TO HANDLE USER ADDING A DISCUSSION QUESTION
@@ -72,7 +78,7 @@ const CurrentBook = (props) => {
             : <p className="book-button" onClick={() => handleFinish()}>Finished</p>
           }
           {props.adminCheck.isAdmin === true &&
-            <p className="book-button" onClick={() => initiateVote()}>Initiate Vote</p>
+            <p className="book-button" onClick={() => moveToNextBook()}>Move to Next Book</p>
           }
         </div>
       </div>      
