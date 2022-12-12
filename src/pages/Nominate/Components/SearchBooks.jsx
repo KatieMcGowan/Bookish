@@ -106,6 +106,7 @@ const SearchBooks = (props) => {
                         key={index}
                         result={result}
                         path={props.path}
+                        clubId={props.clubId}
                         handleSecondSubmit={props.handleSecondSubmit}
                       />  
             })}

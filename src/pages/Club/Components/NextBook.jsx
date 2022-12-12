@@ -1,23 +1,29 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Nominated from "./Nominated";
 import ClubQuery from "../../../queries/ClubQuery";
 
 const NextBook = (props) => {
-
-  const clubid = useParams().clubid;
-  const navigate = useNavigate();
+  const clubId = useParams().clubid;
 
   //Not working
   const pickFromNominated = (array) => {
     let min = Math.ceil(0);
     let max = Math.floor(array.length - 1);
     let randomBook = array[Math.floor(Math.random() * (max - min + 1) + min)]
-    ClubQuery.update(clubid, {
+    ClubQuery.update(clubId, {
       currentbook: randomBook, 
-      newbook: false
+      questions: [],
+      nominations: [],
+      newbook: false,
+    })
+    .then(club => {
+      ClubQuery.updatearray(clubId, {pastbooks: props.currentBook})
     })
     .then(props.setCurrentBook(randomBook))
-    .then()  
+    .then(props.setQuestions([]))
+    .then(props.setNominations([]))
+    .then(props.setCompleted([]))
+    .then(props.pastbooks.push(props.currentBook))  
     .then(props.setNewBook(false))
   };
 
@@ -33,6 +39,7 @@ const NextBook = (props) => {
           return <Nominated
                     key={index}
                     nominated={nominated}
+                    clubId={clubId}
                 /> 
         })}
       </div>

@@ -30,6 +30,7 @@ const CurrentBook = (props) => {
     .then(response => {
       ClubQuery.updatearray(props.id, {usercompleted: response.userId})
       .then(props.userscompleted.push(response.userId))
+      .then(setCompleted(true))
     })
   }
 
@@ -39,6 +40,7 @@ const CurrentBook = (props) => {
     navigate(`/clubs/${props.id}/nominate`)
   }
 
+  //I need to refactor this somehow, it doesn't make sense. 
   const viewNominations = () => {
     ClubQuery.update(props.id, {newbook: true})
     .then(props.setNewBook(true))

@@ -26,7 +26,7 @@ const NewClub = () => {
     nominations: [],
   })
 
-  const [clubid, setClubid] = useState("")
+  const [clubId, setClubId] = useState("")
 
   const [haveBook, setHaveBook] = useState(false)
 
@@ -82,19 +82,16 @@ const NewClub = () => {
           return;
         } else {
           setHaveBook(true)
-          setClubid(club._id)
+          setClubId(club._id)
         }
       });  
     };
   };
 
   //FUNCTION PASSED IF USER HAS ALREADY CHOSEN FIRST BOOK
-  const handleSecondSubmit = (bookId) => {
-    newClub.currentbook = bookId
-    ClubQuery.update(newClub)
-    .then(club => {
-      navigate(`/clubs/${club._id}`)
-    })
+  const handleSecondSubmit = (clubId, bookId) => {
+    ClubQuery.update(clubId, {currentbook: bookId})
+    .then(navigate(`/clubs/${clubId}`))
   }
   
   const handleChange = (event) => {
@@ -188,7 +185,7 @@ const NewClub = () => {
         <SearchBooks
             path={1}
             handleSecondSubmit={handleSecondSubmit}
-            clubid={clubid}
+            clubId={clubId}
           />
         // : <SearchBooks
         //     path={2}

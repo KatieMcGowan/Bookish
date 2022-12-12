@@ -1,19 +1,18 @@
-import { useParams, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import ClubQuery from "../../../queries/ClubQuery";
 
 const FoundBook = (props) => {
-  const clubid = useParams().clubid;
   const navigate = useNavigate();
 
   const handleNominate = () => {
-    ClubQuery.updatearray(clubid, {nomination: props.result._id})
-    .then(navigate(`/clubs/${clubid}`))
+    ClubQuery.updatearray(props.clubId, {nomination: props.result._id})
+    .then(navigate(`/clubs/${props.clubId}`))
   }
   
   return(
     <div>
       {props.path === 1 && 
-        <div className="search-result" onClick={() => props.handleSecondSubmit(props.result._id)}>
+        <div className="search-result" onClick={() => props.handleSecondSubmit(props.clubId, props.result._id)}>
           <p>{props.result.title}</p>
           <p>{props.result.author}</p>
         </div>  

@@ -10,6 +10,10 @@
   font-size: 22px;
 }
 
+.signup-sucess {
+  margin-top: 20px;
+}
+
 .signup-form-inputs {
   display: flex;
   flex-direction: column;
@@ -32,6 +36,7 @@
 .submit {
   font-family: 'Zilla Slab', serif;
   padding: 5px;
+  /* background-color: rgb(186, 92, 39); */
 }
 
 .submit:hover {

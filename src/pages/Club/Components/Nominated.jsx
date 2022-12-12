@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faX } from "@fortawesome/free-solid-svg-icons"
 import BookQuery from "../../../queries/BookQuery"
+import ClubQuery from "../../../queries/ClubQuery";
 
 const Nominated = (props) => {
   const [book, setBook] = useState({
@@ -18,6 +19,10 @@ const Nominated = (props) => {
       })
     })
   }, [])
+
+  // const handleNominationDelete = () => {
+  //   ClubQuery.updatearray(props.clubid, )
+  // }
 
   return(
     <div className="nomination-container">

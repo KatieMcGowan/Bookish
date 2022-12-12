@@ -29,7 +29,10 @@ const SignUp = () => {
         setErrorDisplay(true)
         return;
       } else {
-        navigate("/login")
+        setSuccess(true)
+        setTimeout(() => {
+          navigate("/login")
+        }, 2000)
       }
     })
   }
@@ -44,7 +47,62 @@ const SignUp = () => {
   return(
     <div className="signup-wrapper">
       <p className="signup-header">Sign Up</p>
-      <div className="signup-form">
+      {success === true 
+        ? <p className="signup-sucess">Success! Redirecting to log in page...</p>
+        : <div className="signup-form">
+            <form onSubmit={handleSubmit}>
+              <div className="signup-form-inputs">
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  name="displayname"
+                  className="signup-input"
+                  minLength="1"
+                  maxLength="20"
+                  required={true}
+                  onChange={handleChange}
+                  value={newUser.displayname}
+                />
+              </div>  
+              <div className="signup-form-inputs">
+                <label htmlFor="username">Username</label>
+                <input
+                  type="text"
+                  name="username"
+                  className="signup-input"
+                  minLength="3"
+                  maxLength="20"
+                  required={true}
+                  onChange={handleChange}
+                  value={newUser.username}
+                />
+              </div>  
+              <div className="signup-form-inputs">
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  className="signup-input"
+                  minLength="4"
+                  maxLength="40"
+                  required={true}
+                  onChange={handleChange}
+                  value={newUser.password}
+                />
+              </div>  
+              <div className="signup-submit">
+                <input type="submit" className="submit" value="Submit"/>
+              </div>  
+            </form>
+          </div>          
+      }
+      {errorDisplay === true &&
+        <p className="username-taken">Username is already taken, please choose another one.</p>
+      }
+      {success === false &&
+        <p className="auth-alternative">Already have an account with us? Click <Link to={"/login"} className="click-here">here</Link> to log in.</p>  
+      }
+      {/* <div className="signup-form">
         <form onSubmit={handleSubmit}>
           <div className="signup-form-inputs">
             <label htmlFor="name">Name</label>
@@ -89,11 +147,11 @@ const SignUp = () => {
             <input type="submit" className="submit" value="Submit"/>
           </div>  
         </form>
-      </div>
-      {errorDisplay === true &&
+      </div> */}
+      {/* {errorDisplay === true &&
         <p className="username-taken">Username is already taken, please choose another one.</p>
       }
-      <p className="auth-alternative">Already have an account with us? Click <Link to={"/login"} className="click-here">here</Link> to log in.</p>
+      <p className="auth-alternative">Already have an account with us? Click <Link to={"/login"} className="click-here">here</Link> to log in.</p> */}
     </div>
   );
 };

@@ -27,14 +27,14 @@ const Nominate = () => {
   //   });
   // };
 
-  const clubid = useParams().clubid
+  const clubId = useParams().clubid
 
   return(
     <div className="nominate-wrapper">
       <p className="nominate-header">Nominate a New Read</p>
       <SearchBooks 
         path={2}
-        clubid={clubid}
+        clubId={clubId}
       />
       {/* <div className="nominate-form">
         <form onSubmit={handleSubmit}>

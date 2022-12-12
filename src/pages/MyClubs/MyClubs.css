@@ -15,10 +15,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
 }
 
 .my-clubs-club {
-  width: 100%;
+  /* width: 100%; */
   margin: 10px;
   border: 2px solid black;
   display: flex;

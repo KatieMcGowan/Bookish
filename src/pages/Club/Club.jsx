@@ -34,20 +34,6 @@ const Club = () => {
     adminId: "",
   })
 
-  // const [club, setClub] = useState({
-  //   clubname: "",
-  //   description: "", 
-  //   meetup: "",
-  //   admin: "",
-  //   members: [],
-  //   currentbook: "",
-  //   pastbooks: [],
-  //   questions: [],
-  //   userscompleted: [],
-  //   nominations: [],
-  //   newbook: "",
-  // });
-
   const [clubBasics, setBasics] = useState({
     clubname: "",
     description: "", 
@@ -73,12 +59,11 @@ const Club = () => {
     author: "",
   })
 
-  //Need to find a way to decouple book query so that when currentbook is updated, bookquery re-runs
-  const clubid = useParams().clubid
+  const clubId = useParams().clubid
 
   useEffect(() => {
     let token = {token: cookies.get("TOKEN")}
-    ClubQuery.show(clubid)
+    ClubQuery.show(clubId)
     .then(club => {
       UserQuery.getid(token)
       .then(user => {
@@ -130,7 +115,7 @@ const Club = () => {
   }, [currentBook])
 
   const handleEditRedirect = () => {
-    navigate(`/clubs/${clubid}/edit`)
+    navigate(`/clubs/${clubId}/edit`)
   }
 
   return(
@@ -187,12 +172,17 @@ const Club = () => {
               setCurrentBook={setCurrentBook}
               setNewBook={setNewBook}
               questions={questions}
-              id={clubid}
+              id={clubId}
               adminCheck={adminCheck}
             />
           : <NextBook
+              currentBook={currentBook}
               setCurrentBook={setCurrentBook}
               setNewBook={setNewBook}
+              setQuestions={setQuestions}
+              setNominations={setNominations}
+              setCompleted={setCompleted}
+              pastbooks={pastbooks}
               nominations={nominations}
               isAdmin={adminCheck.isAdmin}
             />
