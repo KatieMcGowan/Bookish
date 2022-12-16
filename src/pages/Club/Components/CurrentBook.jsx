@@ -79,7 +79,7 @@ const CurrentBook = (props) => {
             <p className="book-button" onClick={() => viewNominations()}>View Nominations</p>
           }
         </div>
-      </div>      
+      </div>   
       <div className="discussion-container">
         <div className="mobile-banner">
           <p className="discussion-header">Discussion Questions</p>

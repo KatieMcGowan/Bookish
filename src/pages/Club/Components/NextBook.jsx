@@ -14,11 +14,10 @@ const NextBook = (props) => {
       currentbook: randomBook, 
       questions: [],
       nominations: [],
+      userscompleted: [],
       newbook: false,
     })
-    .then(club => {
-      ClubQuery.updatearray(clubId, {pastbooks: props.currentBook})
-    })
+    .then(ClubQuery.updatearray(clubId, {pastbook: props.currentBook}))
     .then(props.setCurrentBook(randomBook))
     .then(props.setQuestions([]))
     .then(props.setNominations([]))
@@ -39,7 +38,9 @@ const NextBook = (props) => {
           return <Nominated
                     key={index}
                     nominated={nominated}
+                    nominations={props.nominations}
                     clubId={clubId}
+                    isAdmin={props.isAdmin}
                 /> 
         })}
       </div>

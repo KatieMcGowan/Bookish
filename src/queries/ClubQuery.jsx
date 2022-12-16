@@ -49,6 +49,17 @@ class ClubQuery {
     .then(response => response.json())
   };
 
+  static deletefromarray = (id, clubData) => {
+    return fetch(`${url}/deletefromarray/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(clubData)
+    })
+    .then(response => response.json())
+  };
+
   static delete = (id) => {
     return fetch(`${url}/${id}`, {
       method: "DELETE"

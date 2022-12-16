@@ -20,17 +20,17 @@ const Nominated = (props) => {
     })
   }, [])
 
-  // const handleNominationDelete = () => {
-  //   ClubQuery.updatearray(props.clubid, )
-  // }
+  const handleNominationDelete = () => {
+    ClubQuery.deletefromarray(props.clubid, {nomination: props.nominated})
+    .then(props.nominations = props.nominations.filter(nomination => nomination !== props.nominated))
+  }
 
   return(
     <div className="nomination-container">
-      <FontAwesomeIcon className="check" icon={faX}/>
-    <div className="nominated-book">
+      {props.isAdmin === true &&
+        <FontAwesomeIcon className="check" icon={faX} onClick={() => handleNominationDelete()}/>
+      }
       <p>{book.title} by {book.author}</p>
-      {/* <p>by {book.author}</p> */}
-    </div>
   </div>
   )
 }

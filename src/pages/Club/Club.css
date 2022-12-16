@@ -33,10 +33,14 @@
   font-size: 18px;
 }
 
-
 .fa-pencil:hover {
   cursor: pointer;
   transform: scale(1.2)
+}
+
+.fa-x:hover {
+  cursor: pointer;
+  transform: scale(1.2);
 }
 
 .hidden {
@@ -97,7 +101,7 @@
 }
 
 .discussion-header {
-  font-size: 22px;
+  font-size: 18px;
 }
 
 .question {
@@ -271,6 +275,10 @@
   }
 
   .current-book {
+    font-size: 22px;
+  }
+
+  .discussion-header {
     font-size: 22px;
   }
 
