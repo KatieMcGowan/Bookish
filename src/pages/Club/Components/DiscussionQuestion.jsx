@@ -1,15 +1,18 @@
-const DiscussionQuestion = (props) => {
-  return(
-    // <div className="discussion-container">
-    //   <div className="mobile-banner">
-    //     <p className="discussion-header">Discussion Questions</p>
-    //     <div className="arrow-down"></div>
-    //   </div>
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faX } from "@fortawesome/free-solid-svg-icons"
+import ClubQuery from "../../../queries/ClubQuery"
 
-      <div className="discussion-questions">
-        <p className="question">{props.question}</p>
-      </div>
-    // </div>
+const DiscussionQuestion = (props) => {
+  const handleQuestionDelete = () => {
+    ClubQuery.deletefromarray(props.clubId, {question: props.question})
+    .then(props.setQuestions(props.questions.filter(question => question !== props.question)))
+  }
+
+  return(
+    <div className="discussion-questions">
+      <FontAwesomeIcon className="check" icon={faX} onClick={() => handleQuestionDelete()}/>
+      <p className="question">{props.question}</p>
+    </div>
   )
 }
 

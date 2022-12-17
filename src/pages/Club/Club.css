@@ -294,7 +294,8 @@
   }
 
   .discussion-questions {
-    text-align: left;
+    display: flex;
+    align-items: center;
   }
 
   .new-question-container {

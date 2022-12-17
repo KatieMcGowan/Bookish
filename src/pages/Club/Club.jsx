@@ -171,9 +171,11 @@ const Club = () => {
               userscompleted={usersCompleted}
               setCurrentBook={setCurrentBook}
               setNewBook={setNewBook}
+              setQuestions={setQuestions}
               questions={questions}
               id={clubId}
               adminCheck={adminCheck}
+              isAdmin={adminCheck.isAdmin}
             />
           : <NextBook
               currentBook={currentBook}

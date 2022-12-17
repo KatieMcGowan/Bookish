@@ -89,6 +89,10 @@ const CurrentBook = (props) => {
           return <DiscussionQuestion
                   key={index}
                   question={question}
+                  setQuestions={props.setQuestions}
+                  isAdmin={props.isAdmin}
+                  questions={props.questions}
+                  clubId={props.id}
                 />
         })}
         <div className="new-question-container">
