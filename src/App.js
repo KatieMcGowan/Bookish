@@ -15,7 +15,6 @@ import Club from './pages/Club/Club';
 import Invites from "./pages/Invites/Invites"
 import ManageMembers from './pages/ManageMembers/ManageMembers';
 import NewBook from './pages/NewBook/NewBook';
-import Nominations from './pages/Nominations/Nominations';
 // import ProtectedRoutes from './pages/ProtectedRoutes';
 
 const App = () => {
@@ -33,7 +32,6 @@ const App = () => {
           <Route path={"/clubs/new"} element={<NewClub />}/>
           <Route path={"/clubs/:clubid/edit"} element={<EditClub />}/>
           <Route path={"/clubs/:clubid/nominate"} element={<Nominate />}/>
-          {/* <Route path={"/clubs/:clubid/nominations"} element={<Nominations />}/> */}
           <Route path={"/clubs/:clubid/newbook"} element={<NewBook />}/>
           <Route path={"/clubs/:clubid"} element={<Club />}/>
           <Route path={"/myinvites"} element={<Invites />}/>
