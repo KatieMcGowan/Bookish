@@ -54,6 +54,8 @@ const Club = () => {
   
   const [newBook, setNewBook] = useState("")
 
+  const [viewNominations, setView] = useState(false)
+ 
   const [book, setBook] = useState({
     title: "",
     author: "",
@@ -117,7 +119,7 @@ const Club = () => {
   const handleEditRedirect = () => {
     navigate(`/clubs/${clubId}/edit`)
   }
-
+  
   return(
     <div className="club-wrapper">
       <div className="club-info">
@@ -164,7 +166,7 @@ const Club = () => {
             })}
           </div>
         </div>
-        {newBook === false
+        {viewNominations === true 
           ? <CurrentBook 
               currentbook={book}
               members={clubBasics.members}
@@ -176,6 +178,7 @@ const Club = () => {
               id={clubId}
               adminCheck={adminCheck}
               isAdmin={adminCheck.isAdmin}
+              setView={setView}
             />
           : <NextBook
               currentBook={currentBook}
@@ -187,6 +190,7 @@ const Club = () => {
               pastbooks={pastbooks}
               nominations={nominations}
               isAdmin={adminCheck.isAdmin}
+              setView={setView}
             />
         }
       </div>  

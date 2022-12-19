@@ -10,7 +10,9 @@ const DiscussionQuestion = (props) => {
 
   return(
     <div className="discussion-questions">
-      <FontAwesomeIcon className="check" icon={faX} onClick={() => handleQuestionDelete()}/>
+      {props.isAdmin === true &&
+        <FontAwesomeIcon className="check" icon={faX} onClick={() => handleQuestionDelete()}/>
+      }
       <p className="question">{props.question}</p>
     </div>
   )

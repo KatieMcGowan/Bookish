@@ -5,6 +5,11 @@ import ClubQuery from "../../../queries/ClubQuery";
 import Cookies from "universal-cookie";
 import DiscussionQuestion from "./DiscussionQuestion";
 
+//Thoughts about refactor, maybe have two buttons on current club component
+//One is finish, and finish turns into nominate. The other is view nominations, which toggles state of club
+//Newbook only changes when everyone has completed the book, or if admin initiates it
+//
+
 const CurrentBook = (props) => {
   //HOOKS TO DETERMINE IF USER HAS COMPLETED THE BOOK, AND TOGGLE BUTTONS APPROPRIATELY
   const [userCompleted, setCompleted] = useState(false);
@@ -34,16 +39,20 @@ const CurrentBook = (props) => {
     })
   }
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleNominateDirect = () => {
-    navigate(`/clubs/${props.id}/nominate`)
-  }
+  // const handleNominateDirect = () => {
+  //   navigate(`/clubs/${props.id}/nominate`)
+  // }
 
   //I need to refactor this somehow, it doesn't make sense. 
+  // const moveToNextBook = () => {
+  //   ClubQuery.update(props.id, {newbook: true})
+  //   .then(props.setNewBook(true))
+  // }
+
   const viewNominations = () => {
-    ClubQuery.update(props.id, {newbook: true})
-    .then(props.setNewBook(true))
+    props.setView(true)
   }
 
   //HOOKS TO HANDLE USER ADDING A DISCUSSION QUESTION
@@ -71,13 +80,13 @@ const CurrentBook = (props) => {
         <progress value={props.userscompleted.length} max={props.members.length}>{Math.round((props.userscompleted.length / props.members.length) * 100)}%</progress>
         <p className="percentage-of-completion">{Math.round((props.userscompleted.length / props.members.length) * 100)}% of members have finished this book</p>
         <div className="book-buttons-container">
-          {userCompleted === true
-            ? <p className="book-button" onClick={() => handleNominateDirect()}>Nominate a book</p>
-            : <p className="book-button" onClick={() => handleFinish()}>Finished</p>
+          {userCompleted !== true &&
+            // ? <p className="book-button" onClick={() => handleNominateDirect()}>Nominate a book</p>
+            <p className="book-button" onClick={() => handleFinish()}>Finished</p>
           }
-          {props.adminCheck.isAdmin === true &&
+          {/* {props.adminCheck.isAdmin === true && */}
             <p className="book-button" onClick={() => viewNominations()}>View Nominations</p>
-          }
+          {/* } */}
         </div>
       </div>   
       <div className="discussion-container">

@@ -21,8 +21,8 @@ const Nominated = (props) => {
   }, [])
 
   const handleNominationDelete = () => {
-    ClubQuery.deletefromarray(props.clubid, {nomination: props.nominated})
-    .then(props.nominations = props.nominations.filter(nomination => nomination !== props.nominated))
+    ClubQuery.deletefromarray(props.clubId, {nomination: props.nominated})
+    .then(props.setNominations(props.nominations.filter(nomination => nomination !== props.nominated)))
   }
 
   return(
