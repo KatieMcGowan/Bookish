@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faX } from "@fortawesome/free-solid-svg-icons"
-import BookQuery from "../../../queries/BookQuery"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faX } from "@fortawesome/free-solid-svg-icons";
+import BookQuery from "../../../queries/BookQuery";
 import ClubQuery from "../../../queries/ClubQuery";
 
 const Nominated = (props) => {
