@@ -129,12 +129,37 @@
 
 .nomination-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: right;
 }
 
-.nominated-book {
+/* .nominated-book {
   text-align: left;
+} */
+
+.nominated-book {
+  display: flex;
+  flex-direction: row;
+}
+
+.delete-modal {
+  display: flex;
+  flex-direction: row;
+  color: red;
+}
+
+.delete-options {
+  display: flex;
+  flex-direction: row;
+}
+
+.delete-option {
+  margin: 0 5px;
+}
+
+.delete-option:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 .check {

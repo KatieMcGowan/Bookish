@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import Cookies from "universal-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCropSimple, faCrown } from "@fortawesome/free-solid-svg-icons";
+import { faCrown } from "@fortawesome/free-solid-svg-icons";
 import { faPencil }from "@fortawesome/free-solid-svg-icons";
 import Member from "./Components/Member"
 import CurrentBook from "./Components/CurrentBook";
@@ -166,39 +166,45 @@ const Club = () => {
             })}
           </div>
         </div>
-        {(viewNominations === false && newBook === false) &&
-          <CurrentBook 
-            currentbook={book}
-            members={clubBasics.members}
-            userscompleted={usersCompleted}
-            setCurrentBook={setCurrentBook}
-            setNewBook={setNewBook}
-            setQuestions={setQuestions}
-            questions={questions}
-            id={clubId}
-            adminCheck={adminCheck}
-            isAdmin={adminCheck.isAdmin}
-            setView={setView}
-          />
+        {(viewNominations === false && newBook === false) 
+          ? <CurrentBook 
+              currentbook={book}
+              members={clubBasics.members}
+              userscompleted={usersCompleted}
+              setCurrentBook={setCurrentBook}
+              setNewBook={setNewBook}
+              setQuestions={setQuestions}
+              questions={questions}
+              id={clubId}
+              adminCheck={adminCheck}
+              isAdmin={adminCheck.isAdmin}
+              setView={setView}
+            />
+          : <NextBook
+              currentBook={currentBook}
+              setCurrentBook={setCurrentBook}
+              newBook={newBook}
+              setNewBook={setNewBook}
+              setQuestions={setQuestions}
+              setNominations={setNominations}
+              setCompleted={setCompleted}
+              pastbooks={pastbooks}
+              nominations={nominations}
+              isAdmin={adminCheck.isAdmin}
+              setView={setView}
+            />
         }
-        {(viewNominations === true && newBook === false) &&
-          <NextBook
-            currentBook={currentBook}
-            setCurrentBook={setCurrentBook}
-            newBook={newBook}
-            setNewBook={setNewBook}
-            setQuestions={setQuestions}
-            setNominations={setNominations}
-            setCompleted={setCompleted}
-            pastbooks={pastbooks}
-            nominations={nominations}
-            isAdmin={adminCheck.isAdmin}
-            setView={setView}
-          />
-        } 
       </div>  
     </div>
   );
 };
 
 export default Club
+
+//What are the conditions in which we would have Next Book 
+//viewNominations === true
+//newBook === true
+
+//What are the conditions in which we would have Current Book
+//viewNominations === false
+//newBook === false

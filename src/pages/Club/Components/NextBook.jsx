@@ -5,7 +5,10 @@ import ClubQuery from "../../../queries/ClubQuery";
 const NextBook = (props) => {
   const clubId = useParams().clubid;
 
-  //Not working
+  const viewNominations = () => {
+    props.setView(false)
+  }
+
   const pickFromNominated = (array) => {
     let min = Math.ceil(0);
     let max = Math.floor(array.length - 1);
@@ -18,7 +21,7 @@ const NextBook = (props) => {
       newbook: false,
     })
     .then(club => {
-      if (props.currentbook) {
+      if (props.currentBook) {
         ClubQuery.updatearray(clubId, {pastbook: props.currentBook});
         props.pastbooks.push(props.currentBook)
       } 
@@ -28,12 +31,8 @@ const NextBook = (props) => {
     .then(props.setNominations([]))
     .then(props.setCompleted([]))
     .then(props.setNewBook(false))
-    .then(props.setView(true))
+    .then(props.setView(false))
   };
-
-  const viewNominations = () => {
-    props.setView(false)
-  }
 
   const navigate = useNavigate();
 
@@ -68,7 +67,7 @@ const NextBook = (props) => {
           
           }
           {props.isAdmin === true &&
-            <p className="book-button" onClick={() =>pickFromNominated(props.nominations)}>Select Next Book</p>
+            <p className="book-button" onClick={() =>pickFromNominated(props.nominations)}>Select next book</p>
           }
         </div>
       </div>

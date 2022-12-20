@@ -10,6 +10,8 @@ const Nominated = (props) => {
     author: "",
   })
 
+  const [deleteConfirm, setConfirm] = useState(false)
+
   useEffect(() => {
     BookQuery.show(props.nominated)
     .then(book => {
@@ -20,6 +22,10 @@ const Nominated = (props) => {
     })
   }, [])
 
+  const handleDeleteModal = () => {
+    deleteConfirm === false ? setConfirm(true) : setConfirm(false)
+  }
+
   const handleNominationDelete = () => {
     ClubQuery.deletefromarray(props.clubId, {nomination: props.nominated})
     .then(props.setNominations(props.nominations.filter(nomination => nomination !== props.nominated)))
@@ -27,10 +33,21 @@ const Nominated = (props) => {
 
   return(
     <div className="nomination-container">
-      {props.isAdmin === true &&
-        <FontAwesomeIcon className="check" icon={faX} onClick={() => handleNominationDelete()}/>
+      <div className="nominated-book">
+        {props.isAdmin === true &&
+          <FontAwesomeIcon className="check" icon={faX} onClick={() => handleDeleteModal()}/>
+        }
+        <p>{book.title} by {book.author}</p>
+      </div>
+      {deleteConfirm === true &&
+        <div className="delete-modal">
+          <p>Are you sure you want to delete this nomination?</p>
+          <div className="delete-options">
+            <p className="delete-option" onClick={() => handleNominationDelete()}>Yes</p>
+            <p className="delete-option" onClick={() => handleDeleteModal()}>No</p>
+          </div>
+        </div>
       }
-      <p>{book.title} by {book.author}</p>
   </div>
   )
 }
