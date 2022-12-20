@@ -42,12 +42,10 @@ const NewClub = () => {
     };
   });
 
-
   //"CLUB NAME ALREADY TAKEN" DISPLAY STATE
   const [errorDisplay, setErrorDisplay] = useState(false);
 
   //FORM FUNCTIONS
-
   const convertString = (string) => {
     if (string === "true") {
       string = true
@@ -168,7 +166,7 @@ const NewClub = () => {
                     value={true}
                     onChange={handleChange}
                   />
-                  <label htmlFor="author">No, our members will vote on ones they nominate.</label>
+                  <label htmlFor="author">No, our members will nominate books to read.</label>
                 </div>
               </div>
             </div>
@@ -183,10 +181,10 @@ const NewClub = () => {
         }
       {haveBook === true &&
         <SearchBooks
-            path={1}
-            handleSecondSubmit={handleSecondSubmit}
-            clubId={clubId}
-          />
+          path={1}
+          handleSecondSubmit={handleSecondSubmit}
+          clubId={clubId}
+        />
         // : <SearchBooks
         //     path={2}
         //   />  

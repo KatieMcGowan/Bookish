@@ -34,10 +34,10 @@ const NewBook = () => {
               navigate(`/clubs/${clubId}/nominate`)
             }, 2000))
           } else {
-            ClubQuery.update(clubId, newBook)
+            ClubQuery.update(clubId, {currentbook: book.book._id})
             .then(setSuccess(true))
             .then(setTimeout(()=> {
-              navigate(`/clubs/${clubId}/nominate`)
+              navigate(`/clubs/${clubId}`)
             }, 2000))  
           };
         };
@@ -56,7 +56,7 @@ const NewBook = () => {
     <div className="new-book-wrapper">
       <p className="new-book-header">Add a Book</p>
       {success === true
-        ? <p className="new-book-sucess">Success! Redirecting you to the nominate page...</p>
+        ? <p className="new-book-sucess">Success! Redirecting...</p>
         : <div className="new-book-form">
             <form onSubmit={handleSubmit}>
               <div className="new-book-form-inputs">
