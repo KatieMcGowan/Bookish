@@ -11,6 +11,10 @@
   margin-bottom: 30px;
 }
 
+.new-book-success {
+  margin-top: 20px;
+}
+
 .new-book-form-inputs {
   display: flex;
   flex-direction: column;
@@ -39,6 +43,25 @@
   cursor: pointer;
 }
 
+.book-already-exists-error {
+  text-align: center
+}
+
+.book-already-exists-message {
+  margin-top: 10px;
+  color: red;
+}
+
+.link-to-search {
+  margin-top: 15px;
+  font-style: italic;
+  text-decoration: none;
+  color: black;
+}
+
+.link-to-search:hover {
+  text-shadow: 2px 2px rgb(215, 210, 210);
+}
 
 @media (min-width: 600px) {
   .new-book-header {

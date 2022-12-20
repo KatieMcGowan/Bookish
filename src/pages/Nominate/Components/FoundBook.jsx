@@ -6,7 +6,10 @@ const FoundBook = (props) => {
 
   const handleNominate = () => {
     ClubQuery.updatearray(props.clubId, {nomination: props.result._id})
-    .then(navigate(`/clubs/${props.clubId}`))
+    .then(props.setSuccess(true))
+    .then(setTimeout(() => {
+      navigate(`/clubs/${props.clubId}`)
+    }, 2000))
   }
   
   return(
