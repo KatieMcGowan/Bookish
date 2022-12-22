@@ -21,3 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Future Features
+/src/pages/Invites
+/src/pages/ManageMembers

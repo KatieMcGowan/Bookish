@@ -66,7 +66,6 @@ class ClubQuery {
     })
     .then(response => response.json())
   };
-
 };
 
 export default ClubQuery;

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import UserQuery from "../../queries/UserQuery";
 import ClubQuery from "../../queries/ClubQuery"
 import Cookies from "universal-cookie";
 import SearchBooks from "../Nominate/Components/SearchBooks";
-import "./NewClub.css"
+import "./NewClub.css";
 
 const NewClub = () => {
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ const NewClub = () => {
     } else {
       navigate("/login")
     };
-  });
+  }, []);
 
   //"CLUB NAME ALREADY TAKEN" DISPLAY STATE
   const [errorDisplay, setErrorDisplay] = useState(false);
@@ -116,6 +116,7 @@ const NewClub = () => {
               required={true}
               onChange={handleChange}
               value={newClub.clubname}
+              placeholder="Fantasy Fanatics"
             />
           </div>  
           <div className="new-form-inputs">
@@ -129,6 +130,7 @@ const NewClub = () => {
               required={true}
               onChange={handleChange}
               value={newClub.description}
+              placeholder="A club for everyone who wants to be a wizard."
             />
           </div>  
           <div className="new-form-inputs">
@@ -142,6 +144,7 @@ const NewClub = () => {
               required={true}
               onChange={handleChange}
               value={newClub.meetup}
+              placeholder="In Rivendell every first Sunday at 3:00PM."
             />
           </div>  
             <div className="new-form-inputs">
@@ -185,12 +188,9 @@ const NewClub = () => {
           handleSecondSubmit={handleSecondSubmit}
           clubId={clubId}
         />
-        // : <SearchBooks
-        //     path={2}
-        //   />  
       }  
     </div>
   );
 };
 
-export default NewClub
+export default NewClub;

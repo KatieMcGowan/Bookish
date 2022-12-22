@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import BookQuery from "../../queries/BookQuery";
 import ClubQuery from "../../queries/ClubQuery";
-import "./NewBook.css"
+import "./NewBook.css";
 
 const NewBook = () => {
   const [newBook, setBook] = useState({
@@ -10,11 +10,11 @@ const NewBook = () => {
     author: "",
   })
 
-  const [success, setSuccess] = useState(false)
+  const [success, setSuccess] = useState(false);
 
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
   
-  const clubId = useParams().clubid
+  const clubId = useParams().clubid;
 
   const navigate = useNavigate();
 

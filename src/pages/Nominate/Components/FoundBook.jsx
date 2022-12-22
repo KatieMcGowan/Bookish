@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import ClubQuery from "../../../queries/ClubQuery";
 
 const FoundBook = (props) => {
@@ -11,7 +11,7 @@ const FoundBook = (props) => {
     .then(setTimeout(() => {
       navigate(`/clubs/${props.clubId}`)
     }, 2000))
-  }
+  };
   
   return(
     <div>
@@ -31,4 +31,4 @@ const FoundBook = (props) => {
   );
 };
 
-export default FoundBook
+export default FoundBook;

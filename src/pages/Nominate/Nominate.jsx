@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import SearchBooks from "./Components/SearchBooks";
-import "./Nominate.css"
+import "./Nominate.css";
 
 const Nominate = () => {
   const clubId = useParams().clubid

@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"
-import Cookies from "universal-cookie"
+import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import UserQuery from "../../queries/UserQuery";
-import "./Dashboard.css"
+import "./Dashboard.css";
 
 const Dashboard = () => {
   //AUTH TOKEN CHECK
@@ -64,13 +64,12 @@ const Dashboard = () => {
       <div className="dashboard-links">
         <div className="dashboard-options" onClick={() => handleViewClick()}>
           <FontAwesomeIcon icon={faUsers} />
-          <p className="dashboard-link" to={"/myclubs"}>View your clubs</p>
+          <p className="dashboard-link" to={"/myclubs"}>View My Clubs</p>
         </div>
         <div className="dashboard-options" onClick={() => handleBrowseClick()}>
           <FontAwesomeIcon icon={faBook} />
-          <p className="dashboard-link" to={"/clubs"}>Browse clubs</p>
+          <p className="dashboard-link" to={"/clubs"}>Browse Clubs</p>
         </div>
-        {/* <Link className="dashboard-link" to={"/myinvites"}>Manage your invites</Link> */}
       </div>
     </div>
   );

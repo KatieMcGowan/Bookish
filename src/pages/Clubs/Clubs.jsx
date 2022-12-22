@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ClubQuery from "../../queries/ClubQuery";
 import Cookies from "universal-cookie";
 import Club from "./Components/Club";
-import "./Clubs.css"
+import "./Clubs.css";
 
 const Clubs = () => {
   const [clubs, setClubs] = useState([]);

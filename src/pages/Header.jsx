@@ -1,11 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import Cookies from "universal-cookie"
-import "./Header.css"
+import Cookies from "universal-cookie";
+import "./Header.css";
 
 const Header = () => {
   let navigate = useNavigate();
 
   const cookies = new Cookies();
+  
   let token = cookies.get("TOKEN")
 
   const logout = () => {

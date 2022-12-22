@@ -33,7 +33,6 @@ const Club = (props) => {
 
   const handleJoinClub = () => {
     ClubQuery.updatearray(props.club._id, {member: id})
-    // UserQuery.updatearray(id, {clubmember: props.club._id})
     navigate(`/clubs/${props.club._id}`)
   }
 
@@ -45,11 +44,10 @@ const Club = (props) => {
           ? <p className="clubs-club-invite-status" onClick={() => handleViewRedirect()}>View Club</p>
           : <p className="clubs-club-invite-status" onClick={() => handleJoinClub()}>Join Club</p>
         }
-        {/* <p className="clubs-club-invite-status">Pending</p> */}
       </div>
       <div className="clubs-club-blurb-and-meeting">
         <p className="clubs-club-blurb">{props.club.description}</p>
-        <p className="clubs-club-meeting">{props.club.meetup}</p>
+        <p className="clubs-club-meeting">Meet up: {props.club.meetup}</p>
       </div>
     </div>
   );

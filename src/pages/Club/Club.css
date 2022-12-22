@@ -185,16 +185,6 @@
   border-top: 10px solid black;
 }
 
-/* .book-mobile-banner {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 15px 0;
-  background-color: rgb(186, 92, 39);
-  gap: 20px;
-} */
-
 .mobile-banner {
   display: flex;
   flex-direction: row;
@@ -269,6 +259,17 @@
     font-size: 24px;
   }
 
+  .leave-link {
+    font-style: italic;
+    text-decoration: none;
+    color: black;
+  }
+
+  .leave-link:hover {
+    cursor: pointer;
+    text-shadow: 2px 2px rgb(215, 210, 210);
+  }
+
   .club-left {
     width: 30%;
   }
@@ -312,6 +313,7 @@
 
   .discussion-header {
     font-size: 22px;
+    text-align: center;
   }
 
   .percentage-of-completion {

@@ -25,7 +25,7 @@ const DiscussionQuestion = (props) => {
       </div>
       {deleteConfirm === true &&
         <div className="delete-modal">
-          <p>Are you sure you want to delete this nomination?</p>
+          <p>Are you sure you want to delete this question?</p>
           <div className="delete-options">
             <p className="delete-option" onClick={() => handleQuestionDelete()}>Yes</p>
             <p className="delete-option" onClick={() => handleDeleteModal()}>No</p>

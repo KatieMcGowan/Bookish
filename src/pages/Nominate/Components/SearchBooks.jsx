@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BookQuery from "../../../queries/BookQuery";
 import FoundBook from "./FoundBook";
-import "../SearchBooks.css"
+import "../SearchBooks.css";
 
 const SearchBooks = (props) => {
   const [searchCategory, setCategory] = useState("Title");
@@ -129,3 +129,11 @@ const SearchBooks = (props) => {
 };
 
 export default SearchBooks;
+
+//On the topic of limiting search results: 
+//Leverage state
+//All results stored in one state
+//Only results index 0-9 pushed into current results and mapped
+//Have a button that serves as a counter, number stored in state. 
+//Next 10, previous 10, etc.
+//counter 0 correlates with 0-9, 1 with 10 - 19, 2 with 20 - 29, etc.

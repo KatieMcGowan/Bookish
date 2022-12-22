@@ -25,14 +25,16 @@ const Club = () => {
     } else {
       navigate("/login")
     }
-  }, [])
+  }, []);
   
   // PAGE STATES AND HOOKS
   const [adminCheck, setCheck] = useState({
     isAdmin: false,
     adminName: "",
     adminId: "",
-  })
+  });
+
+  const [userId, setUser] = useState("");
 
   const [clubBasics, setBasics] = useState({
     clubname: "",
@@ -40,28 +42,28 @@ const Club = () => {
     meetup: "",
     admin: "",
     members: [],
-  })
+  });
 
-  const [currentBook, setCurrentBook] = useState("")
+  const [currentBook, setCurrentBook] = useState("");
 
-  const [pastbooks, setPastBooks] = useState([])
+  const [pastbooks, setPastBooks] = useState([]);
 
-  const [questions, setQuestions] = useState([])
+  const [questions, setQuestions] = useState([]);
 
-  const [usersCompleted, setCompleted] = useState([])
+  const [usersCompleted, setCompleted] = useState([]);
 
-  const [nominations, setNominations] = useState([])
+  const [nominations, setNominations] = useState([]);
   
-  const [newBook, setNewBook] = useState("")
+  const [newBook, setNewBook] = useState("");
 
-  const [viewNominations, setView] = useState(false)
- 
+  const [viewNominations, setView] = useState(false);
+
   const [book, setBook] = useState({
     title: "",
     author: "",
-  })
+  });
 
-  const clubId = useParams().clubid
+  const clubId = useParams().clubid;
 
   useEffect(() => {
     let token = {token: cookies.get("TOKEN")}
@@ -69,34 +71,35 @@ const Club = () => {
     .then(club => {
       UserQuery.getid(token)
       .then(user => {
+        setUser(user.userId)
         UserQuery.show(club.admin)
         .then(admin => {
-            if (club.admin === user.userId) {
-              setCheck({
-                isAdmin: true,
-                adminName: user.userDisplayName,
-                adminId: user.userId
-              })
-            } else {
-              setCheck({
-                isAdmin: false,
-                adminName: admin.displayname,
-                adminId: admin._id
-              })
-            }
-            setBasics({
-              clubname: club.clubname,
-              description: club.description, 
-              meetup: club.meetup,
-              admin: club.admin,
-              members: club.members,
+          if (club.admin === user.userId) {
+            setCheck({
+              isAdmin: true,
+              adminName: user.userDisplayName,
+              adminId: user.userId
             })
-            setCurrentBook(club.currentbook)
-            setPastBooks(club.pastbooks)
-            setQuestions(club.questions)
-            setCompleted(club.userscompleted)
-            setNominations(club.nominations)
-            setNewBook(club.newbook)
+          } else {
+            setCheck({
+              isAdmin: false,
+              adminName: admin.displayname,
+              adminId: admin._id
+            })
+          }
+          setBasics({
+            clubname: club.clubname,
+            description: club.description, 
+            meetup: club.meetup,
+            admin: club.admin,
+            members: club.members,
+          })
+          setCurrentBook(club.currentbook)
+          setPastBooks(club.pastbooks)
+          setQuestions(club.questions)
+          setCompleted(club.userscompleted)
+          setNominations(club.nominations)
+          setNewBook(club.newbook)
         })
       })
     })
@@ -120,6 +123,18 @@ const Club = () => {
     navigate(`/clubs/${clubId}/edit`)
   }
 
+  //STATES AND FUNCTIONS FOR MEMBER LEAVING CLUB
+  const [leaveConfirm, setConfirm] = useState(false)
+
+  const handleMemberLeaving = () => {
+    ClubQuery.deletefromarray(clubId, {member: userId})
+    .then(navigate("/home"))
+  }
+
+  const handleLeaveModal = () => {
+    leaveConfirm === false ? setConfirm(true) : setConfirm(false)
+  }
+
   return(
     <div className="club-wrapper">
       <div className="club-info">
@@ -131,6 +146,16 @@ const Club = () => {
         </div>
         <p className="club-description-header">{clubBasics.description}</p>
         <p className="club-meeting-header">Meet up: {clubBasics.meetup}</p>
+        {leaveConfirm === false
+          ? <p className="leave-link" onClick={() => handleLeaveModal()}>Leave this club</p>
+          : <div className="delete-modal">
+            <p>Are you sure you want to leave this club?</p>
+            <div className="delete-options">
+              <p className="delete-option" onClick={() => handleMemberLeaving()}>Yes</p>
+              <p className="delete-option" onClick={() => handleLeaveModal()}>No</p>
+            </div>
+          </div>
+        }
       </div>  
       <div className="club-left-and-right">
         <div className="club-left">
@@ -199,7 +224,7 @@ const Club = () => {
   );
 };
 
-export default Club
+export default Club;
 
 //What are the conditions in which we would have Next Book 
 //viewNominations === true
