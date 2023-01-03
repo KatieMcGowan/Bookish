@@ -66,7 +66,7 @@ const NextBook = (props) => {
             <p className="book-button" onClick={() => viewNominations()}>View current book</p>
           
           }
-          {props.isAdmin === true &&
+          {(props.isAdmin === true && props.nominations.length > 0) &&
             <p className="book-button" onClick={() =>pickFromNominated(props.nominations)}>Select next book</p>
           }
         </div>

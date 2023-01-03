@@ -5,7 +5,7 @@ import Header from "./pages/Header";
 import Landing from "./pages/Landing/Landing";
 import SignUp from "./pages/SignUp/SignUp";
 import LogIn from "./pages/LogIn/LogIn";
-import Dashboard from "./pages/Dashboard/Dashboard";
+import Home from "./pages/Home/Home";
 import Clubs from './pages/Clubs/Clubs';
 import MyClubs from './pages/MyClubs/MyClubs';
 import NewClub from "./pages/NewClub/NewClub";
@@ -25,7 +25,7 @@ const App = () => {
         <Route path={"/login"} element={<LogIn />}/>
         <Route path={"/clubs"} element={<Clubs />}/> 
         {/* <Route element={<ProtectedRoutes />}> */}
-          <Route path={"/home"} element={<Dashboard />}/>
+          <Route path={"/home"} element={<Home />}/>
           <Route path={"/myclubs"} element={<MyClubs />}/>
           <Route path={"/clubs/new"} element={<NewClub />}/>
           <Route path={"/clubs/:clubid/edit"} element={<EditClub />}/>

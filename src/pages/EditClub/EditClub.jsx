@@ -65,7 +65,7 @@ const EditClub = () => {
   return(
     <div className="edit-club-wrapper">
       <p className="edit-club-header">Edit Club</p>
-      <div className="edit-form-form">
+      <div className="edit-form">
         <form onSubmit={handleSubmit}>
           <div className="edit-form-inputs">
             <label htmlFor="name">Name</label>

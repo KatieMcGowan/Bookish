@@ -62,4 +62,8 @@
   .new-club-header {
     font-size: 32px;
   }
+
+  .new-form {
+    width: 50%;
+  }
 }

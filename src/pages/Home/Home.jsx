@@ -5,9 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import UserQuery from "../../queries/UserQuery";
-import "./Dashboard.css";
+import "./Home.css";
 
-const Dashboard = () => {
+const Home = () => {
   //AUTH TOKEN CHECK
   const navigate = useNavigate();
   const cookies = new Cookies();
@@ -75,4 +75,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Home;

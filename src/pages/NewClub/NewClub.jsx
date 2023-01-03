@@ -102,7 +102,7 @@ const NewClub = () => {
   return(
     <div className="new-club-wrapper">
       <p className="new-club-header">New Club</p>
-      <div className="new-form-form">
+      <div className="new-form">
       {haveBook === false &&
         <form onSubmit={handleFirstSubmit}>
           <div className="new-form-inputs">
@@ -159,7 +159,7 @@ const NewClub = () => {
                     onChange={handleChange}
                     defaultChecked
                   />
-                  <label htmlFor="title">Yes. Selecting this option will allow you to add your book.</label>
+                  <label htmlFor="title">Yes. Selecting this option will allow you to add your book on submit.</label>
                 </div>
                 <div className="newbook-radio-option">
                   <input 

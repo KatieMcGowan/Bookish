@@ -228,11 +228,3 @@ const Club = () => {
 };
 
 export default Club;
-
-//What are the conditions in which we would have Next Book 
-//viewNominations === true
-//newBook === true
-
-//What are the conditions in which we would have Current Book
-//viewNominations === false
-//newBook === false
