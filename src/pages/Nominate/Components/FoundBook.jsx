@@ -5,7 +5,6 @@ const FoundBook = (props) => {
   const navigate = useNavigate();
 
   const handleNominate = () => {
-    console.log("In nominate function")
     ClubQuery.updatearray(props.clubId, {nomination: props.result._id})
     .then(props.setSuccess(true))
     .then(setTimeout(() => {

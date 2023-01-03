@@ -1,14 +1,8 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import UserQuery from "../../../queries/UserQuery";
 import ClubQuery from "../../../queries/ClubQuery";
 import Cookies from "universal-cookie";
 import DiscussionQuestion from "./DiscussionQuestion";
-
-//Thoughts about refactor, maybe have two buttons on current club component
-//One is finish, and finish turns into nominate. The other is view nominations, which toggles state of club
-//Newbook only changes when everyone has completed the book, or if admin initiates it
-//
 
 const CurrentBook = (props) => {
   //HOOKS TO DETERMINE IF USER HAS COMPLETED THE BOOK, AND TOGGLE BUTTONS APPROPRIATELY
@@ -37,26 +31,14 @@ const CurrentBook = (props) => {
       .then(props.userscompleted.push(response.userId))
       .then(setCompleted(true))
     })
-  }
-
-  // const navigate = useNavigate();
-
-  // const handleNominateDirect = () => {
-  //   navigate(`/clubs/${props.id}/nominate`)
-  // }
-
-  //I need to refactor this somehow, it doesn't make sense. 
-  // const moveToNextBook = () => {
-  //   ClubQuery.update(props.id, {newbook: true})
-  //   .then(props.setNewBook(true))
-  // }
+  };
 
   const viewNominations = () => {
     props.setView(true)
-  }
+  };
 
   //HOOKS TO HANDLE USER ADDING A DISCUSSION QUESTION
-  const [question, setQuestion] =  useState("")
+  const [question, setQuestion] =  useState("");
 
   const handleChange = (event) => {
     setQuestion(event.target.value);
@@ -67,7 +49,7 @@ const CurrentBook = (props) => {
     ClubQuery.updatearray(props.id, {question: question})
     .then(props.questions.push(question))
     .then(setQuestion(""))
-  }
+  };
 
   return(
     <div className="club-right">
@@ -81,12 +63,9 @@ const CurrentBook = (props) => {
         <p className="percentage-of-completion">{Math.round((props.userscompleted.length / props.members.length) * 100)}% of members have finished this book</p>
         <div className="book-buttons-container">
           {userCompleted !== true &&
-            // ? <p className="book-button" onClick={() => handleNominateDirect()}>Nominate a book</p>
-            <p className="book-button" onClick={() => handleFinish()}>Finished</p>
+            <p className="book-button" onClick={() => handleFinish()}>Finish Book</p>
           }
-          {/* {props.adminCheck.isAdmin === true && */}
-            <p className="book-button" onClick={() => viewNominations()}>View Nominations</p>
-          {/* } */}
+          <p className="book-button" onClick={() => viewNominations()}>View Nominations</p>
         </div>
       </div>   
       <div className="discussion-container">
@@ -112,7 +91,7 @@ const CurrentBook = (props) => {
               name="question"
               minLength="5"
               maxLength="500"
-              placeholder="Add a discussion question"
+              placeholder="Add a discussion question for your next meet up"
               onChange={handleChange}
               value={question}
             />

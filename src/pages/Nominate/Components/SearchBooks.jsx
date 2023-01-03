@@ -54,7 +54,7 @@ const SearchBooks = (props) => {
 
   return(
     <div className="search-book-wrapper">
-      <p className="search-book-header">Search for a Book</p>
+      <p className="search-book-header">Search for a book</p>
       {success === true
         ? <p className="nomination-sucess">Success! Redirecting you to the club page...</p>
         : <div>

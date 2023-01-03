@@ -11,7 +11,7 @@ const NewClub = () => {
 
   const cookies = new Cookies();
   
-  const [clubAdmin, setAdmin] = useState("")
+  const [clubAdmin, setAdmin] = useState("");
 
   const [newClub, setClub] = useState({
     clubname: "",
@@ -24,11 +24,11 @@ const NewClub = () => {
     userscompleted: [],
     newbook: "false",
     nominations: [],
-  })
+  });
 
-  const [clubId, setClubId] = useState("")
+  const [clubId, setClubId] = useState("");
 
-  const [haveBook, setHaveBook] = useState(false)
+  const [haveBook, setHaveBook] = useState(false);
 
   useEffect(() => {
     let token = {token: cookies.get("TOKEN")};
@@ -54,7 +54,7 @@ const NewClub = () => {
       string = false
       return string;
     } else return;
-  }
+  };
 
   const handleFirstSubmit = (event) => {
     event.preventDefault();
@@ -90,7 +90,7 @@ const NewClub = () => {
   const handleSecondSubmit = (clubId, bookId) => {
     ClubQuery.update(clubId, {currentbook: bookId})
     .then(navigate(`/clubs/${clubId}`))
-  }
+  };
   
   const handleChange = (event) => {
     setClub({
@@ -149,7 +149,7 @@ const NewClub = () => {
           </div>  
             <div className="new-form-inputs">
               <div className="newbook-radio-container">
-                <p>Do you have a book to read?</p>
+                <p>Do you have your first book selected?</p>
                 <div className="newbook-radio-option">
                   <input 
                     type="radio" 
@@ -159,7 +159,7 @@ const NewClub = () => {
                     onChange={handleChange}
                     defaultChecked
                   />
-                  <label htmlFor="title">Yes, we have already chosen one.</label>
+                  <label htmlFor="title">Yes. Selecting this option will allow you to add your book.</label>
                 </div>
                 <div className="newbook-radio-option">
                   <input 
@@ -169,7 +169,7 @@ const NewClub = () => {
                     value={true}
                     onChange={handleChange}
                   />
-                  <label htmlFor="author">No, our members will nominate books to read.</label>
+                  <label htmlFor="author">No. Selecting this option means your members will nominate books to read later.</label>
                 </div>
               </div>
             </div>

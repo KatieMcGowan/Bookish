@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCrown } from "@fortawesome/free-solid-svg-icons";
 import { faPencil }from "@fortawesome/free-solid-svg-icons";
-import Member from "./Components/Member"
+import Member from "./Components/Member";
 import CurrentBook from "./Components/CurrentBook";
 import NextBook from "./Components/NextBook";
 import PastBook from "./Components/PastBook";
@@ -103,7 +103,7 @@ const Club = () => {
         })
       })
     })
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (!currentBook) {
@@ -117,23 +117,23 @@ const Club = () => {
         })
       })
     }
-  }, [currentBook])
+  }, [currentBook]);
 
   const handleEditRedirect = () => {
     navigate(`/clubs/${clubId}/edit`)
-  }
+  };
 
   //STATES AND FUNCTIONS FOR MEMBER LEAVING CLUB
-  const [leaveConfirm, setConfirm] = useState(false)
+  const [leaveConfirm, setConfirm] = useState(false);
 
   const handleMemberLeaving = () => {
     ClubQuery.deletefromarray(clubId, {member: userId})
     .then(navigate("/home"))
-  }
+  };
 
   const handleLeaveModal = () => {
     leaveConfirm === false ? setConfirm(true) : setConfirm(false)
-  }
+  };
 
   return(
     <div className="club-wrapper">
@@ -146,9 +146,11 @@ const Club = () => {
         </div>
         <p className="club-description-header">{clubBasics.description}</p>
         <p className="club-meeting-header">Meet up: {clubBasics.meetup}</p>
-        {leaveConfirm === false
-          ? <p className="leave-link" onClick={() => handleLeaveModal()}>Leave this club</p>
-          : <div className="delete-modal">
+        {(leaveConfirm === false && adminCheck.isAdmin === false) &&
+          <p className="leave-link" onClick={() => handleLeaveModal()}>Leave this club</p>
+        }  
+        {leaveConfirm === true && 
+          <div className="delete-modal">
             <p>Are you sure you want to leave this club?</p>
             <div className="delete-options">
               <p className="delete-option" onClick={() => handleMemberLeaving()}>Yes</p>
@@ -166,14 +168,15 @@ const Club = () => {
             </div>
             <div className="members-list">
               <div className="admin-member">
-                <p className="member">{adminCheck.adminName}</p>
                 <FontAwesomeIcon icon={faCrown} />
+                <p className="member">{adminCheck.adminName}</p>
               </div>
               {clubBasics.members.map((member, index) => {
                 return <Member
                           key={index}
                           member={member}
                           adminId={adminCheck.adminId}
+                          isAdmin={adminCheck.isAdmin}
                       />  
               })}
             </div>
