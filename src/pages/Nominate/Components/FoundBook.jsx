@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ClubQuery from "../../../queries/ClubQuery";
 
@@ -5,11 +6,19 @@ const FoundBook = (props) => {
   const navigate = useNavigate();
 
   const handleNominate = () => {
+    props.setErrorDisplay(false)
     ClubQuery.updatearray(props.clubId, {nomination: props.result._id})
-    .then(props.setSuccess(true))
-    .then(setTimeout(() => {
-      navigate(`/clubs/${props.clubId}`)
-    }, 2000));
+    .then(response => {
+      if (response.errorcode === 1) {
+        props.setErrorDisplay(true)
+        return;
+      } else {
+        props.setSuccess(true)
+        setTimeout(() => {
+          navigate(`/clubs/${props.clubId}`)
+        }, 2000)
+      };
+    })
   };
   
   return(

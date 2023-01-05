@@ -130,6 +130,11 @@
   color: red;
 }
 
+.nomination-taken {
+  margin-top: 10px;
+  color: red;
+}
+
 .next-book-header {
   font-size: 18px;
 }

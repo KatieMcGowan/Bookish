@@ -17,8 +17,11 @@ const SearchBooks = (props) => {
 
   const [success, setSuccess] = useState(false);
 
+  const [errorDisplay, setErrorDisplay] = useState(false);
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    setErrorDisplay(false)
     setSearch(true);
     if (searchCategory === "Title") {
       BookQuery.searchtitle(title)
@@ -102,6 +105,9 @@ const SearchBooks = (props) => {
                   <p>{results.length} result(s) found. Click on book you would like to select.</p>
                   <p>-or-</p>
                   <p className="click-here" onClick={() => handleNewBookRedirect()}>Add a book to the collection</p>
+                  {errorDisplay === true &&
+                    <p className="nomination-taken">This book has already been nominated, please select another one.</p>
+                  }
                   {results.map((result, index) => {
                     return <FoundBook
                               key={index}
@@ -110,6 +116,7 @@ const SearchBooks = (props) => {
                               clubId={props.clubId}
                               handleSecondSubmit={props.handleSecondSubmit}
                               setSuccess={setSuccess}
+                              setErrorDisplay={setErrorDisplay}
                             />  
                   })}
                 </div>  
