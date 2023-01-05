@@ -27,16 +27,23 @@ const SearchBooks = (props) => {
       BookQuery.searchtitle(title)
       .then(response => {
         setResult(response)
-      });
+      })
     } else {
       BookQuery.searchauthor(author)
       .then(response => {
         setResult(response)
-      });
+      })
     };
   };
   
   const handleCategoryChange = (event) => {
+    if (searchCategory === "Title") {
+      setAuthor(title)
+      setTitle("")
+    } else {
+      setTitle(author)
+      setAuthor("")
+    }
     setCategory(event.target.value)
   };
 
@@ -60,6 +67,29 @@ const SearchBooks = (props) => {
       {success === true
         ? <p className="nomination-sucess">Success! Redirecting you to the club page...</p>
         : <div>
+            <div className="category-options-container">
+              <div className="category-option">
+                <input 
+                  type="radio" 
+                  className="togglecategory" 
+                  name="searchCategory" 
+                  value="Title"
+                  onChange={handleCategoryChange}
+                  defaultChecked
+                />
+                <label htmlFor="title">Title</label>
+              </div>
+              <div className="category-option">
+                <input 
+                  type="radio" 
+                  className="togglecategory" 
+                  name="searchCategory" 
+                  value="Author"
+                  onChange={handleCategoryChange}
+                />
+                <label htmlFor="author">Author</label>
+              </div>
+            </div>
             <div className="search-book-form">
               <form onSubmit={handleSubmit}>
                   <div className="search-inputs">
@@ -75,29 +105,6 @@ const SearchBooks = (props) => {
                     <input type="submit" className="submit" value="Submit"/>
                   </div>
               </form>
-              <div className="category-options-container">
-                <div className="category-option">
-                  <input 
-                    type="radio" 
-                    className="togglecategory" 
-                    name="searchCategory" 
-                    value="Title"
-                    onChange={handleCategoryChange}
-                    defaultChecked
-                  />
-                  <label htmlFor="title">Title</label>
-                </div>
-                <div className="category-option">
-                  <input 
-                    type="radio" 
-                    className="togglecategory" 
-                    name="searchCategory" 
-                    value="Author"
-                    onChange={handleCategoryChange}
-                  />
-                  <label htmlFor="author">Author</label>
-                </div>
-              </div>
             </div>
             <div className="results-container">
               {firstSearch === true && results.length > 0 &&

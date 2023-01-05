@@ -64,24 +64,24 @@ const CurrentBook = (props) => {
   return(
     <div className="club-right">
       <div className="book-container">
-        <div className="mobile-banner">
+        <div className="mobile-banner-right">
           <p className="current-book-header">Current Book</p>
-          <div className="arrow-down"></div>
+          {/* <div className="arrow-down"></div> */}
         </div>
         <p className="current-book">{props.currentbook.title} by {props.currentbook.author}</p>
         <progress className="progress-bar" value={props.userscompleted.length} max={props.members.length}>{Math.round((props.userscompleted.length / props.members.length) * 100)}%</progress>
         <p className="percentage-of-completion">{Math.round((props.userscompleted.length / props.members.length) * 100)}% of members have finished this book</p>
         <div className="book-buttons-container">
           {userCompleted !== true &&
-            <p className="book-button" onClick={() => handleFinish()}>Finish Book</p>
+            <p className="book-button" onClick={() => handleFinish()}>Finish Current Book</p>
           }
           <p className="book-button" onClick={() => viewNominations()}>View Nominations</p>
         </div>
       </div>   
       <div className="discussion-container">
-        <div className="mobile-banner">
+        <div className="mobile-banner-right">
           <p className="discussion-header">Discussion Questions</p>
-          <div className="arrow-down"></div>
+          {/* <div className="arrow-down"></div> */}
         </div>
         {props.questions.map((question, index) => {
           return <DiscussionQuestion

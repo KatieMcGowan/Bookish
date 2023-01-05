@@ -164,7 +164,7 @@ const Club = () => {
           <div className="members-container">
             <div className="mobile-banner">
               <p className="club-members-header">Members</p>
-              <div className="arrow-down"></div>
+              {/* <div className="arrow-down"></div> */}
             </div>
             <div className="members-list">
               <div className="admin-member">
@@ -184,7 +184,7 @@ const Club = () => {
           <div className="past-books-container">
             <div className="mobile-banner">
               <p className="past-books-header">Past Books</p>
-              <div className="arrow-down"></div>
+              {/* <div className="arrow-down"></div> */}
             </div>
             <div className="past-books-list">
               {pastbooks.map((pastbook, index) => {
