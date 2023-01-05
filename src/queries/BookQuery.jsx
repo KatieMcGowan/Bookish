@@ -1,4 +1,4 @@
-const url = "http://localhost:4000/books"
+const url = "http://localhost:4000/books";
 
 class BookQuery {
   static all = () => {

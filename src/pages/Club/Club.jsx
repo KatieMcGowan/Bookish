@@ -24,7 +24,7 @@ const Club = () => {
       return
     } else {
       navigate("/login")
-    }
+    };
   }, []);
   
   // PAGE STATES AND HOOKS
@@ -102,7 +102,7 @@ const Club = () => {
           setNewBook(club.newbook)
         })
       })
-    })
+    });
   }, []);
 
   useEffect(() => {
@@ -116,7 +116,7 @@ const Club = () => {
           author: book.author
         })
       })
-    }
+    };
   }, [currentBook]);
 
   const handleEditRedirect = () => {
@@ -186,12 +186,14 @@ const Club = () => {
               <p className="past-books-header">Past Books</p>
               <div className="arrow-down"></div>
             </div>
-            {pastbooks.map((pastbook, index) => {
-              return <PastBook
-                      key={index}
-                      pastbook={pastbook}
-                    /> 
-            })}
+            <div className="past-books-list">
+              {pastbooks.map((pastbook, index) => {
+                return <PastBook
+                        key={index}
+                        pastbook={pastbook}
+                      /> 
+              })}
+            </div>
           </div>
         </div>
         {(viewNominations === false && newBook === false) 

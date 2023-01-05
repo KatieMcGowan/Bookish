@@ -27,6 +27,6 @@ const ProtectedRoutes = ({ element: Element, ...rest }) => {
       }}
     />
   );
-}
+};
 
-export default ProtectedRoutes
+export default ProtectedRoutes;

@@ -5,7 +5,7 @@ import Cookies from "universal-cookie";
 import ClubQuery from "../../../queries/ClubQuery";
 
 const Club = (props) => {
-  const [member, setMember] = useState(false)
+  const [member, setMember] = useState(false);
 
   const [id, setId] = useState();
 
@@ -21,7 +21,7 @@ const Club = (props) => {
           setMember(true)
         }  
       }
-    })
+    });
   }, []);
 
   // FUNCTIONS TO HANDLE CLICKS
@@ -29,12 +29,12 @@ const Club = (props) => {
 
   const handleViewRedirect = () => {
     navigate(`/clubs/${props.club._id}`)
-  }
+  };
 
   const handleJoinClub = () => {
     ClubQuery.updatearray(props.club._id, {member: id})
-    navigate(`/clubs/${props.club._id}`)
-  }
+    .then(navigate(`/clubs/${props.club._id}`));
+  };
 
   return(
     <div className="clubs-individual-club">

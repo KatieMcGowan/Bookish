@@ -3,17 +3,17 @@ import Cookies from "universal-cookie";
 import "./Header.css";
 
 const Header = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const cookies = new Cookies();
   
-  let token = cookies.get("TOKEN")
+  let token = cookies.get("TOKEN");
 
   const logout = () => {
-    cookies.remove("ID", {path: "/"})
-    cookies.remove("TOKEN", {path: "/"})
-    navigate("/")
-  }
+    cookies.remove("ID", {path: "/"});
+    cookies.remove("TOKEN", {path: "/"});
+    navigate("/");
+  };
   
   return(
     <div className="header-wrapper">

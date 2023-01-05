@@ -9,7 +9,7 @@ const FoundBook = (props) => {
     .then(props.setSuccess(true))
     .then(setTimeout(() => {
       navigate(`/clubs/${props.clubId}`)
-    }, 2000))
+    }, 2000));
   };
   
   return(

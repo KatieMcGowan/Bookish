@@ -7,12 +7,12 @@ const NextBook = (props) => {
 
   const viewNominations = () => {
     props.setView(false)
-  }
+  };
 
   const pickFromNominated = (array) => {
     let min = Math.ceil(0);
     let max = Math.floor(array.length - 1);
-    let randomBook = array[Math.floor(Math.random() * (max - min + 1) + min)]
+    let randomBook = array[Math.floor(Math.random() * (max - min + 1) + min)];
     ClubQuery.update(clubId, {
       currentbook: randomBook, 
       questions: [],
@@ -38,7 +38,7 @@ const NextBook = (props) => {
 
   const handleNominateDirect = () => {
     navigate(`/clubs/${clubId}/nominate`)
-  }
+  };
 
   return(
     <div className="club-right">
@@ -72,7 +72,7 @@ const NextBook = (props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NextBook
+export default NextBook;

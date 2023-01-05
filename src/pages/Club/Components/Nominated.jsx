@@ -8,9 +8,9 @@ const Nominated = (props) => {
   const [book, setBook] = useState({
     title: "",
     author: "",
-  })
+  });
 
-  const [deleteConfirm, setConfirm] = useState(false)
+  const [deleteConfirm, setConfirm] = useState(false);
 
   useEffect(() => {
     BookQuery.show(props.nominated)
@@ -19,17 +19,17 @@ const Nominated = (props) => {
         title: book.title,
         author: book.author
       })
-    })
-  }, [])
+    });
+  }, []);
 
   const handleDeleteModal = () => {
     deleteConfirm === false ? setConfirm(true) : setConfirm(false)
-  }
+  };
 
   const handleNominationDelete = () => {
     ClubQuery.deletefromarray(props.clubId, {nomination: props.nominated})
     .then(props.setNominations(props.nominations.filter(nomination => nomination !== props.nominated)))
-  }
+  };
 
   return(
     <div className="nomination-container">
@@ -49,6 +49,7 @@ const Nominated = (props) => {
         </div>
       }
   </div>
-  )
-}
+  );
+};
+
 export default Nominated;

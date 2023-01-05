@@ -4,16 +4,17 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 import ClubQuery from "../../../queries/ClubQuery";
 
 const DiscussionQuestion = (props) => {
-  const [deleteConfirm, setConfirm] = useState(false)
+  const [deleteConfirm, setConfirm] = useState(false);
 
   const handleDeleteModal = () => {
     deleteConfirm === false ? setConfirm(true) : setConfirm(false)
-  }
+  };
 
   const handleQuestionDelete = () => {
     ClubQuery.deletefromarray(props.clubId, {question: props.question})
     .then(props.setQuestions(props.questions.filter(question => question !== props.question)))
-  }
+    .then(handleDeleteModal());
+  };
 
   return(
     <div className="discussion-questions">
@@ -33,7 +34,7 @@ const DiscussionQuestion = (props) => {
         </div>
       }
     </div>
-  )
-}
+  );
+};
 
 export default DiscussionQuestion;

@@ -22,7 +22,7 @@ const EditClub = () => {
         description: club.description,
         meetup: club.meetup
       })
-    })
+    });
   }, []);
 
   //"CLUB NAME ALREADY TAKEN" DISPLAY STATE
@@ -55,12 +55,12 @@ const EditClub = () => {
 
   const handleDeleteModal = () => {
     deleteConfirm === false ? setConfirm(true) : setConfirm(false)
-  }
+  };
 
   const handleClubDelete = () => {
     ClubQuery.delete(clubId)
-    .then(navigate("/home"))
-  }
+    .then(navigate("/home"));
+  };
 
   return(
     <div className="edit-club-wrapper">

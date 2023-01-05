@@ -1,12 +1,10 @@
 import "./Landing.css";
-import OrangeBook from "../../photos/OrangeBook.jpg"
+import OrangeBook from "../../photos/OrangeBook.jpg";
 
 const Landing = (props) => {
   return(
     <div className="landing-wrapper">
-      
       <img src={OrangeBook} className="landing-placeholder" alt="book"/>
-      {/* <div className="landing-placeholder"></div> */}
       <div className="landing-text">
         <p className="landing-header">Bookish.</p>
         <p className="landing-description">Find your perfect book club. Browse our list of available book clubs, or sign up to make your own.</p>

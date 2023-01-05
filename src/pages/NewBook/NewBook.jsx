@@ -8,7 +8,7 @@ const NewBook = () => {
   const [newBook, setBook] = useState({
     title: "",
     author: "",
-  })
+  });
 
   const [success, setSuccess] = useState(false);
 
@@ -98,7 +98,7 @@ const NewBook = () => {
         </div>
       }
     </div>
-  )
-}
+  );
+};
 
 export default NewBook;

@@ -11,7 +11,7 @@ const CurrentBook = (props) => {
   const cookies = new Cookies();
 
   useEffect(() => {
-    let token = {token: cookies.get("TOKEN")}
+    let token = {token: cookies.get("TOKEN")};
     UserQuery.getid(token)
     .then(response => {
       for (let i = 0; i < props.userscompleted.length; i++) {
@@ -20,17 +20,17 @@ const CurrentBook = (props) => {
         }; 
       };
     });
-  }, [])
+  }, []);
   
   //FUNCTIONS TO HANDLE BUTTON CLICKS
   const handleFinish = () => {
-    let token = {token: cookies.get("TOKEN")}
+    let token = {token: cookies.get("TOKEN")};
     UserQuery.getid(token)
     .then(response => {
       ClubQuery.updatearray(props.id, {usercompleted: response.userId})
       .then(props.userscompleted.push(response.userId))
       .then(setCompleted(true))
-    })
+    });
   };
 
   const viewNominations = () => {
@@ -40,26 +40,36 @@ const CurrentBook = (props) => {
   //HOOKS TO HANDLE USER ADDING A DISCUSSION QUESTION
   const [question, setQuestion] =  useState("");
 
+  const [errorDisplay, setErrorDisplay] = useState(false);
+
   const handleChange = (event) => {
     setQuestion(event.target.value);
   };
 
   const handleAddQuestion = (event) => {
     event.preventDefault();
+    setErrorDisplay(false)
     ClubQuery.updatearray(props.id, {question: question})
-    .then(props.questions.push(question))
-    .then(setQuestion(""))
+    .then(response => {
+      if (response.errorcode === 1 ){
+        setErrorDisplay(true)
+        return;
+      } else {
+        props.questions.push(question);
+        setQuestion("");
+      };
+    });  
   };
 
   return(
     <div className="club-right">
-      <div className="mobile-banner">
-        <p className="current-book-header">Current Book</p>
-        <div className="arrow-down"></div>
-      </div>
       <div className="book-container">
-        <p className="current-book">Current Book: {props.currentbook.title} by {props.currentbook.author}</p>
-        <progress value={props.userscompleted.length} max={props.members.length}>{Math.round((props.userscompleted.length / props.members.length) * 100)}%</progress>
+        <div className="mobile-banner">
+          <p className="current-book-header">Current Book</p>
+          <div className="arrow-down"></div>
+        </div>
+        <p className="current-book">{props.currentbook.title} by {props.currentbook.author}</p>
+        <progress className="progress-bar" value={props.userscompleted.length} max={props.members.length}>{Math.round((props.userscompleted.length / props.members.length) * 100)}%</progress>
         <p className="percentage-of-completion">{Math.round((props.userscompleted.length / props.members.length) * 100)}% of members have finished this book</p>
         <div className="book-buttons-container">
           {userCompleted !== true &&
@@ -98,9 +108,12 @@ const CurrentBook = (props) => {
             <input type="submit" className="submit" value="Submit"/>
           </form>  
         </div>
+        {errorDisplay === true &&
+          <p className="question-taken">This question has already been posted, please post another one.</p>
+        }
       </div>
     </div>
   );
 };
 
-export default CurrentBook
+export default CurrentBook;

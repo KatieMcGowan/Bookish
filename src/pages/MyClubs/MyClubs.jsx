@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
-import MyClub from "./Components/MyClub"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import MyClub from "./Components/MyClub";
 import UserQuery from "../../queries/UserQuery";
-import "./MyClubs.css"
+import "./MyClubs.css";
 
 const MyClubs = () => {
   //AUTH TOKEN CHECK
   const navigate = useNavigate();
   const cookies = new Cookies();
-
 
   useEffect(() => {
     let token = cookies.get("TOKEN")
@@ -17,13 +18,13 @@ const MyClubs = () => {
       return
     } else {
       navigate("/login")
-    }
-  }, [])
+    };
+  }, []);
 
   //MY CLUB STATE
   const [myClubs, setClubs] = useState([]);
 
-  const [user, setUser] = useState("")
+  const [user, setUser] = useState("");
 
   useEffect(() => {
     let token = {token: cookies.get("TOKEN")}
@@ -34,8 +35,12 @@ const MyClubs = () => {
         setClubs(user.clubsmember);
         setUser(response.userId)
         })
-      })
+      });
   }, []);
+
+  const handleHomeRedirect = () => {
+    navigate("/home")
+  };
 
   return(
     <div className="my-clubs-wrapper">
@@ -56,9 +61,13 @@ const MyClubs = () => {
             <Link className="create-a-club" to={"/clubs/new"}>Create a club</Link>
             <Link className="create-a-club" to={"/clubs"}>Browse clubs</Link>
           </div>  
-      }  
+      }
+      <div className="return-home" onClick={() => handleHomeRedirect()}>
+        <FontAwesomeIcon icon={faArrowLeft} />
+        <p>Return home</p>
+      </div>  
     </div>
   );
 };
 
-export default MyClubs
+export default MyClubs;

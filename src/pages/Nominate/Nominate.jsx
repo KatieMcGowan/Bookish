@@ -3,7 +3,7 @@ import SearchBooks from "./Components/SearchBooks";
 import "./Nominate.css";
 
 const Nominate = () => {
-  const clubId = useParams().clubid
+  const clubId = useParams().clubid;
 
   return(
     <div className="nominate-wrapper">

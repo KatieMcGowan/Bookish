@@ -58,6 +58,19 @@
   text-align: center;
 }
 
+.return-home {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  margin-top: 15px;
+}
+
+.return-home:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
 @media (min-width: 600px) {
   .my-clubs-header {
     font-size: 32px;

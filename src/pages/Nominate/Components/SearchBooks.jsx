@@ -15,7 +15,7 @@ const SearchBooks = (props) => {
 
   const [results, setResult] = useState([]);
 
-  const [success, setSuccess] = useState(false)
+  const [success, setSuccess] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -24,12 +24,12 @@ const SearchBooks = (props) => {
       BookQuery.searchtitle(title)
       .then(response => {
         setResult(response)
-      })
+      });
     } else {
       BookQuery.searchauthor(author)
       .then(response => {
         setResult(response)
-      })
+      });
     };
   };
   
@@ -42,15 +42,14 @@ const SearchBooks = (props) => {
       setTitle(event.target.value)
     } else {
       setAuthor(event.target.value)
-    }
+    };
   };
 
   const navigate = useNavigate();
 
-  //Club id necessary for redirect back to club page
   const handleNewBookRedirect = () => {
     navigate(`/clubs/${props.clubId}/newbook`);
-  }
+  };
 
   return(
     <div className="search-book-wrapper">
@@ -129,11 +128,3 @@ const SearchBooks = (props) => {
 };
 
 export default SearchBooks;
-
-//On the topic of limiting search results: 
-//Leverage state
-//All results stored in one state
-//Only results index 0-9 pushed into current results and mapped
-//Have a button that serves as a counter, number stored in state. 
-//Next 10, previous 10, etc.
-//counter 0 correlates with 0-9, 1 with 10 - 19, 2 with 20 - 29, etc.

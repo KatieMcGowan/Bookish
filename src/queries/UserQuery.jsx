@@ -1,4 +1,4 @@
-const url = "http://localhost:4000/users"
+const url = "http://localhost:4000/users";
 
 class UserQuery {
   static all = () => {
@@ -17,7 +17,7 @@ class UserQuery {
       body: JSON.stringify(userData)
     })
     .then(response => response.json())
-  }
+  };
 
   static getid = (userData) => {
     return fetch(`${url}/getid`, {

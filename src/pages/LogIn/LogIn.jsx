@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import UserQuery from "../../queries/UserQuery";
-import "./LogIn.css"
+import "./LogIn.css";
 
 const LogIn = () => {
   const navigate = useNavigate();
-  const cookies = new Cookies()
+  const cookies = new Cookies();
 
   //USER INPUT STATES
   const [user, setUser] = useState({
@@ -32,8 +32,8 @@ const LogIn = () => {
         });
         navigate("/home")
       }
-    })
-  }
+    });
+  };
 
   const handleChange = (event) => {
     setUser({

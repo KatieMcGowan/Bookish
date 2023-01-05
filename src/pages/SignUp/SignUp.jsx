@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom";
 import UserQuery from "../../queries/UserQuery";
 import "./SignUp.css"
 
 const SignUp = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   //USER INPUT STATES
   const [newUser, setNewUser] = useState({
@@ -17,7 +17,7 @@ const SignUp = () => {
   const [errorDisplay, setErrorDisplay] = useState(false);
 
   //ACCOUNT SUCCESSFULLY CREATED STATE
-  const [success, setSuccess] = useState(false)
+  const [success, setSuccess] = useState(false);
 
   //FORM FUNCTIONS
   const handleSubmit = (event) => {
@@ -34,8 +34,8 @@ const SignUp = () => {
           navigate("/login")
         }, 2000)
       }
-    })
-  }
+    });
+  };
 
   const handleChange = (event) => {
     setNewUser({

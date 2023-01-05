@@ -14,9 +14,9 @@ const Member = (props) => {
       UserQuery.show(props.member)
       .then(response => {
         setMember(response.displayname)
-      })
-    }
-  }, []) ;
+      });
+    };
+  }, []);
 
   const [deleteConfirm, setConfirm] = useState(false);
 
@@ -38,7 +38,6 @@ const Member = (props) => {
           </div>
         : <p className="member">{member}</p>
       }
-      {/* <p className="member">{member}</p> */}
       {deleteConfirm === true &&
         <div className="delete-modal-members">
           <p>Are you sure you want to remove {member} from the</p>

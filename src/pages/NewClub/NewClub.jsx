@@ -71,7 +71,7 @@ const NewClub = () => {
         } else {
           navigate(`/clubs/${club._id}/nominate`)
         }
-      })
+      });
     } else {
       ClubQuery.create(newClub)
       .then(club => {

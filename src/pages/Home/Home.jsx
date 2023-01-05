@@ -18,8 +18,8 @@ const Home = () => {
       return
     } else {
       navigate("/login")
-    }
-  }, [])
+    };
+  }, []);
 
 
   //GREETINGS: TIME STATE AND USEEFFECT HOOK
@@ -27,16 +27,16 @@ const Home = () => {
 
   useEffect(() => {
     let now = new Date();
-    let hour = now.getHours()
+    let hour = now.getHours();
     if (hour > 3 && hour < 12) {
       setTime("morning")
     } else if (hour >= 12 && hour < 18) {
       setTime("afternoon")
     } else setTime("evening")
-  }, [])
+  }, []);
 
   //GREETINGS: DISPLAY NAME STATE AND USEEFFECT HOOK
-  const [displayname, setDisplayname] = useState("")
+  const [displayname, setDisplayname] = useState("");
 
   useEffect(() => {
     let token = {token: cookies.get("TOKEN")}
@@ -46,17 +46,17 @@ const Home = () => {
       .then(response => {
         setDisplayname(response.displayname)
       })
-    })
-  }, [])
+    });
+  }, []);
 
   //FUNCTIONS TO HANDLE REDIRECT
   const handleViewClick = () => {
     navigate("/myclubs")
-  }
+  };
 
   const handleBrowseClick = () => {
     navigate("/clubs")
-  }
+  };
 
   return(
     <div className="dashboard-wrapper">
