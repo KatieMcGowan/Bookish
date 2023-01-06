@@ -5,12 +5,19 @@ const FoundBook = (props) => {
   const navigate = useNavigate();
 
   const handleNominate = () => {
-    props.setErrorDisplay(false)
+    props.setAlreadyNominated(false);
+    props.setIsCurrentBook(false);
     ClubQuery.updatearray(props.clubId, {nomination: props.result._id})
     .then(response => {
       if (response.errorcode === 1) {
-        props.setErrorDisplay(true)
+        props.setAlreadyNominated(true)
         return;
+      } else if (response.errorcode === 2) {
+        props.setIsCurrentBook(true)
+        return;
+      } else if (response.errorcode === 3) {
+        props.setAlreadyRead(true)
+        return; 
       } else {
         props.setSuccess(true)
         setTimeout(() => {

@@ -9,7 +9,7 @@
 .clubs-container {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 75%;
 }
 
 .no-clubs-container {
@@ -64,5 +64,6 @@
 
   .clubs-container {
     max-width: 500px;
+    width: 50%;
   }
 }

@@ -29,6 +29,7 @@ const Nominated = (props) => {
   const handleNominationDelete = () => {
     ClubQuery.deletefromarray(props.clubId, {nomination: props.nominated})
     .then(props.setNominations(props.nominations.filter(nomination => nomination !== props.nominated)))
+    .then(setConfirm(false))
   };
 
   return(

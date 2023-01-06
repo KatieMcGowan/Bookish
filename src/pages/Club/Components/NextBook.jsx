@@ -16,7 +16,6 @@ const NextBook = (props) => {
     ClubQuery.update(clubId, {
       currentbook: randomBook, 
       questions: [],
-      nominations: [],
       userscompleted: [],
       newbook: false,
     })
@@ -28,12 +27,13 @@ const NextBook = (props) => {
     }) 
     .then(props.setCurrentBook(randomBook))
     .then(props.setQuestions([]))
-    .then(props.setNominations([]))
     .then(props.setCompleted([]))
     .then(props.setNewBook(false))
     .then(props.setView(false))
+    .then(ClubQuery.deletefromarray(clubId, {nomination: randomBook}))
   };
 
+  //How to remove one nomination from array
   const navigate = useNavigate();
 
   const handleNominateDirect = () => {
@@ -42,7 +42,7 @@ const NextBook = (props) => {
 
   return(
     <div className="club-right">
-      <div className="mobile-banner">
+      <div className="mobile-banner-right">
         <p className="next-book-header">Nominated Books</p>
         <div className="arrow-down"></div>
       </div>

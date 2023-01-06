@@ -80,6 +80,7 @@
   width: 45%;
   margin: 0 5px;
   max-width: 150px;
+  min-width: 80px;
   border: 2px solid black;
   padding: 2px;
 }

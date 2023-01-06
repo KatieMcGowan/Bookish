@@ -17,17 +17,24 @@ const SearchBooks = (props) => {
 
   const [success, setSuccess] = useState(false);
 
-  const [errorDisplay, setErrorDisplay] = useState(false);
+// ERROR STATES
+  const [bookAlreadyNominated, setAlreadyNominated] = useState(false);
+
+  const [nominationIsCurrentBook, setIsCurrentBook] = useState(false);
+
+  const [bookAlreadyRead, setAlreadyRead] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setErrorDisplay(false)
+    setAlreadyNominated(false);
+    setIsCurrentBook(false);
+    setAlreadyRead(false);
     setSearch(true);
     if (searchCategory === "Title") {
       BookQuery.searchtitle(title)
       .then(response => {
         setResult(response)
-      })
+      });
     } else {
       BookQuery.searchauthor(author)
       .then(response => {
@@ -38,20 +45,20 @@ const SearchBooks = (props) => {
   
   const handleCategoryChange = (event) => {
     if (searchCategory === "Title") {
-      setAuthor(title)
-      setTitle("")
+      setAuthor(title);
+      setTitle("");
     } else {
-      setTitle(author)
-      setAuthor("")
-    }
-    setCategory(event.target.value)
+      setTitle(author);
+      setAuthor("");
+    };
+    setCategory(event.target.value);
   };
 
   const handleInputChange = (event) => {
     if (searchCategory === "Title") {
-      setTitle(event.target.value)
+      setTitle(event.target.value);
     } else {
-      setAuthor(event.target.value)
+      setAuthor(event.target.value);
     };
   };
 
@@ -112,8 +119,14 @@ const SearchBooks = (props) => {
                   <p>{results.length} result(s) found. Click on book you would like to select.</p>
                   <p>-or-</p>
                   <p className="click-here" onClick={() => handleNewBookRedirect()}>Add a book to the collection</p>
-                  {errorDisplay === true &&
+                  {bookAlreadyNominated === true &&
                     <p className="nomination-taken">This book has already been nominated, please select another one.</p>
+                  }
+                  {nominationIsCurrentBook === true &&
+                    <p className="nomination-taken">This book is currently being read by your club, please select another one.</p>
+                  }
+                  {bookAlreadyRead === true &&
+                    <p className="nomination-taken">This book has already been read by your club, please select another one.</p>
                   }
                   {results.map((result, index) => {
                     return <FoundBook
@@ -123,7 +136,9 @@ const SearchBooks = (props) => {
                               clubId={props.clubId}
                               handleSecondSubmit={props.handleSecondSubmit}
                               setSuccess={setSuccess}
-                              setErrorDisplay={setErrorDisplay}
+                              setAlreadyNominated={setAlreadyNominated}
+                              setIsCurrentBook={setIsCurrentBook}
+                              setAlreadyRead={setAlreadyRead}
                             />  
                   })}
                 </div>  
