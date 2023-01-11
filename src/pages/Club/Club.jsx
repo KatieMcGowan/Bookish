@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCrown } from "@fortawesome/free-solid-svg-icons";
+import { faArrowDownUpAcrossLine, faCrown } from "@fortawesome/free-solid-svg-icons";
 import { faPencil }from "@fortawesome/free-solid-svg-icons";
 import Member from "./Components/Member";
 import CurrentBook from "./Components/CurrentBook";
@@ -16,25 +16,19 @@ import "./Club.css";
 const Club = () => {
   // AUTH TOKEN CHECK
   const navigate = useNavigate();
+
+  const clubId = useParams().clubid;
+
   const cookies = new Cookies();
 
-  useEffect(() => {
-    let token = cookies.get("TOKEN")
-    if (token) {
-      return
-    } else {
-      navigate("/login")
-    };
-  }, []);
-  
   // PAGE STATES AND HOOKS
-  const [adminCheck, setCheck] = useState({
-    isAdmin: false,
-    adminName: "",
-    adminId: "",
-  });
-
   const [userId, setUser] = useState("");
+
+  const [adminId, setAdminId] = useState("");
+
+  const [adminName, setAdminName] = useState("");
+
+  const [isAdmin, setIsAdmin] = useState(false)
 
   const [clubBasics, setBasics] = useState({
     clubname: "",
@@ -45,8 +39,8 @@ const Club = () => {
   });
 
   const [currentBook, setCurrentBook] = useState("");
-
-  const [pastbooks, setPastBooks] = useState([]);
+  
+  const [pastBooks, setPastBooks] = useState([]);
 
   const [questions, setQuestions] = useState([]);
 
@@ -54,7 +48,7 @@ const Club = () => {
 
   const [nominations, setNominations] = useState([]);
   
-  const [newBook, setNewBook] = useState("");
+  const [nextBook, setNextBook] = useState("");
 
   const [viewNominations, setView] = useState(false);
 
@@ -63,47 +57,51 @@ const Club = () => {
     author: "",
   });
 
-  const clubId = useParams().clubid;
-
+  //Refactor to have it check if user is a part of club
   useEffect(() => {
     let token = {token: cookies.get("TOKEN")}
-    ClubQuery.show(clubId)
-    .then(club => {
+    if (token) {
       UserQuery.getid(token)
       .then(user => {
         setUser(user.userId)
-        UserQuery.show(club.admin)
-        .then(admin => {
-          if (club.admin === user.userId) {
-            setCheck({
-              isAdmin: true,
-              adminName: user.userDisplayName,
-              adminId: user.userId
-            })
-          } else {
-            setCheck({
-              isAdmin: false,
-              adminName: admin.displayname,
-              adminId: admin._id
-            })
-          }
-          setBasics({
-            clubname: club.clubname,
-            description: club.description, 
-            meetup: club.meetup,
-            admin: club.admin,
-            members: club.members,
-          })
-          setCurrentBook(club.currentbook)
-          setPastBooks(club.pastbooks)
-          setQuestions(club.questions)
-          setCompleted(club.userscompleted)
-          setNominations(club.nominations)
-          setNewBook(club.newbook)
-        })
+      });  
+      return;
+    } else {
+      navigate("/login")
+    };
+  }, [cookies, navigate]);
+  
+  useEffect(() => {
+    ClubQuery.show(clubId)
+    .then(club => {
+      setAdminId(club.admin);
+      setBasics({
+        clubname: club.clubname,
+        description: club.description, 
+        meetup: club.meetup,
+        admin: club.admin,
+        members: club.members,
       })
-    });
-  }, []);
+      setCurrentBook(club.currentbook)
+      setPastBooks(club.pastbooks.reverse())
+      setQuestions(club.questions)
+      setCompleted(club.userscompleted)
+      setNominations(club.nominations)
+      setNextBook(club.nextbook)
+    })
+  }, [clubId]);
+
+  useEffect(() => {
+    if (adminId) {
+      UserQuery.show(adminId)
+      .then(admin => {
+        setAdminName(admin.displayname)
+      })
+      if (adminId === userId) {
+        setIsAdmin(true)
+      }
+    }
+  }, [adminId, userId]);
 
   useEffect(() => {
     if (!currentBook) {
@@ -139,14 +137,14 @@ const Club = () => {
     <div className="club-wrapper">
       <div className="club-info">
         <div className="edit-club-container">
-          {adminCheck.isAdmin === true &&
+          {isAdmin === true &&
             <FontAwesomeIcon icon={faPencil} onClick={() => handleEditRedirect()} />
           }  
           <p className="club-name-header">{clubBasics.clubname}</p>
         </div>
         <p className="club-description-header">{clubBasics.description}</p>
         <p className="club-meeting-header">Meet up: {clubBasics.meetup}</p>
-        {(leaveConfirm === false && adminCheck.isAdmin === false) &&
+        {(leaveConfirm === false && isAdmin === false) &&
           <p className="leave-link" onClick={() => handleLeaveModal()}>Leave this club</p>
         }  
         {leaveConfirm === true && 
@@ -169,14 +167,14 @@ const Club = () => {
             <div className="members-list">
               <div className="admin-member">
                 <FontAwesomeIcon icon={faCrown} />
-                <p className="member">{adminCheck.adminName}</p>
+                <p className="member">{adminName}</p>
               </div>
               {clubBasics.members.map((member, index) => {
                 return <Member
                           key={index}
                           member={member}
-                          adminId={adminCheck.adminId}
-                          isAdmin={adminCheck.isAdmin}
+                          adminId={adminId}
+                          isAdmin={isAdmin}
                       />  
               })}
             </div>
@@ -187,40 +185,40 @@ const Club = () => {
               {/* <div className="arrow-down"></div> */}
             </div>
             <div className="past-books-list">
-              {pastbooks.map((pastbook, index) => {
+              {pastBooks.map((pastBook, index) => {
                 return <PastBook
-                        key={index}
-                        pastbook={pastbook}
-                      /> 
+                          key={index}
+                          pastBook={pastBook}
+                        /> 
               })}
             </div>
           </div>
         </div>
-        {(viewNominations === false && newBook === false) 
+        {(viewNominations === false && nextBook === false) 
           ? <CurrentBook 
               currentbook={book}
               members={clubBasics.members}
               userscompleted={usersCompleted}
               setCurrentBook={setCurrentBook}
-              setNewBook={setNewBook}
+              setNextBook={setNextBook}
               setQuestions={setQuestions}
               questions={questions}
               id={clubId}
-              adminCheck={adminCheck}
-              isAdmin={adminCheck.isAdmin}
+              isAdmin={isAdmin}
               setView={setView}
             />
           : <NextBook
               currentBook={currentBook}
               setCurrentBook={setCurrentBook}
-              newBook={newBook}
-              setNewBook={setNewBook}
+              nextBook={nextBook}
+              setNextBook={setNextBook}
               setQuestions={setQuestions}
               setNominations={setNominations}
               setCompleted={setCompleted}
-              pastbooks={pastbooks}
+              pastBooks={pastBooks}
+              setPastBooks={setPastBooks}
               nominations={nominations}
-              isAdmin={adminCheck.isAdmin}
+              isAdmin={isAdmin}
               setView={setView}
             />
         }

@@ -19,10 +19,10 @@ const NewClub = () => {
     meetup: "",
     admin: "",
     members: [],
+    nextbook: "",
     pastbooks: [],
     questions: [],
     userscompleted: [],
-    newbook: "false",
     nominations: [],
   });
 
@@ -46,7 +46,7 @@ const NewClub = () => {
   const [errorDisplay, setErrorDisplay] = useState(false);
 
   //FORM FUNCTIONS
-  const convertString = (string) => {
+  const convertStringBoolean = (string) => {
     if (string === "true") {
       string = true
       return string;
@@ -56,31 +56,39 @@ const NewClub = () => {
     } else return;
   };
 
+  const [nextBook, setNextBook] = useState(false);
+
+  const handleBookToggle = (event) => {
+    setNextBook(convertStringBoolean(event.target.value))
+  };
+
   const handleFirstSubmit = (event) => {
     event.preventDefault();
     setErrorDisplay(false);
     newClub.admin = clubAdmin;
     newClub.members.push(clubAdmin);
-    newClub.newbook = convertString(newClub.newbook);
-    if (newClub.newbook === true) {
+    newClub.nextbook = nextBook
+    console.log(newClub)
+    if (nextBook === true) {
       ClubQuery.create(newClub)
       .then(club => {
         if (club.errorcode === 1 ){
           setErrorDisplay(true)
           return;
         } else {
-          navigate(`/clubs/${club._id}/nominate`)
+          navigate(`/clubs/${club.club._id}/nominate`)
         }
       });
     } else {
       ClubQuery.create(newClub)
       .then(club => {
+        console.log(club)
         if (club.errorcode === 1) {
           setErrorDisplay(true);
           return;
         } else {
           setHaveBook(true)
-          setClubId(club._id)
+          setClubId(club.club._id)
         }
       });  
     };
@@ -88,6 +96,7 @@ const NewClub = () => {
 
   //FUNCTION PASSED IF USER HAS ALREADY CHOSEN FIRST BOOK
   const handleSecondSubmit = (clubId, bookId) => {
+    console.log(clubId, bookId)
     ClubQuery.update(clubId, {currentbook: bookId})
     .then(navigate(`/clubs/${clubId}`))
   };
@@ -134,7 +143,7 @@ const NewClub = () => {
             />
           </div>  
           <div className="new-form-inputs">
-            <label htmlFor="meeting">Meeting Details</label>
+            <label htmlFor="meeting">Meet Up Details</label>
             <input
               type="text"
               name="meetup"
@@ -156,7 +165,7 @@ const NewClub = () => {
                     className="togglecategory" 
                     name="newbook"
                     value={false}
-                    onChange={handleChange}
+                    onChange={handleBookToggle}
                     defaultChecked
                   />
                   <label htmlFor="title">Yes. Selecting this option will allow you to add your book on submit.</label>
@@ -167,7 +176,7 @@ const NewClub = () => {
                     className="togglecategory" 
                     name="newbook" 
                     value={true}
-                    onChange={handleChange}
+                    onChange={handleBookToggle}
                   />
                   <label htmlFor="author">No. Selecting this option means your members will nominate books to read later.</label>
                 </div>

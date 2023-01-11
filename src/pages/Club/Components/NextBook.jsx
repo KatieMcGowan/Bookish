@@ -13,27 +13,27 @@ const NextBook = (props) => {
     let min = Math.ceil(0);
     let max = Math.floor(array.length - 1);
     let randomBook = array[Math.floor(Math.random() * (max - min + 1) + min)];
+    if (props.currentBook !== undefined) {
+      let newPastBooks = props.pastBooks
+      newPastBooks.unshift(props.currentBook)
+      ClubQuery.updatearray(clubId, {pastbook: props.currentBook})
+      .then(props.setPastBooks(newPastBooks))
+    };  
     ClubQuery.update(clubId, {
       currentbook: randomBook, 
       questions: [],
       userscompleted: [],
-      newbook: false,
+      nextbook: false,
     })
-    .then(club => {
-      if (props.currentBook) {
-        ClubQuery.updatearray(clubId, {pastbook: props.currentBook});
-        props.pastbooks.push(props.currentBook)
-      } 
-    }) 
+    .then(ClubQuery.deletefromarray(clubId, {nomination: randomBook}))
     .then(props.setCurrentBook(randomBook))
     .then(props.setQuestions([]))
     .then(props.setCompleted([]))
-    .then(props.setNewBook(false))
+    .then(props.setNextBook(false))
     .then(props.setView(false))
-    .then(ClubQuery.deletefromarray(clubId, {nomination: randomBook}))
+    .then(props.setNominations(props.nominations.filter(nomination => nomination !== randomBook)))
   };
 
-  //How to remove one nomination from array
   const navigate = useNavigate();
 
   const handleNominateDirect = () => {
@@ -62,14 +62,15 @@ const NextBook = (props) => {
         })}
         <div className="book-buttons-container">
           <p className="book-button" onClick={() => handleNominateDirect()}>Nominate a book</p>
-          {props.newBook === false &&
+          {props.nextBook === false &&
             <p className="book-button" onClick={() => viewNominations()}>View current book</p>
-          
-          }
-          {(props.isAdmin === true && props.nominations.length > 0) &&
-            <p className="book-button" onClick={() =>pickFromNominated(props.nominations)}>Select next book</p>
           }
         </div>
+        {(props.isAdmin === true && props.nominations.length > 0) &&
+          <div className="book-buttons-container">
+            <p className="book-button" onClick={() =>pickFromNominated(props.nominations)}>Select next book</p>
+          </div>  
+        }
       </div>
     </div>
   );

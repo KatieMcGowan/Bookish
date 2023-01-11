@@ -27,11 +27,11 @@ const NewBook = () => {
         if (book.errorcode === 1) {
           setError(true)
         } else {
-          if (club.newbook === true) {
+          if (club.currentbook) {
             ClubQuery.updatearray(clubId, {nomination: book.book._id})
             .then(setSuccess(true))
             .then(setTimeout(() => {
-              navigate(`/clubs/${clubId}/nominate`)
+              navigate(`/clubs/${clubId}/`)
             }, 2000))
           } else {
             ClubQuery.update(clubId, {currentbook: book.book._id})

@@ -8,14 +8,14 @@ const PastBook = (props) => {
   });
 
   useEffect(() => {
-    BookQuery.show(props.pastbook)
+    BookQuery.show(props.pastBook)
     .then(book => {
       setBook({
         title: book.title,
         author: book.author
       })
     });
-  }, []);
+  }, [props.pastBook]);
 
   return(
     <p className="past-book">{book.title} by {book.author}</p>

@@ -237,8 +237,8 @@
   gap: 5px;
 }
 
-.past-books-container {
-  max-height: 400px;
+.past-books-list {
+  max-height: 200px;
   overflow-y: auto;
 }
 
@@ -345,6 +345,8 @@
 
   .past-books-list {
     text-align: left;
+    max-height: 400px;
+    overflow-y: auto;
   }
 
   .club-right {
