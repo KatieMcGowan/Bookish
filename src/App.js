@@ -1,6 +1,8 @@
 import './App.css';
-import React from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Route, Routes } from "react-router-dom";
+import Cookies from "universal-cookie";
+import UserQuery from "./queries/UserQuery"
 import Header from "./pages/Header";
 import Landing from "./pages/Landing/Landing";
 import SignUp from "./pages/SignUp/SignUp";
@@ -13,7 +15,7 @@ import EditClub from './pages/EditClub/EditClub';
 import Nominate from "./pages/Nominate/Nominate";
 import Club from './pages/Club/Club';
 import NewBook from './pages/NewBook/NewBook';
-// import ProtectedRoutes from './pages/ProtectedRoutes';
+import ProtectedRoutes from './pages/ProtectedRoutes';
 
 const App = () => {
   return (
@@ -24,15 +26,15 @@ const App = () => {
         <Route path={"/signup"} element={<SignUp/>}/>
         <Route path={"/login"} element={<LogIn />}/>
         <Route path={"/clubs"} element={<Clubs />}/> 
-        {/* <Route element={<ProtectedRoutes />}> */}
+        <Route element={<ProtectedRoutes />}>
           <Route path={"/home"} element={<Home />}/>
           <Route path={"/myclubs"} element={<MyClubs />}/>
           <Route path={"/clubs/new"} element={<NewClub />}/>
           <Route path={"/clubs/:clubid/edit"} element={<EditClub />}/>
           <Route path={"/clubs/:clubid/nominate"} element={<Nominate />}/>
           <Route path={"/clubs/:clubid/newbook"} element={<NewBook />}/>
-          <Route path={"/clubs/:clubid"} element={<Club />}/>
-        {/* </Route> */}
+          <Route path={"/clubs/:clubid"} element={<Club />}/> 
+        </Route>
       </Routes>
     </div>
     );

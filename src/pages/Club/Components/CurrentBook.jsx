@@ -20,7 +20,7 @@ const CurrentBook = (props) => {
         }; 
       };
     });
-  }, []);
+  }, [props.userscompleted]);
   
   //FUNCTIONS TO HANDLE BUTTON CLICKS
   const handleFinish = () => {

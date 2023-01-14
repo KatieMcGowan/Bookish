@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDownUpAcrossLine, faCrown } from "@fortawesome/free-solid-svg-icons";
+import { faCrown } from "@fortawesome/free-solid-svg-icons";
 import { faPencil }from "@fortawesome/free-solid-svg-icons";
 import Member from "./Components/Member";
 import CurrentBook from "./Components/CurrentBook";
@@ -69,7 +69,7 @@ const Club = () => {
     } else {
       navigate("/login")
     };
-  }, [cookies, navigate]);
+  }, [navigate]);
   
   useEffect(() => {
     ClubQuery.show(clubId)
@@ -145,11 +145,13 @@ const Club = () => {
         <p className="club-description-header">{clubBasics.description}</p>
         <p className="club-meeting-header">Meet up: {clubBasics.meetup}</p>
         {(leaveConfirm === false && isAdmin === false) &&
-          <p className="leave-link" onClick={() => handleLeaveModal()}>Leave this club</p>
+          <div className="leave-link-container">
+            <p className="leave-link" onClick={() => handleLeaveModal()}>Leave this club</p>
+          </div>  
         }  
         {leaveConfirm === true && 
           <div className="delete-modal">
-            <p>Are you sure you want to leave this club?</p>
+            <p className="delete-modal-question">Are you sure you want to leave?</p>
             <div className="delete-options">
               <p className="delete-option" onClick={() => handleMemberLeaving()}>Yes</p>
               <p className="delete-option" onClick={() => handleLeaveModal()}>No</p>
@@ -166,7 +168,7 @@ const Club = () => {
             </div>
             <div className="members-list">
               <div className="admin-member">
-                <FontAwesomeIcon icon={faCrown} />
+                <FontAwesomeIcon className="crown" icon={faCrown} />
                 <p className="member">{adminName}</p>
               </div>
               {clubBasics.members.map((member, index) => {

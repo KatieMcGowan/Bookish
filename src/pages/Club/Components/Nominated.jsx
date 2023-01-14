@@ -20,7 +20,7 @@ const Nominated = (props) => {
         author: book.author
       })
     });
-  }, []);
+  }, [props.nominated]);
 
   const handleDeleteModal = () => {
     deleteConfirm === false ? setConfirm(true) : setConfirm(false)
@@ -35,10 +35,10 @@ const Nominated = (props) => {
   return(
     <div className="nomination-container">
       <div className="nominated-book">
+        <p>{book.title} by {book.author}</p>
         {props.isAdmin === true &&
           <FontAwesomeIcon className="check" icon={faX} onClick={() => handleDeleteModal()}/>
         }
-        <p>{book.title} by {book.author}</p>
       </div>
       {deleteConfirm === true &&
         <div className="delete-modal">

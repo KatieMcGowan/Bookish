@@ -11,6 +11,7 @@ const Clubs = () => {
   const [clubs, setClubs] = useState([]);
 
   const cookies = new Cookies();
+  
   const navigate = useNavigate();
 
   useEffect(() => {

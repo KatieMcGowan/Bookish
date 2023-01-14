@@ -16,7 +16,7 @@ const Member = (props) => {
         setMember(response.displayname)
       });
     };
-  }, []);
+  }, [props.member, props.adminId]);
 
   const [deleteConfirm, setConfirm] = useState(false);
 
@@ -33,14 +33,14 @@ const Member = (props) => {
     <div className="members-list">
       {(props.isAdmin === true && props.member !== props.adminId) 
         ? <div className="removable-member">
-            <FontAwesomeIcon icon={faX} onClick={() => handleRemoveModal()}/>
+            <FontAwesomeIcon className="member-check" icon={faX} onClick={() => handleRemoveModal()}/>
             <p className="member">{member}</p>
           </div>
         : <p className="member">{member}</p>
       }
       {deleteConfirm === true &&
         <div className="delete-modal-members">
-          <p>Are you sure you want to remove {member} from the</p>
+          <p>Are you sure you want to remove {member} from the club?</p>
           <div className="delete-options">
             <p className="delete-option" onClick={() => handleMemberRemove()}>Yes</p>
             <p className="delete-option" onClick={() => handleRemoveModal()}>No</p>

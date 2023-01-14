@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Cookies from "universal-cookie";
+import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import MyClub from "./Components/MyClub";
@@ -8,26 +7,17 @@ import UserQuery from "../../queries/UserQuery";
 import "./MyClubs.css";
 
 const MyClubs = () => {
-  //AUTH TOKEN CHECK
+  //DEPENDENCIES
   const navigate = useNavigate();
-  const cookies = new Cookies();
-
-  useEffect(() => {
-    let token = cookies.get("TOKEN")
-    if (token) {
-      return
-    } else {
-      navigate("/login")
-    };
-  }, []);
 
   //MY CLUB STATE
   const [myClubs, setClubs] = useState([]);
 
   const [user, setUser] = useState("");
 
+  const token = {token: useOutletContext()}
+
   useEffect(() => {
-    let token = {token: cookies.get("TOKEN")}
     UserQuery.getid(token)
     .then(response => {
       UserQuery.show(response.userId)

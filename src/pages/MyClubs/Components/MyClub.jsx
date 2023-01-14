@@ -28,7 +28,7 @@ const MyClub = (props) => {
   return(
     <div className="my-clubs-club" onClick={() => handleClick()}>
       {adminStatus === true &&
-        <FontAwesomeIcon icon={faCrown} />
+        <FontAwesomeIcon className="my-clubs-crown" icon={faCrown} />
       }  
       <p className="my-clubs-club-name">{club}</p>
     </div>

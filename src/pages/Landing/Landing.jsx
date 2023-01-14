@@ -1,7 +1,7 @@
 import "./Landing.css";
 import OrangeBook from "../../photos/OrangeBook.jpg";
 
-const Landing = (props) => {
+const Landing = () => {
   return(
     <div className="landing-wrapper">
       <img src={OrangeBook} className="landing-placeholder" alt="book"/>

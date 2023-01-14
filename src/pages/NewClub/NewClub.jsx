@@ -40,7 +40,7 @@ const NewClub = () => {
     } else {
       navigate("/login")
     };
-  }, []);
+  }, [navigate]);
 
   //"CLUB NAME ALREADY TAKEN" DISPLAY STATE
   const [errorDisplay, setErrorDisplay] = useState(false);
@@ -68,7 +68,6 @@ const NewClub = () => {
     newClub.admin = clubAdmin;
     newClub.members.push(clubAdmin);
     newClub.nextbook = nextBook
-    console.log(newClub)
     if (nextBook === true) {
       ClubQuery.create(newClub)
       .then(club => {
@@ -82,7 +81,6 @@ const NewClub = () => {
     } else {
       ClubQuery.create(newClub)
       .then(club => {
-        console.log(club)
         if (club.errorcode === 1) {
           setErrorDisplay(true);
           return;

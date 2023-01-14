@@ -19,13 +19,16 @@
 }
 
 .my-clubs-club {
-  /* width: 100%; */
   margin: 10px;
   border: 2px solid black;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.my-clubs-crown {
+  padding: 20px 10px;;
 }
 
 .my-clubs-club:hover {
@@ -37,7 +40,7 @@
 .my-clubs-club-name{
   cursor: pointer;
   font-size: 18px;
-  padding: 20px;
+  padding: 20px 10px;
   text-align: center;
 }
 
@@ -64,11 +67,12 @@
   align-items: center;
   gap: 5px;
   margin-top: 15px;
+  font-style: italic;
 }
 
 .return-home:hover {
   cursor: pointer;
-  transform: scale(1.1);
+  text-shadow: 2px 2px rgb(215, 210, 210);
 }
 
 @media (min-width: 600px) {

@@ -23,7 +23,7 @@ const EditClub = () => {
         meetup: club.meetup
       })
     });
-  }, []);
+  }, [clubId]);
 
   //"CLUB NAME ALREADY TAKEN" DISPLAY STATE
   const [errorDisplay, setErrorDisplay] = useState(false);

@@ -4,7 +4,7 @@ import Cookies from "universal-cookie";
 import UserQuery from "../../queries/UserQuery";
 import "./LogIn.css";
 
-const LogIn = () => {
+const LogIn = (props) => {
   const navigate = useNavigate();
   const cookies = new Cookies();
 
@@ -16,6 +16,9 @@ const LogIn = () => {
 
   //LOG-IN ERROR DISPLAY STATE
   const [errorDisplay, setErrorDisplay] = useState(false);
+
+  //ACCOUNT SUCCESSFULLY CREATED STATE
+  const [success, setSuccess] = useState(false);
 
   //FORM FUNCTIONS
   const handleSubmit = (event) => {
@@ -30,7 +33,10 @@ const LogIn = () => {
         cookies.set("TOKEN", response.token, {
           path: "/"
         });
-        navigate("/home")
+        setSuccess(true);
+        setTimeout(() => {
+          navigate("/home")
+        }, 2000)
       }
     });
   };
@@ -46,43 +52,48 @@ const LogIn = () => {
   return(
     <div className="login-wrapper">
       <p className="login-header">Log In</p>
-      <div className="login-form">
-        <form onSubmit={handleSubmit}> 
-          <div className="login-form-inputs">
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              name="username"
-              className="login-input"
-              minLength="3"
-              maxLength="20"
-              required={true}
-              onChange={handleChange}
-              value={user.username}
-            />
-          </div>  
-          <div className="login-form-inputs">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              className="login-input"
-              minLength="4"
-              maxLength="40"
-              required={true}
-              onChange={handleChange}
-              value={user.password}
-            />
-          </div>  
-          <div className="login-submit">
-            <input type="submit" className="submit" value="Submit"/>
-          </div>  
-        </form>
-      </div>
+      {success === true 
+        ? <p className="signup-sucess">Success! Redirecting to home page...</p>
+        : <div className="login-form">
+            <form onSubmit={handleSubmit}> 
+              <div className="login-form-inputs">
+                <label htmlFor="username">Username</label>
+                <input
+                  type="text"
+                  name="username"
+                  className="login-input"
+                  minLength="3"
+                  maxLength="20"
+                  required={true}
+                  onChange={handleChange}
+                  value={user.username}
+                />
+              </div>  
+              <div className="login-form-inputs">
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  className="login-input"
+                  minLength="4"
+                  maxLength="40"
+                  required={true}
+                  onChange={handleChange}
+                  value={user.password}
+                />
+              </div>  
+              <div className="login-submit">
+                <input type="submit" className="submit" value="Submit"/>
+              </div>  
+            </form>
+          </div>
+      }  
       {errorDisplay === true &&
-          <p className="no-match">Username and password do not match. Please try again.</p>
-        }
-      <p className="auth-alternative">Don't have an account with us? Click <Link to={"/signup"} className="click-here">here</Link> to sign up.</p>  
+        <p className="no-match">Username and password do not match. Please try again.</p>
+      }
+      {success === false &&
+        <p className="auth-alternative">Don't have an account with us? Click <Link to={"/signup"} className="click-here">here</Link> to sign up.</p>
+      }    
     </div>
   );  
 };

@@ -117,15 +117,31 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  text-align: left;
+  justify-content: space-between;
 }
 
 .question {
   margin: 5px 0;
 }
 
+.new-question-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.new-question-field {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .new-question-input {
   padding: 5px;
   margin-right: 5px; 
+  flex-grow: 3;
 }
 
 .question-taken {
@@ -161,21 +177,48 @@
 .nominated-book {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  text-align: left;
+  justify-content: space-between;
+}
+
+.leave-link-container {
+  display: flex;
+  justify-content: center;
+}
+
+.leave-link {
+  font-style: italic;
+  text-decoration: none;
+  color: black;
+}
+
+.leave-link:hover {
+  cursor: pointer;
+  text-shadow: 2px 2px rgb(215, 210, 210);
 }
 
 .delete-modal {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   color: red;
 }
+
+.delete-modal-members {
+  display: flex;
+  flex-direction: column;
+  color: red;
+}
+
 
 .delete-options {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .delete-option {
-  margin: 0 5px;
+  margin: 0 15px;
 }
 
 .delete-option:hover {
@@ -184,7 +227,8 @@
 }
 
 .check {
-  margin-right: 20px;
+  text-align: right;
+  margin-left: 20px;
 }
 
 .club-left {
@@ -205,6 +249,8 @@
   justify-content: center;
   align-items: center;
   margin: 15px 0;
+  /* margin: 40px 0 15px 0;
+  text-decoration: underline; */
   background-color: rgb(186, 92, 39);
   gap: 20px;
 }
@@ -215,6 +261,8 @@
   justify-content: center;
   align-items: center;
   margin: 15px 0;
+  /* margin: 40px 0 15px 0;
+  text-decoration: underline; */
   background-color: rgb(186, 92, 39);
   gap: 20px;
 }
@@ -253,7 +301,6 @@
   }
 
   .club-info {
-    text-align: left;
     margin-bottom: 30px;
   }
 
@@ -281,8 +328,9 @@
       text-decoration: underline;
   }
 
-  .edit-club-container {
-    justify-content: left ;
+  .delete-modal-members {
+    /* display: flex;
+    flex-direction: row; */
   }
   
   .arrow-down {
@@ -292,7 +340,7 @@
   .club-left-and-right {
     display: flex;
     flex-direction: row;
-    gap: 40px;
+    gap: 50px;
     justify-content: center;
   }
   
@@ -308,15 +356,8 @@
     font-size: 24px;
   }
 
-  .leave-link {
-    font-style: italic;
-    text-decoration: none;
-    color: black;
-  }
-
-  .leave-link:hover {
-    cursor: pointer;
-    text-shadow: 2px 2px rgb(215, 210, 210);
+  .leave-link-container {
+    display: flex;
   }
 
   .club-left {

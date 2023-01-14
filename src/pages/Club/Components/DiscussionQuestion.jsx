@@ -19,10 +19,10 @@ const DiscussionQuestion = (props) => {
   return(
     <div className="discussion-questions">
       <div className="discussion-question">
+        <p className="question">{props.question}</p>
         {props.isAdmin === true &&
           <FontAwesomeIcon className="check" icon={faX} onClick={() => handleDeleteModal()}/>
         }
-        <p className="question">{props.question}</p>
       </div>
       {deleteConfirm === true &&
         <div className="delete-modal">

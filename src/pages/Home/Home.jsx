@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import Cookies from "universal-cookie";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
@@ -8,22 +7,25 @@ import UserQuery from "../../queries/UserQuery";
 import "./Home.css";
 
 const Home = () => {
-  //AUTH TOKEN CHECK
   const navigate = useNavigate();
-  const cookies = new Cookies();
+
+  const token = {token: useOutletContext()}
+
+  //GREETINGS: DISPLAY NAME STATE AND USEEFFECT HOOK
+  const [displayname, setDisplayname] = useState("");
+
+  const [time, setTime] = useState();
 
   useEffect(() => {
-    let token = cookies.get("TOKEN")
-    if (token) {
-      return
-    } else {
-      navigate("/login")
-    };
+    UserQuery.getid(token)
+    .then(response => {
+      UserQuery.show(response.userId)
+      .then(response => {
+        setDisplayname(response.displayname)
+      })
+    });
   }, []);
 
-
-  //GREETINGS: TIME STATE AND USEEFFECT HOOK
-  const [time, setTime] = useState();
 
   useEffect(() => {
     let now = new Date();
@@ -33,20 +35,6 @@ const Home = () => {
     } else if (hour >= 12 && hour < 18) {
       setTime("afternoon")
     } else setTime("evening")
-  }, []);
-
-  //GREETINGS: DISPLAY NAME STATE AND USEEFFECT HOOK
-  const [displayname, setDisplayname] = useState("");
-
-  useEffect(() => {
-    let token = {token: cookies.get("TOKEN")}
-    UserQuery.getid(token)
-    .then(response => {
-      UserQuery.show(response.userId)
-      .then(response => {
-        setDisplayname(response.displayname)
-      })
-    });
   }, []);
 
   //FUNCTIONS TO HANDLE REDIRECT

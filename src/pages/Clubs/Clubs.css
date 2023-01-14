@@ -29,9 +29,9 @@
 
 .clubs-club-name-and-invite-status {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 5px;
+  flex-direction: column-reverse;
+  /* justify-content: space-between; */
+  /* gap: 30px; */
 }
 
 .clubs-club-invite-status {
@@ -40,6 +40,7 @@
 
 .clubs-club-invite-status:hover {
   cursor: pointer;
+  text-shadow: 2px 2px rgb(215, 210, 210);
 }
 
 .clubs-club-invite-pending {
@@ -56,6 +57,14 @@
 @media (min-width: 600px) {
   .clubs-header {
     font-size: 32px;
+  }
+
+  .clubs-club-name-and-invite-status {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    /* gap: 30px; */
   }
 
   .clubs-club-name {

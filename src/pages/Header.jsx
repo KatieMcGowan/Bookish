@@ -24,10 +24,14 @@ const Header = () => {
         }
         {!token
           ? <div className="header-loggedout">
-            <Link to={"/signup"} className="nav-items">Sign Up</Link>
-            <Link to={"/login"} className="nav-items">Log In</Link>
-          </div>
-          : <p className="nav-items" onClick={() => logout()}>Log Out</p>
+              <Link to={"/signup"} className="nav-items">Sign Up</Link>
+              <Link to={"/login"} className="nav-items">Log In</Link>
+            </div>
+          : <div className="header-loggedout">
+              {/* <Link to={"/myclubs"} className="nav-items">My Clubs</Link>
+              <Link to={"/clubs"} className="nav-items">Browse Clubs</Link> */}
+              <p className="nav-items" onClick={() => logout()}>Log Out</p>
+            </div>  
         }
       </div>
     </div>  
