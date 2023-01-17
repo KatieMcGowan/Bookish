@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import Cookies from "universal-cookie";
+import { useParams, useNavigate, useOutletContext } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCrown } from "@fortawesome/free-solid-svg-icons";
 import { faPencil }from "@fortawesome/free-solid-svg-icons";
@@ -19,7 +18,7 @@ const Club = () => {
 
   const clubId = useParams().clubid;
 
-  const cookies = new Cookies();
+  const userContext = useOutletContext()
 
   // PAGE STATES AND HOOKS
   const [userId, setUser] = useState("");
@@ -58,18 +57,7 @@ const Club = () => {
   });
 
   //Refactor to have it check if user is a part of club
-  useEffect(() => {
-    let token = {token: cookies.get("TOKEN")}
-    if (token) {
-      UserQuery.getid(token)
-      .then(user => {
-        setUser(user.userId)
-      });  
-      return;
-    } else {
-      navigate("/login")
-    };
-  }, [navigate]);
+
   
   useEffect(() => {
     ClubQuery.show(clubId)
@@ -91,7 +79,14 @@ const Club = () => {
     })
   }, [clubId]);
 
+  // useEffect(() => {
+  //   for (let i = 0; i < clubBasics.members.length; i++) {
+
+  //   }
+  // }, [clubBasics]);
+
   useEffect(() => {
+    setUser(userContext.id)
     if (adminId) {
       UserQuery.show(adminId)
       .then(admin => {
@@ -168,8 +163,8 @@ const Club = () => {
             </div>
             <div className="members-list">
               <div className="admin-member">
-                <FontAwesomeIcon className="crown" icon={faCrown} />
                 <p className="member">{adminName}</p>
+                <FontAwesomeIcon className="crown" icon={faCrown} />
               </div>
               {clubBasics.members.map((member, index) => {
                 return <Member

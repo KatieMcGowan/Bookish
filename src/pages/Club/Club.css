@@ -223,7 +223,7 @@
 
 .delete-option:hover {
   cursor: pointer;
-  transform: scale(1.1);
+  text-decoration: underline;
 }
 
 .check {
@@ -249,9 +249,13 @@
   justify-content: center;
   align-items: center;
   margin: 15px 0;
+  border-top-style: solid;
+  border-top-width: 3px;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
   /* margin: 40px 0 15px 0;
   text-decoration: underline; */
-  background-color: rgb(186, 92, 39);
+  /* background-color: rgb(186, 92, 39); */
   gap: 20px;
 }
 
@@ -261,9 +265,13 @@
   justify-content: center;
   align-items: center;
   margin: 15px 0;
+  border-top-style: solid;
+  border-top-width: 3px;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
   /* margin: 40px 0 15px 0;
   text-decoration: underline; */
-  background-color: rgb(186, 92, 39);
+  /* background-color: rgb(186, 92, 39); */
   gap: 20px;
 }
 
@@ -314,6 +322,7 @@
     background-color: unset;
     gap: 20px;
     text-decoration: underline;
+    border: unset;
   }
 
   .mobile-banner-right {
@@ -325,7 +334,8 @@
     padding-left: 0px;
     background-color: unset;
     gap: 20px;
-      text-decoration: underline;
+    text-decoration: underline;
+    border: unset;
   }
 
   .delete-modal-members {

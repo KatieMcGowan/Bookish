@@ -58,7 +58,8 @@
 
 .click-here:hover {
   cursor: pointer;
-  text-shadow: 2px 2px rgb(215, 210, 210);
+  text-decoration: underline;
+  /* text-shadow: 2px 2px rgb(215, 210, 210); */
 }
 
 @media (min-width: 600px) {

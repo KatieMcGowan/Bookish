@@ -25,10 +25,10 @@ const App = () => {
         <Route exact path={"/"} element={<Landing/>}/>
         <Route path={"/signup"} element={<SignUp/>}/>
         <Route path={"/login"} element={<LogIn />}/>
-        <Route path={"/clubs"} element={<Clubs />}/> 
         <Route element={<ProtectedRoutes />}>
           <Route path={"/home"} element={<Home />}/>
           <Route path={"/myclubs"} element={<MyClubs />}/>
+          <Route path={"/clubs"} element={<Clubs />}/> 
           <Route path={"/clubs/new"} element={<NewClub />}/>
           <Route path={"/clubs/:clubid/edit"} element={<EditClub />}/>
           <Route path={"/clubs/:clubid/nominate"} element={<Nominate />}/>

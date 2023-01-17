@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import "./Header.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookOpenReader } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -19,8 +21,8 @@ const Header = () => {
     <div className="header-wrapper">
       <div className="header">
         {!token 
-          ? <Link to={"/"} className="nav-items">Bookish</Link>
-          : <Link to={"/home"} className="nav-items">Bookish</Link>
+          ? <Link to={"/"} className="nav-items"><FontAwesomeIcon icon={faBookOpenReader} /></Link>
+          : <Link to={"/home"} className="nav-items"><FontAwesomeIcon icon={faBookOpenReader} /></Link>
         }
         {!token
           ? <div className="header-loggedout">

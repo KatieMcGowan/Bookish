@@ -33,13 +33,36 @@ import UserQuery from "../queries/UserQuery";
 const ProtectedRoutes = () => {
   const cookies = new Cookies();
 
-  // const token = {token: cookies.get("TOKEN")}
   const token = cookies.get("TOKEN");
+
+  const [user, setUser] = useState({
+    id: "",
+    displayname: "",
+    clubsmember: [],
+    clubsadmin: [],
+  })
+
+  useEffect(() => {
+    if (token) {
+      UserQuery.getid({token: token})
+      .then(id => {
+        UserQuery.show(id.userId)
+        .then(user => {
+          setUser({
+            id: user._id,
+            displayname: user.displayname,
+            clubsmember: user.clubsmember,
+            clubsadmin: user.clubsadmin
+          });
+        });
+      });
+    };
+  }, [token]);
 
   if (!token) {
     return <Navigate to={"/login"} replace />
   }
-  return <Outlet context={token}/>;
+  return <Outlet context={user}/>;
 }
 
 export default ProtectedRoutes;

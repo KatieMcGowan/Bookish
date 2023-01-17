@@ -9,7 +9,9 @@ import "./Home.css";
 const Home = () => {
   const navigate = useNavigate();
 
-  const token = {token: useOutletContext()}
+  const userContext = useOutletContext();
+
+  // const token = {token: useOutletContext()}
 
   //GREETINGS: DISPLAY NAME STATE AND USEEFFECT HOOK
   const [displayname, setDisplayname] = useState("");
@@ -17,14 +19,8 @@ const Home = () => {
   const [time, setTime] = useState();
 
   useEffect(() => {
-    UserQuery.getid(token)
-    .then(response => {
-      UserQuery.show(response.userId)
-      .then(response => {
-        setDisplayname(response.displayname)
-      })
-    });
-  }, []);
+    setDisplayname(userContext.displayname)
+  }, [userContext]);
 
 
   useEffect(() => {

@@ -10,23 +10,18 @@ const MyClubs = () => {
   //DEPENDENCIES
   const navigate = useNavigate();
 
+  const userContext = useOutletContext();
+
   //MY CLUB STATE
   const [myClubs, setClubs] = useState([]);
 
   const [user, setUser] = useState("");
 
-  const token = {token: useOutletContext()}
-
   useEffect(() => {
-    UserQuery.getid(token)
-    .then(response => {
-      UserQuery.show(response.userId)
-      .then(user => {
-        setClubs(user.clubsmember);
-        setUser(response.userId)
-        })
-      });
-  }, []);
+    setClubs(userContext.clubsmember)
+    setUser(userContext.id)
+  }, [userContext])
+
 
   const handleHomeRedirect = () => {
     navigate("/home")
