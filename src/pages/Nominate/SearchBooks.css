@@ -76,6 +76,10 @@
   width: 100%;
 }
 
+.book-results-text {
+  margin-bottom: 10px;
+}
+
 .add-a-book {
   text-align: center;
 }

@@ -94,7 +94,6 @@ const NewClub = () => {
 
   //FUNCTION PASSED IF USER HAS ALREADY CHOSEN FIRST BOOK
   const handleSecondSubmit = (clubId, bookId) => {
-    console.log(clubId, bookId)
     ClubQuery.update(clubId, {currentbook: bookId})
     .then(navigate(`/clubs/${clubId}`))
   };
@@ -187,14 +186,18 @@ const NewClub = () => {
       }
       </div>
       {errorDisplay === true &&
-          <p className="clubname-taken">Club name is already taken, please choose another one.</p>
-        }
+        <p className="clubname-taken">Club name is already taken, please choose another one.</p>
+      }
       {haveBook === true &&
-        <SearchBooks
-          path={1}
-          handleSecondSubmit={handleSecondSubmit}
-          clubId={clubId}
-        />
+        <div>
+          <p className="search-text">Look through our catalog to see if your book exists. If not, you'll be able to add a book to our catalog.</p>
+          <SearchBooks
+            path={1}
+            handleSecondSubmit={handleSecondSubmit}
+            clubId={clubId}
+          />
+
+        </div>
       }  
     </div>
   );

@@ -116,8 +116,8 @@ const SearchBooks = (props) => {
             <div className="results-container">
               {firstSearch === true && results.length > 0 &&
                 <div className="results-found">
-                  <p>{results.length} result(s) found. Click on book you would like to select.</p>
-                  <p>-or-</p>
+                  <p className="book-results-text">{results.length} result(s) found. Click on book you would like to select.</p>
+                  <p className="book-results-text">Still can't find your book?</p>
                   <p className="click-here" onClick={() => handleNewBookRedirect()}>Add a book to the collection</p>
                   {bookAlreadyNominated === true &&
                     <p className="nomination-taken">This book has already been nominated, please select another one.</p>

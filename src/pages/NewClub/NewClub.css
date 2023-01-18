@@ -8,7 +8,13 @@
 
 .new-club-header {
   font-size: 22px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+}
+
+.search-text {
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .new-form-inputs {

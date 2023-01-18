@@ -3,11 +3,11 @@ import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import ClubQuery from "../../queries/ClubQuery";
+import UserQuery from "../../queries/UserQuery";
 import Club from "./Components/Club";
 import "./Clubs.css";
 
 const Clubs = () => {
-
   const [sortedClubs, setSortedClubs] = useState([])
   
   const navigate = useNavigate();
@@ -17,17 +17,21 @@ const Clubs = () => {
   useEffect(() => {
     ClubQuery.all()
     .then(clubs => {
-      setSortedClubs(clubs.filter(club => !userContext.clubsmember.includes(club)))
+      UserQuery.show(userContext.id)
+      .then(user => {
+        setSortedClubs(clubs.filter(club => !user.clubsmember.includes(club._id)))
+      })
     })
   }, []);
 
   const handleHomeRedirect = () => {
     navigate("/home")
   };
-  
+
   return(
     <div className="clubs-wrapper">
-      <p className="clubs-header">Clubs</p>
+      <p className="clubs-header">Browse Clubs</p>
+      <p className="click-to-join">Click on the club to join</p>
       <div className="clubs-container">
         {sortedClubs.map((club, index) => {
           return <Club

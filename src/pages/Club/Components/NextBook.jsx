@@ -1,4 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Nominated from "./Nominated";
 import ClubQuery from "../../../queries/ClubQuery";
 
@@ -43,7 +45,7 @@ const NextBook = (props) => {
   return(
     <div className="club-right">
       <div className="mobile-banner-right">
-        <p className="next-book-header">Nominated Books</p>
+        <p className="next-book-header">Nominatations</p>
         <div className="arrow-down"></div>
       </div>
       <div className="nominations-container">
@@ -61,14 +63,15 @@ const NextBook = (props) => {
                 /> 
         })}
         <div className="book-buttons-container">
-          <p className="book-button" onClick={() => handleNominateDirect()}>Nominate a book</p>
-          {props.nextBook === false &&
-            <p className="book-button" onClick={() => viewNominations()}>View current book</p>
+          <p className="book-button" onClick={() => handleNominateDirect()}>Nominate a Book</p>
+          {(props.isAdmin === true && props.nominations.length > 0) &&
+            <p className="book-button" onClick={() =>pickFromNominated(props.nominations)}>Select next book</p>
           }
         </div>
-        {(props.isAdmin === true && props.nominations.length > 0) &&
-          <div className="book-buttons-container">
-            <p className="book-button" onClick={() =>pickFromNominated(props.nominations)}>Select next book</p>
+        {props.nextBook === false &&
+          <div className="view-current-book" onClick={() => viewNominations()}>
+            <FontAwesomeIcon icon={faArrowLeft} />
+            <p>Back</p>
           </div>  
         }
       </div>

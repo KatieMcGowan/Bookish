@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useOutletContext } from "react-router-dom";
 import ClubQuery from "../../queries/ClubQuery";
 import "./EditClub.css";
 
 const EditClub = () => {
   const clubId = useParams().clubid;
+
   const navigate = useNavigate();
+
+  const userContext = useOutletContext();
 
   //HOOKS USED TO POPULATE PLACEHOLDERS
   const [editedClub, setClub] = useState({
@@ -17,13 +20,17 @@ const EditClub = () => {
   useEffect(() => {
     ClubQuery.show(clubId)
     .then(club => {
-      setClub({
-        clubname: club.clubname,
-        description: club.description,
-        meetup: club.meetup
-      })
+      if (club.admin === userContext.id) {
+        setClub({
+          clubname: club.clubname,
+          description: club.description,
+          meetup: club.meetup
+        })
+      } else {
+        navigate(`/clubs/${clubId}`)
+      }
     });
-  }, [clubId]);
+  }, [clubId, navigate, userContext]);
 
   //"CLUB NAME ALREADY TAKEN" DISPLAY STATE
   const [errorDisplay, setErrorDisplay] = useState(false);

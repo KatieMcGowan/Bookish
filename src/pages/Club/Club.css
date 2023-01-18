@@ -104,6 +104,21 @@
   color: white;
 }
 
+.view-current-book {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 15px;
+  font-style: italic;
+}
+
+.view-current-book:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .discussion-header {
   font-size: 18px;
 }
@@ -184,7 +199,9 @@
 
 .leave-link-container {
   display: flex;
+  flex-direction: row;
   justify-content: center;
+  gap: 10px;
 }
 
 .leave-link {
@@ -195,7 +212,8 @@
 
 .leave-link:hover {
   cursor: pointer;
-  text-shadow: 2px 2px rgb(215, 210, 210);
+  text-decoration: underline;
+  /* text-shadow: 2px 2px rgb(215, 210, 210); */
 }
 
 .delete-modal {
@@ -210,18 +228,37 @@
   color: red;
 }
 
-
 .delete-options {
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
-
-.delete-option {
-  margin: 0 15px;
+  gap: 15px;
 }
 
 .delete-option:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.leave-modal {
+  display: flex;
+  flex-direction: column;
+  color: red;
+}
+
+.leave-modal-members {
+  display: flex;
+  flex-direction: column;
+  color: red;
+}
+
+.leave-options {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.leave-option:hover {
   cursor: pointer;
   text-decoration: underline;
 }
@@ -298,6 +335,10 @@
   overflow-y: auto;
 }
 
+.past-book-container {
+  margin-bottom: 5px;
+}
+
 .past-books-header {
   font-size: 18px;
 }
@@ -368,6 +409,9 @@
 
   .leave-link-container {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: unset;
   }
 
   .club-left {

@@ -3,6 +3,7 @@ import { useParams, useNavigate, useOutletContext } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCrown } from "@fortawesome/free-solid-svg-icons";
 import { faPencil }from "@fortawesome/free-solid-svg-icons";
+import { faPersonWalkingArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Member from "./Components/Member";
 import CurrentBook from "./Components/CurrentBook";
 import NextBook from "./Components/NextBook";
@@ -58,32 +59,41 @@ const Club = () => {
 
   //Refactor to have it check if user is a part of club
 
-  
-  useEffect(() => {
-    ClubQuery.show(clubId)
-    .then(club => {
-      setAdminId(club.admin);
-      setBasics({
-        clubname: club.clubname,
-        description: club.description, 
-        meetup: club.meetup,
-        admin: club.admin,
-        members: club.members,
-      })
-      setCurrentBook(club.currentbook)
-      setPastBooks(club.pastbooks.reverse())
-      setQuestions(club.questions)
-      setCompleted(club.userscompleted)
-      setNominations(club.nominations)
-      setNextBook(club.nextbook)
-    })
-  }, [clubId]);
-
   // useEffect(() => {
-  //   for (let i = 0; i < clubBasics.members.length; i++) {
+  //   UserQuery.show(userContext.id)
+  //   .then(user => {
+  //     if (user.clubsmember.includes(clubId)) {
+  //       setAuthorized(true)
+  //       console.log("authorized")
+  //       return;
+  //     } else {
+  //       setAuthorized(false)
+  //       console.log("unauthorized")
+  //     }
+  //   })
+  // }, []);
 
-  //   }
-  // }, [clubBasics]);
+  useEffect(() => {
+      ClubQuery.show(clubId)
+      .then(club => {
+        setAdminId(club.admin);
+        setBasics({
+          clubname: club.clubname,
+          description: club.description, 
+          meetup: club.meetup,
+          admin: club.admin,
+          members: club.members,
+        })
+        setCurrentBook(club.currentbook)
+        setPastBooks(club.pastbooks.reverse())
+        setQuestions(club.questions)
+        setCompleted(club.userscompleted)
+        setNominations(club.nominations)
+        setNextBook(club.nextbook)
+      })
+  }, []);
+
+
 
   useEffect(() => {
     setUser(userContext.id)
@@ -139,20 +149,6 @@ const Club = () => {
         </div>
         <p className="club-description-header">{clubBasics.description}</p>
         <p className="club-meeting-header">Meet up: {clubBasics.meetup}</p>
-        {(leaveConfirm === false && isAdmin === false) &&
-          <div className="leave-link-container">
-            <p className="leave-link" onClick={() => handleLeaveModal()}>Leave this club</p>
-          </div>  
-        }  
-        {leaveConfirm === true && 
-          <div className="delete-modal">
-            <p className="delete-modal-question">Are you sure you want to leave?</p>
-            <div className="delete-options">
-              <p className="delete-option" onClick={() => handleMemberLeaving()}>Yes</p>
-              <p className="delete-option" onClick={() => handleLeaveModal()}>No</p>
-            </div>
-          </div>
-        }
       </div>  
       <div className="club-left-and-right">
         <div className="club-left">
@@ -174,7 +170,22 @@ const Club = () => {
                           isAdmin={isAdmin}
                       />  
               })}
-            </div>
+                {(leaveConfirm === false && isAdmin === false) &&
+                  <div className="leave-link-container">
+                    <FontAwesomeIcon className="crown" icon={faPersonWalkingArrowRight} />
+                    <p className="leave-link" onClick={() => handleLeaveModal()}>Leave this club</p>
+                  </div>  
+                }  
+                {leaveConfirm === true && 
+                  <div className="leave-modal">
+                    <p className="leave-modal-question">Are you sure you want to leave?</p>
+                    <div className="leave-options">
+                      <p className="leave-option" onClick={() => handleMemberLeaving()}>Yes</p>
+                      <p className="leave-option" onClick={() => handleLeaveModal()}>No</p>
+                    </div>
+                  </div>
+                }
+              </div>
             </div>
           <div className="past-books-container">
             <div className="mobile-banner">

@@ -38,8 +38,8 @@ const ProtectedRoutes = () => {
   const [user, setUser] = useState({
     id: "",
     displayname: "",
-    clubsmember: [],
-    clubsadmin: [],
+    // clubsmember: [],
+    // clubsadmin: [],
   })
 
   useEffect(() => {
@@ -51,8 +51,8 @@ const ProtectedRoutes = () => {
           setUser({
             id: user._id,
             displayname: user.displayname,
-            clubsmember: user.clubsmember,
-            clubsadmin: user.clubsadmin
+            // clubsmember: user.clubsmember,
+            // clubsadmin: user.clubsadmin
           });
         });
       });
@@ -66,8 +66,3 @@ const ProtectedRoutes = () => {
 }
 
 export default ProtectedRoutes;
-
-//Brainstorm how to handle club permissions
-//Maybe keep an array of clubs 
-
-//Cookie persists, maybe I can have useEffect for user on app page, and hand down id and clubs as props

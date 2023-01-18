@@ -18,7 +18,10 @@ const PastBook = (props) => {
   }, [props.pastBook]);
 
   return(
-    <p className="past-book">{book.title} by {book.author}</p>
+    <div className="past-book-container">
+      <p className="past-book">{book.title}</p>
+      <p className="past-book"> by {book.author}</p>
+    </div>
   );
 };
 

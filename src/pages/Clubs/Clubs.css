@@ -9,7 +9,7 @@
 .clubs-container {
   display: flex;
   flex-direction: column;
-  width: 75%;
+  width: 100%;
 }
 
 .no-clubs-container {
@@ -23,28 +23,37 @@
   margin-bottom: 20px;
 }
 
+.click-to-join {
+  margin-bottom: 10px;
+}
+
 .clubs-individual-club {
-  margin: 20px 0;
-}
-
-.clubs-club-name-and-invite-status {
+  margin: 10px;
+  border: 2px solid black;
   display: flex;
-  flex-direction: column-reverse;
-  /* justify-content: space-between; */
-  /* gap: 30px; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px 10px;
 }
 
-.clubs-club-invite-status {
-  font-style: italic;
-}
-
-.clubs-club-invite-status:hover {
+.clubs-individual-club:hover {
   cursor: pointer;
-  text-shadow: 2px 2px rgb(215, 210, 210);
+  background-color: black;
+  color: white;
 }
 
-.clubs-club-invite-pending {
-  font-style: italic;
+.clubs-club-name {
+  font-size: 16px;
+}
+
+.clubs-club-blurb {
+  font-size: 14px;
+}
+
+.clubs-club-meeting {
+  font-size: 12px;
 }
 
 .new-club {
@@ -59,16 +68,16 @@
     font-size: 32px;
   }
 
-  .clubs-club-name-and-invite-status {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 5px;
-    /* gap: 30px; */
+  .clubs-club-name {
+    font-size: 24px;
   }
 
-  .clubs-club-name {
-    font-size: 18px;
+  .clubs-club-blurb {
+    font-size: 20px;
+  }
+  
+  .clubs-club-meeting {
+    font-size: 16px;
   }
 
   .clubs-container {

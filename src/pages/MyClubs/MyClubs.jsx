@@ -15,13 +15,14 @@ const MyClubs = () => {
   //MY CLUB STATE
   const [myClubs, setClubs] = useState([]);
 
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(userContext.id);
 
   useEffect(() => {
-    setClubs(userContext.clubsmember)
-    setUser(userContext.id)
-  }, [userContext])
-
+    UserQuery.show(userContext.id)
+    .then(user => {
+      setClubs(user.clubsmember)
+    })
+  }, [])
 
   const handleHomeRedirect = () => {
     navigate("/home")
