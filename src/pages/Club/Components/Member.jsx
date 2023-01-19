@@ -39,11 +39,11 @@ const Member = (props) => {
         : <p className="member">{member}</p>
       }
       {deleteConfirm === true &&
-        <div className="delete-modal-members">
+        <div className="leave-modal-members">
           <p>Are you sure you want to remove {member} from the club?</p>
-          <div className="delete-options">
-            <p className="delete-option" onClick={() => handleMemberRemove()}>Yes</p>
-            <p className="delete-option" onClick={() => handleRemoveModal()}>No</p>
+          <div className="leave-options">
+            <p className="leave-option" onClick={() => handleMemberRemove()}>Yes</p>
+            <p className="leave-option" onClick={() => handleRemoveModal()}>No</p>
           </div>
         </div>
       }

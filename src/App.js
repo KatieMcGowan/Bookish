@@ -1,8 +1,6 @@
 import './App.css';
-import React, { useState, useEffect, useMemo } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Cookies from "universal-cookie";
-import UserQuery from "./queries/UserQuery"
 import Header from "./pages/Header";
 import Landing from "./pages/Landing/Landing";
 import SignUp from "./pages/SignUp/SignUp";

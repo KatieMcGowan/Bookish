@@ -6,6 +6,7 @@ const FoundBook = (props) => {
 
   const handleNominate = () => {
     props.setAlreadyNominated(false);
+    props.setAlreadyRead(false);
     props.setIsCurrentBook(false);
     ClubQuery.updatearray(props.clubId, {nomination: props.result._id})
     .then(response => {

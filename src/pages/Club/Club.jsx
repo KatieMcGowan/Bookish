@@ -57,43 +57,29 @@ const Club = () => {
     author: "",
   });
 
-  //Refactor to have it check if user is a part of club
-
-  // useEffect(() => {
-  //   UserQuery.show(userContext.id)
-  //   .then(user => {
-  //     if (user.clubsmember.includes(clubId)) {
-  //       setAuthorized(true)
-  //       console.log("authorized")
-  //       return;
-  //     } else {
-  //       setAuthorized(false)
-  //       console.log("unauthorized")
-  //     }
-  //   })
-  // }, []);
-
   useEffect(() => {
       ClubQuery.show(clubId)
       .then(club => {
-        setAdminId(club.admin);
-        setBasics({
-          clubname: club.clubname,
-          description: club.description, 
-          meetup: club.meetup,
-          admin: club.admin,
-          members: club.members,
-        })
-        setCurrentBook(club.currentbook)
-        setPastBooks(club.pastbooks.reverse())
-        setQuestions(club.questions)
-        setCompleted(club.userscompleted)
-        setNominations(club.nominations)
-        setNextBook(club.nextbook)
+        if (!club.members.includes(userContext.id)) {
+          navigate("/home")
+        } else {
+          setAdminId(club.admin);
+          setBasics({
+            clubname: club.clubname,
+            description: club.description, 
+            meetup: club.meetup,
+            admin: club.admin,
+            members: club.members,
+          })
+          setCurrentBook(club.currentbook)
+          setPastBooks(club.pastbooks.reverse())
+          setQuestions(club.questions)
+          setCompleted(club.userscompleted)
+          setNominations(club.nominations)
+          setNextBook(club.nextbook)
+        }
       })
   }, []);
-
-
 
   useEffect(() => {
     setUser(userContext.id)
@@ -155,7 +141,6 @@ const Club = () => {
           <div className="members-container">
             <div className="mobile-banner">
               <p className="club-members-header">Members</p>
-              {/* <div className="arrow-down"></div> */}
             </div>
             <div className="members-list">
               <div className="admin-member">
@@ -190,9 +175,11 @@ const Club = () => {
           <div className="past-books-container">
             <div className="mobile-banner">
               <p className="past-books-header">Past Books</p>
-              {/* <div className="arrow-down"></div> */}
             </div>
             <div className="past-books-list">
+              {pastBooks.length === 0 &&
+                <p>No past books yet</p>
+              }
               {pastBooks.map((pastBook, index) => {
                 return <PastBook
                           key={index}

@@ -31,7 +31,7 @@ const Clubs = () => {
   return(
     <div className="clubs-wrapper">
       <p className="clubs-header">Browse Clubs</p>
-      <p className="click-to-join">Click on the club to join</p>
+      <p className="click-to-join">Click to join the club.</p>
       <div className="clubs-container">
         {sortedClubs.map((club, index) => {
           return <Club
@@ -48,12 +48,6 @@ const Clubs = () => {
             <Link className="create-a-club" to={"/clubs/new"}>Create a club</Link>
           </div>  
         }      
-        {/* {clubs.map((club, index) => {
-            return <Club
-                    key={index}
-                    club={club}
-                  />  
-          })} */}
       </div>
       <div className="return-home" onClick={() => handleHomeRedirect()}>
         <FontAwesomeIcon icon={faArrowLeft} />

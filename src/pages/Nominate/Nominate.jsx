@@ -8,6 +8,7 @@ const Nominate = () => {
   return(
     <div className="nominate-wrapper">
       <p className="nominate-header">Nominate a New Read</p>
+      <p className="search-text">Look through our catalog to see if your book exists. If not, you'll be able to add a book to our catalog.</p>
       <SearchBooks 
         path={2}
         clubId={clubId}
