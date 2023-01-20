@@ -1,4 +1,5 @@
 import './App.css';
+import background from "./photos/backgroundBooks.jpg"
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from "./pages/Header";
@@ -17,7 +18,14 @@ import ProtectedRoutes from './pages/ProtectedRoutes';
 
 const App = () => {
   return (
-    <div>
+    <div style={{
+        backgroundImage: `url(${background})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        height: "100vh",
+        width: "100vw",
+      }}>
       <Header />
       <Routes>
         <Route exact path={"/"} element={<Landing/>}/>

@@ -31,7 +31,7 @@ const Clubs = () => {
   return(
     <div className="clubs-wrapper">
       <p className="clubs-header">Browse Clubs</p>
-      <p className="click-to-join">Click to join the club.</p>
+      <p className="click-to-join">To join, click on the club you're interested in.</p>
       <div className="clubs-container">
         {sortedClubs.map((club, index) => {
           return <Club

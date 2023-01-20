@@ -178,7 +178,7 @@ const Club = () => {
             </div>
             <div className="past-books-list">
               {pastBooks.length === 0 &&
-                <p>No past books yet</p>
+                <p>No past books.</p>
               }
               {pastBooks.map((pastBook, index) => {
                 return <PastBook

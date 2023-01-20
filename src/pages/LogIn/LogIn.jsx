@@ -4,7 +4,7 @@ import Cookies from "universal-cookie";
 import UserQuery from "../../queries/UserQuery";
 import "./LogIn.css";
 
-const LogIn = (props) => {
+const LogIn = () => {
   const navigate = useNavigate();
   const cookies = new Cookies();
 
