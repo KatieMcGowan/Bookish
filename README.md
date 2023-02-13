@@ -26,19 +26,19 @@ A MERN stack application allowing users to create, host and join book clubs. Use
 
 ### ERD
 
-![ERD] (./public/assets/Bookish-ERD.jpg)
+![ERD](./public/assets/Bookish-ERD.jpg)
 
 ### My Clubs
 
-![MyClubs] (./public/assets/Bookish-My%20Clubs.jpg)
+![MyClubs](./public/assets/Bookish-My%20Clubs.jpg)
 
 ### Browse Clubs
 
-![BrowseClubs] (./public/assets/Bookish-Club%20List.jpg)
+![BrowseClubs](./public/assets/Bookish-Club%20List.jpg)
 
 ### Club Page
 
-![Club] (./public/assets/Bookish-Club%20View.jpg)
+![Club](./public/assets/Bookish-Club%20View.jpg)
 
 ## Future Features
 
