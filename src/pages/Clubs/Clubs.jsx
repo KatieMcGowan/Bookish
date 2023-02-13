@@ -22,7 +22,7 @@ const Clubs = () => {
         setSortedClubs(clubs.filter(club => !user.clubsmember.includes(club._id)))
       })
     })
-  }, []);
+  }, [userContext.id]);
 
   const handleHomeRedirect = () => {
     navigate("/home")

@@ -7,7 +7,8 @@
   justify-content: center;
   border: 5px solid;
   border-radius: 5px;
-  background-color:rgba(255, 255, 255);
+  background-color:#FFF8EA;
+  color: #42032C;
 }
 
 .clubs-container {
@@ -44,8 +45,8 @@
 
 .clubs-individual-club:hover {
   cursor: pointer;
-  background-color: black;
-  color: white;
+  background-color: #42032C;
+  color: #FFF8EA;
 }
 
 .clubs-club-name {
@@ -64,7 +65,7 @@
   text-align: center;
   font-style: italic;
   text-decoration: none;
-  color: black;
+  color: #42032C;
 }
 
 @media (min-width: 600px) {

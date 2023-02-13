@@ -66,7 +66,7 @@ const NewBook = () => {
                   name="title"
                   className="new-book-form-input"
                   minLength="2"
-                  maxLength="50"
+                  maxLength="100"
                   required={true}
                   onChange={handleChange}
                   value={newBook.title}

@@ -46,9 +46,11 @@ const NextBook = (props) => {
     <div className="club-right">
       <div className="mobile-banner-right">
         <p className="next-book-header">Nominatations</p>
-        <div className="arrow-down"></div>
       </div>
       <div className="nominations-container">
+        {(props.currentBook === undefined && props.isAdmin === false) &&
+          <p className="new-club-no-book">This club's first book has not been selected yet. Nominate a book you would like your club to read.</p>
+        }
         {props.nominations.length === 0 && 
           <p>No books currently nominated. Click the button below to add one.</p>
         }
@@ -65,7 +67,7 @@ const NextBook = (props) => {
         <div className="book-buttons-container">
           <p className="book-button" onClick={() => handleNominateDirect()}>Nominate a Book</p>
           {(props.isAdmin === true && props.nominations.length > 0) &&
-            <p className="book-button" onClick={() =>pickFromNominated(props.nominations)}>Select next book</p>
+            <p className="book-button" onClick={() =>pickFromNominated(props.nominations)}>Select Next Book</p>
           }
         </div>
         {props.nextBook === false &&

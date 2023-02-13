@@ -7,8 +7,8 @@
   justify-content: center;
   border: 5px solid;
   border-radius: 5px;
-  /* background-color: whitesmoke; */
-  background-color:rgba(255, 255, 255);
+  background-color:#FFF8EA;
+  color: #42032C;
 }
 
 .my-clubs-header {
@@ -38,7 +38,7 @@
 
 .my-clubs-club:hover {
   cursor: pointer;
-  background-color: black;
+  background-color: #42032C;
   color: white;
 }
 
@@ -57,8 +57,8 @@
 }
 
 .create-a-club:hover {
+  cursor: pointer;
   text-decoration: underline;
-  /* text-shadow: 2px 2px rgb(215, 210, 210); */
 }
 
 .no-my-clubs {
@@ -79,7 +79,6 @@
 .return-home:hover {
   cursor: pointer;
   text-decoration: underline;
-  /* text-shadow: 2px 2px rgb(215, 210, 210); */
 }
 
 @media (min-width: 600px) {

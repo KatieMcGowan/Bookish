@@ -35,7 +35,7 @@ const Nominated = (props) => {
   return(
     <div className="nomination-container">
       <div className="nominated-book">
-        <p>{book.title} by {book.author}</p>
+        <p className="nominated-title-and-author">{book.title} by {book.author}</p>
         {props.isAdmin === true &&
           <FontAwesomeIcon className="check" icon={faX} onClick={() => handleDeleteModal()}/>
         }

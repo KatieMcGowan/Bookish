@@ -58,28 +58,29 @@ const Club = () => {
   });
 
   useEffect(() => {
-      ClubQuery.show(clubId)
-      .then(club => {
-        if (!club.members.includes(userContext.id)) {
-          navigate("/home")
-        } else {
-          setAdminId(club.admin);
-          setBasics({
-            clubname: club.clubname,
-            description: club.description, 
-            meetup: club.meetup,
-            admin: club.admin,
-            members: club.members,
-          })
-          setCurrentBook(club.currentbook)
-          setPastBooks(club.pastbooks.reverse())
-          setQuestions(club.questions)
-          setCompleted(club.userscompleted)
-          setNominations(club.nominations)
-          setNextBook(club.nextbook)
-        }
-      })
-  }, []);
+    ClubQuery.show(clubId)
+    .then(club => {
+      if (!club.members.includes(userContext.id)) {
+        console.log("not a member")
+        navigate("/home")
+      } else {
+        setAdminId(club.admin);
+        setBasics({
+          clubname: club.clubname,
+          description: club.description, 
+          meetup: club.meetup,
+          admin: club.admin,
+          members: club.members,
+        })
+        setCurrentBook(club.currentbook)
+        setPastBooks(club.pastbooks.reverse())
+        setQuestions(club.questions)
+        setCompleted(club.userscompleted)
+        setNominations(club.nominations)
+        setNextBook(club.nextbook)
+      }
+    })
+  }, [clubId, userContext.id, navigate]);
 
   useEffect(() => {
     setUser(userContext.id)
@@ -92,7 +93,7 @@ const Club = () => {
         setIsAdmin(true)
       }
     }
-  }, [adminId, userId]);
+  }, [userContext.id, adminId, userId]);
 
   useEffect(() => {
     if (!currentBook) {

@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   z-index: 999;
-  background-color: rgb(186, 92, 39);
+  background-color: #D36B00;
 }
 
 .header {
@@ -15,7 +15,7 @@
 .nav-items {
   font-size: 22px;
   text-decoration: none;
-  color: rgb(42,20,16)
+  color: #42032C
 }
 
 .nav-items:hover {

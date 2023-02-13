@@ -7,7 +7,8 @@
   justify-content: center;
   border: 5px solid;
   border-radius: 5px;
-  background-color:rgba(255, 255, 255);
+  background-color:#FFF8EA;
+  color: #42032C;
 }
 
 .new-book-header {
@@ -52,8 +53,8 @@
 }
 
 .book-already-exists-message {
-  margin-top: 10px;
-  color: red;
+  margin: 15px 0;
+  color: rgb(190, 0, 44)
 }
 
 .link-to-search {
@@ -64,7 +65,9 @@
 }
 
 .link-to-search:hover {
-  text-shadow: 2px 2px rgb(215, 210, 210);
+  cursor: pointer;
+  text-decoration: underline;
+
 }
 
 @media (min-width: 600px) {

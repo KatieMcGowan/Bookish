@@ -3,33 +3,6 @@ import { Navigate, Outlet } from "react-router-dom";
 import Cookies from "universal-cookie";
 import UserQuery from "../queries/UserQuery";
 
-// const ProtectedRoutes = ({ element: Element, ...rest }) => {
-//   const cookies = new Cookies();
-
-//   return (
-//     <Route
-//       {...rest}
-//       render={(props) => {
-//         const token = cookies.get("TOKEN");
-//         if (token) {
-//           return <Element {...props} />;
-//         } else {
-//           return (
-//             <Navigate
-//               replace to={{
-//                 pathname: "/",
-//                 state: {
-//                   from: props.location,
-//                 },
-//               }}
-//             />
-//           );
-//         }
-//       }}
-//     />
-//   );
-// };
-
 const ProtectedRoutes = () => {
   const cookies = new Cookies();
 
@@ -38,11 +11,10 @@ const ProtectedRoutes = () => {
   const [user, setUser] = useState({
     id: "",
     displayname: "",
-    // clubsmember: [],
-    // clubsadmin: [],
-  })
+  });
 
   useEffect(() => {
+    console.log("hitting protected routes useEffect hook")
     if (token) {
       UserQuery.getid({token: token})
       .then(id => {
@@ -51,8 +23,6 @@ const ProtectedRoutes = () => {
           setUser({
             id: user._id,
             displayname: user.displayname,
-            // clubsmember: user.clubsmember,
-            // clubsadmin: user.clubsadmin
           });
         });
       });
@@ -66,3 +36,5 @@ const ProtectedRoutes = () => {
 }
 
 export default ProtectedRoutes;
+
+//only hit protected once if you're just clicking through stuff, but hits again if you refresh
