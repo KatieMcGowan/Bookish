@@ -1,4 +1,4 @@
-const url = "http://localhost:4000/clubs";
+const url = "https://foraging-chestnuts-279861.onrender.com/clubs";
 
 class ClubQuery {
   static all = () => {

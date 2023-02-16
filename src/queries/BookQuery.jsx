@@ -1,4 +1,4 @@
-const url = "http://localhost:4000/books";
+const url = "https://foraging-chestnuts-279861.onrender.com/books";
 
 class BookQuery {
   static all = () => {

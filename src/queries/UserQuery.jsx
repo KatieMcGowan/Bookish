@@ -1,4 +1,4 @@
-const url = "http://localhost:4000/users";
+const url = "https://foraging-chestnuts-279861.onrender.com/users";
 
 class UserQuery {
   static all = () => {
