@@ -14,7 +14,6 @@ const ProtectedRoutes = () => {
   });
 
   useEffect(() => {
-    console.log("hitting protected routes useEffect hook")
     if (token) {
       UserQuery.getid({token: token})
       .then(id => {

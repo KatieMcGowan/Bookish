@@ -61,7 +61,6 @@ const Club = () => {
     ClubQuery.show(clubId)
     .then(club => {
       if (!club.members.includes(userContext.id)) {
-        console.log("not a member")
         navigate("/home")
       } else {
         setAdminId(club.admin);
