@@ -35,5 +35,3 @@ const ProtectedRoutes = () => {
 }
 
 export default ProtectedRoutes;
-
-//only hit protected once if you're just clicking through stuff, but hits again if you refresh
